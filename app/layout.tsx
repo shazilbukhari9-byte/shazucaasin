@@ -5,7 +5,13 @@ import LinkRouter from "@/components/LinkRouter";
 export const metadata: Metadata = {
   title: "UCaaS",
   description: "Unified Customer Experience Management Platform. Calls, messages, meetings and AI on one number.",
-  icons: { icon: "/assets/favicon.svg" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/assets/favicon-32.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: "/assets/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
