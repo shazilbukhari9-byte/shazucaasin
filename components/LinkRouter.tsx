@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useLayoutEffect, useRef } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 declare global {
   interface Window {
@@ -16,6 +16,54 @@ declare global {
  */
 export default function LinkRouter() {
   const router = useRouter();
+  const pathname = usePathname();
+  const first = useRef(true);
+  const fromHistory = useRef(false);
+
+  // A page opened from a link starts at its hero. Back / forward keep the position the browser restores,
+  // and links with a #section jump to that section as usual.
+  useEffect(() => {
+    const onPop = () => { fromHistory.current = true; };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+  useLayoutEffect(() => {
+    if (first.current) { first.current = false; return; }
+    if (fromHistory.current) { fromHistory.current = false; return; }
+    if (location.hash) {
+      const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (el) { el.scrollIntoView({ behavior: "instant" as ScrollBehavior, block: "start" }); return; }
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+  }, [pathname]);
+
+  // Header menus are rendered once the page is idle, so the first hover on a nav item opens instantly.
+  useEffect(() => {
+    const warm = () => document.querySelectorAll(".mega.cold").forEach((m) => m.classList.remove("cold"));
+    const t = window.setTimeout(() => {
+      const ric = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
+      if (ric) ric(warm, { timeout: 1500 }); else warm();
+    }, 900);
+    return () => window.clearTimeout(t);
+  }, [pathname]);
+
+  // Looping CSS animations only run for sections that are on (or next to) the screen, so the rest of the page
+  // costs nothing while scrolling.
+  useEffect(() => {
+    let io: IntersectionObserver | undefined;
+    const t = window.setTimeout(() => {
+      if (!("IntersectionObserver" in window)) return;
+      io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.target.classList.toggle("anim-off", !e.isIntersecting)),
+        { rootMargin: "200px 0px" },
+      );
+      document.querySelectorAll("#ucaas-page section, #ucaas-page .stage").forEach((el) => io!.observe(el));
+    }, 900);
+    return () => {
+      window.clearTimeout(t);
+      io?.disconnect();
+    };
+  }, [pathname]);
 
   useEffect(() => {
     const prefetched = new Set<string>();

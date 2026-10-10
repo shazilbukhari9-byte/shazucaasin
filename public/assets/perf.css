@@ -1,0 +1,745 @@
+/* Scroll performance.
+   backdrop-filter re-blurs everything behind an element on every frame while the page scrolls or animates.
+   The glass surfaces here already sit on near-white backgrounds, so the blur is almost invisible, but it made scrolling stutter
+   (the customer-stories cards alone are 12-24 blurred layers that keep moving). Plain translucent backgrounds look the same and stay smooth. */
+*,*::before,*::after{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+/* keep the soft frosted feel by making the see-through surfaces a little more solid */
+.glass.story,.glass.float,.logos,.glass.pt-card{background-color:rgba(255,255,255,.88)}
+.nav-in{background-color:#fff}
+.mega-scrim{background-color:rgba(255,246,239,.55)}
+/* the three background glows were circles run through a large blur filter that was repainted while they drifted;
+   a soft radial gradient draws the same glow without a filter */
+.aurora i{filter:none!important}
+.aurora i:nth-child(1){background:radial-gradient(closest-side,var(--aurora-a) 30%,transparent 100%)}
+.aurora i:nth-child(2){background:radial-gradient(closest-side,var(--aurora-b) 30%,transparent 100%)}
+.aurora i:nth-child(3){background:radial-gradient(closest-side,var(--aurora-c) 30%,transparent 100%)}
+/* a film-grain texture drawn with an SVG turbulence filter and blended with "overlay" was the single most expensive paint on the
+   phone & texting showcase; the glow underneath reads the same without it */
+.sx-glow{background:none!important;mix-blend-mode:normal!important}
+
+/* ===== homepage product cards: smooth grow / shrink ===== */
+@media(min-width:901px){
+  .pcards .pcard{
+    transition:flex-grow .65s cubic-bezier(.22,.8,.24,1)!important;
+  }
+  /* the chips fade and slide in as their card widens, and out as it narrows */
+  .pcards .chips{
+    transition:max-height .5s cubic-bezier(.22,.8,.24,1),opacity .35s ease,margin .5s cubic-bezier(.22,.8,.24,1)!important;
+  }
+  .pcards .pcard:not(.is-wide) .chips{max-height:0!important;opacity:0!important;margin-bottom:0!important;overflow:hidden}
+  /* the mockup keeps its layout while the card changes width, so nothing re-wraps mid-animation */
+  .pcards .pc-vis,.pcards h3,.pcards p{transition:none}
+}
+@media(prefers-reduced-motion:reduce){.pcards .pcard,.pcards .chips{transition:none!important}}
+@media(min-width:901px){
+  .pcards .pc-vis{contain:layout paint style}
+  .pcards h3,.pcards p{contain:layout style}
+}
+
+/* ===== product cards: one fixed height, whatever the card width =====
+   The cards used to change height while they grew and shrank (text re-wrapping at in-between widths, the chips row opening and
+   closing, the mockup being taller when narrow). Every block now has a fixed height, so the row never moves. */
+@media(min-width:901px){
+  /* mockup: sized to its tallest (narrow) layout, no empty band underneath */
+  .pcards .pcard .pc-vis{min-height:0!important;height:288px}
+  /* text: always room for three lines, so a 2-line and a 4-line wrap occupy the same space */
+  .pcards .pcard p{min-height:63px}
+  /* chips: one fixed row. They fade in when the card is wide and out when it is narrow, but always keep their space */
+  .pcards .pcard .chips{height:32px!important;max-height:32px!important;flex-wrap:nowrap!important;overflow:hidden!important;margin:0 0 14px!important;opacity:1!important;visibility:visible;transition:opacity .4s ease,visibility 0s!important}
+  .pcards .pcard:not(.is-wide) .chips{opacity:0!important;visibility:hidden;transition:opacity .25s ease,visibility 0s .25s!important}
+}
+@media(min-width:901px) and (max-width:1000px){
+  .pcards .pcard .pc-vis{height:332px}
+}
+@media(min-width:1001px) and (max-width:1140px){
+  .pcards .pcard .pc-vis{height:306px}
+}
+/* narrower cards wrap the description onto a fourth line */
+@media(min-width:901px) and (max-width:1140px){
+  .pcards .pcard p{min-height:84px}
+}
+
+/* ===== "Everything else that's included": three feature cards instead of a bordered table of pills ===== */
+#features .sp{margin-top:clamp(40px,6vh,64px);padding:clamp(20px,2.6vw,32px);border:1px solid var(--line);border-radius:28px;background:linear-gradient(180deg,#fff 0,#FFFAF6 100%);box-shadow:0 30px 60px -44px rgba(120,60,30,.35)}
+#features .sp .sp-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px 16px;margin:0 0 clamp(16px,2vw,24px);padding:0}
+#features .sp .sp-head b{font-size:clamp(18px,1.6vw,22px);font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+#features .sp .sp-head span{display:inline-flex;align-items:center;gap:7px;padding:7px 13px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:500;color:var(--muted);white-space:nowrap}
+#features .sp .sp-head span::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--grad)}
+#features .sp .sp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.4vw,20px)}
+#features .sp .sp-col{display:block;padding:clamp(16px,1.6vw,22px);border:1px solid var(--line);border-radius:20px;background:#fff;transition:border-color .25s,box-shadow .25s,transform .25s}
+#features .sp .sp-col:last-child{border-bottom:1px solid var(--line)}
+#features .sp .sp-col:hover{border-color:rgba(232,85,58,.3);box-shadow:0 22px 40px -30px rgba(120,60,30,.45)}
+#features .sp .sp-col h4{display:flex;align-items:center;gap:12px;margin:0 0 12px;padding-bottom:14px;border-bottom:1px solid var(--line);font-size:16px;font-weight:600;color:var(--ink)}
+#features .sp .sp-col h4::after{content:attr(data-n);margin-left:auto;padding:3px 10px;border-radius:999px;background:var(--chip);font-size:11.5px;font-weight:600;color:var(--muted);white-space:nowrap}
+#features .sp .sp-col ul{display:grid;grid-template-columns:minmax(0,1fr);gap:0;margin:0;padding:0;list-style:none}
+#features .sp .sp-col li{position:relative;display:block;padding:8px 6px 8px 28px;border:0;border-bottom:1px dashed rgba(30,20,10,.1);border-radius:0;background:none;font-size:14px;line-height:1.35;color:var(--ink)}
+#features .sp .sp-col li:last-child{border-bottom:0}
+#features .sp .sp-col li::before{content:"";position:absolute;left:4px;top:50%;width:14px;height:14px;margin-top:-7px;border:0;border-radius:50%;background:rgba(14,159,99,.12) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%230E9F63' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 8.5 2.7 2.7L12 5.5'/%3E%3C/svg%3E") center/10px no-repeat;transform:none}
+#features .sp .sp-col li:hover{background:none;border-color:rgba(30,20,10,.1)}
+@media(max-width:1000px){#features .sp .sp-grid{grid-template-columns:minmax(0,1fr)}}
+@media(min-width:560px) and (max-width:1000px){#features .sp .sp-col ul{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px}}
+
+/* ===== meeting avatars: name pill on hover / keyboard focus ===== */
+.vm-av .av[data-name]{position:relative;cursor:default;outline:none;transition:transform .22s cubic-bezier(.22,1,.36,1),box-shadow .22s}
+.vm-av .av[data-name]::after{
+  content:attr(data-name);position:absolute;left:50%;bottom:calc(100% + 9px);z-index:30;
+  transform:translate(-50%,5px) scale(.94);transform-origin:50% 100%;
+  padding:6px 11px;border-radius:999px;background:#1C1512;color:#fff;
+  font:600 12px/1 "Filson Pro",system-ui,sans-serif;letter-spacing:.01em;white-space:nowrap;
+  box-shadow:0 10px 22px -10px rgba(20,10,5,.55);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .18s ease,transform .22s cubic-bezier(.22,1,.36,1),visibility 0s .22s;
+}
+.vm-av .av[data-name]::before{
+  content:"";position:absolute;left:50%;bottom:calc(100% + 4px);z-index:31;width:8px;height:8px;
+  background:#1C1512;border-radius:2px;transform:translate(-50%,0) rotate(45deg) scale(.6);
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,transform .22s cubic-bezier(.22,1,.36,1),visibility 0s .22s;
+}
+.vm-av .av[data-name]:hover,.vm-av .av[data-name]:focus-visible{z-index:10;transform:translateY(-2px) scale(1.08);box-shadow:0 8px 16px -8px rgba(60,30,15,.5)}
+.vm-av .av[data-name]:hover::after,.vm-av .av[data-name]:focus-visible::after{opacity:1;visibility:visible;transform:translate(-50%,0) scale(1);transition-delay:0s}
+.vm-av .av[data-name]:hover::before,.vm-av .av[data-name]:focus-visible::before{opacity:1;visibility:visible;transform:translate(-50%,0) rotate(45deg) scale(1);transition-delay:0s}
+.vm-av .av[data-name]:focus-visible{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--coral,#E8553A)}
+@media(prefers-reduced-motion:reduce){.vm-av .av[data-name],.vm-av .av[data-name]::after,.vm-av .av[data-name]::before{transition:none}}
+
+/* navbar: a solid white bar, nothing shows through it */
+.nav-in,.nav .nav-in,header.nav .nav-in{background:#fff!important;background-color:#fff!important}
+.mega,.mnav{background:#fff!important}
+
+/* ===== meeting features list: the list keeps one height while the open row changes =====
+   The open row used to take exactly as much room as its description needed (one or two lines, three on a phone),
+   so the list, and the join-meeting card beside it, grew and shrank on every hover. The description now always has
+   room for two lines (three on a phone), so nothing moves. */
+.vm-fr.on .dsc>p{min-height:50px}
+@media(max-width:700px){.vm-fr.on .dsc>p{min-height:71px}}
+
+/* ===== "after the call" notes card: one height for all four steps =====
+   Only the open step was in the layout, so the card took the height of whichever step was showing. All four steps now
+   sit in the same grid cell (the hidden ones stay invisible), so the card is always as tall as the tallest one. */
+.vm-nt{display:grid!important;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr;gap:12px}
+.vm-nt>.vm-nh{grid-row:1;grid-column:1}
+.vm-nt>.vm-pn{display:flex!important;grid-row:2;grid-column:1;visibility:hidden;opacity:0;pointer-events:none;animation:none!important;transition:opacity .35s ease,visibility 0s .35s}
+.vm-nt>.vm-pn.on{visibility:visible;opacity:1;pointer-events:auto;transition:opacity .35s ease,visibility 0s}
+.vm-nt>.vm-pn:not(.on) *{animation:none!important}
+
+/* ===== live chat "Leads write back" wall: three columns that end on the same line =====
+   The cards used to be dropped into columns one after another, so each column ended at a different height and the right one
+   was the shortest. They now sit on a real two-row grid: the cards in a row share one height and every column ends together. */
+@media(min-width:901px){
+  .lc-wall{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:auto auto;gap:16px;columns:auto!important;column-gap:16px}
+  .lc-wall>*{margin:0!important;break-inside:auto;width:auto!important}
+  .lc-wall>:nth-child(1){grid-column:1;grid-row:1}
+  .lc-wall>:nth-child(2){grid-column:1;grid-row:2}
+  .lc-wall>:nth-child(3){grid-column:2;grid-row:1}
+  .lc-wall>:nth-child(4){grid-column:2;grid-row:2}
+  .lc-wall>:nth-child(5){grid-column:3;grid-row:1}
+  .lc-wall>:nth-child(6){grid-column:3;grid-row:2}
+  .lc-wall>.lc-big2{display:flex;flex-direction:column;justify-content:flex-end}
+}
+
+/* ===== team messaging: feature tabs + feature cards as an even bento ===== */
+/* the four tab panels share one cell, so the box is as tall as the tallest panel and never changes when you switch tab */
+.tm-fv{display:grid!important}
+.tm-fv>.tm-fp{grid-area:1/1;display:flex!important;flex-direction:column;min-width:0}
+.tm-fv>.tm-fp[hidden]{visibility:hidden;opacity:0;pointer-events:none}
+/* the list on the left fills the full height of the panel, each tab sharing the space equally */
+@media(min-width:901px){
+  .tm-ft-list{height:100%}
+  .tm-ft-list>.tm-ft{flex:1 1 0;min-height:0}
+}
+/* the four small cards: same height, and the badge sits under the title in every card */
+.tm-fgrid{align-items:stretch;grid-auto-rows:1fr}
+.tm-fc{height:100%}
+.tm-fc h3{display:flex!important;flex-direction:column;align-items:flex-start;gap:8px!important}
+.tm-fc h3 .pill{width:fit-content}
+.tm-fc p{margin-top:auto}
+
+/* ===== ai receptionist: language pills as a tidy, even grid on both sides of the panel ===== */
+@media(min-width:1001px){
+  .rc-chips{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:12px!important;align-items:stretch!important;justify-content:stretch!important;align-content:center}
+  .rc-chips .ai-chip{width:100%;margin:0!important;animation:none!important;align-items:flex-start;justify-content:center;min-height:58px;box-sizing:border-box}
+}
+
+/* ===== ai chatbot "One bot, every surface": surface switcher grid + phone-shaped preview ===== */
+.ab-seg .ai-seg{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:6px;border-radius:24px;width:100%;max-width:520px;box-sizing:border-box}
+.ab-seg .ai-seg button{width:100%;text-align:center;white-space:nowrap;padding:10px 8px;min-height:44px;border-radius:18px}
+@media(max-width:380px){.ab-seg .ai-seg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* narrow, tall, rounded like a phone body; the whole conversation stays visible */
+.ab-phone{max-width:310px!important;border-radius:44px!important;padding:12px!important}
+.ab-phone>.kx-scr{border-radius:34px!important;min-height:520px!important;display:flex;flex-direction:column}
+.ab-phone .ab-chat{padding:18px 16px;align-content:start}
+.ab-phone .ab-m{max-width:92%}
+.ab-phone .ab-foot{margin-top:auto;padding:14px 16px 18px}
+
+/* ===== ai chatbot "Pick how far you want to go": three plan cards share the same rows, so the dark card is no bigger than the others ===== */
+.ab-plans{align-items:stretch;grid-auto-flow:row}
+.ab-plans>.kx-plan{display:grid!important;grid-row:span 4;grid-template-rows:subgrid;row-gap:14px;align-content:start;transform:none!important}
+.ab-plans>.kx-plan>.kx-k,.ab-plans>.kx-plan>.kx-badge{display:flex;align-items:center;align-self:start;height:30px;box-sizing:border-box}
+.ab-plans>.kx-plan>.kx-k{padding:0}
+.ab-plans>.kx-plan>.kx-h{align-self:start;margin:0}
+.ab-plans>.kx-plan>.ab-pr{align-self:start}
+.ab-plans>.kx-plan>ul{align-self:start}
+.ab-plans>.kx-plan>.kx-badge{justify-self:start;padding:0 14px}
+
+/* ai chatbot phone shape: soft grey frame, thin edge */
+.ab-phone{background:linear-gradient(160deg,#b3adA8,#8e8883)!important;padding:5px!important;border-radius:40px!important;box-shadow:0 36px 70px -42px rgba(60,30,15,.4)!important}
+.ab-phone>.kx-scr{border-radius:35px!important}
+
+/* ===== agent assist "Live in one afternoon": three step cards share rows, so number, time, title and text line up and the dark card sits level ===== */
+.as-plans{align-items:stretch}
+.as-plans>.kx-plan{display:grid!important;grid-row:span 5;grid-template-rows:subgrid;row-gap:12px;align-content:start;transform:none!important}
+.as-plans>.kx-plan>.kx-badge{justify-self:start;align-self:start}
+.as-plans>.kx-plan>*{align-self:start;margin-top:0;margin-bottom:0}
+.as-plans>.kx-plan>.kx-badge{align-self:start}
+
+/* dark "hot" plan card: same footprint as its neighbours — no oversized coral glow spilling outside the card */
+.kx-plans>.kx-plan.hot{box-shadow:0 30px 60px -44px rgba(60,30,15,.45),0 0 0 1px rgba(40,30,20,.9)!important}
+
+/* ===== conversation intelligence "Ask the archive": chips sit in a tidy symmetric frame around the search card ===== */
+@media(min-width:1001px){
+  .ci-canvas>.ci-cos{position:absolute!important;inset:0;display:block!important;pointer-events:none}
+  .ci-canvas .ci-cos>.kx-callout{position:absolute!important;animation:none!important;transform:none!important;pointer-events:auto;right:auto!important;bottom:auto!important}
+  .ci-canvas .ci-cos>.kx-callout:nth-child(1){left:5%!important;top:14%!important}
+  .ci-canvas .ci-cos>.kx-callout:nth-child(3){left:5%!important;top:72%!important}
+  .ci-canvas .ci-cos>.kx-callout:nth-child(2){left:auto!important;right:5%!important;top:14%!important}
+  .ci-canvas .ci-cos>.kx-callout:nth-child(4){left:auto!important;right:5%!important;top:72%!important}
+  .ci-canvas .ci-cos>.kx-callout:nth-child(5){left:50%!important;top:auto!important;bottom:7%!important;translate:-50% 0}
+}
+
+/* ===== conversation intelligence "Five layers of meaning": heading centred, layer switches left and the transcript right ===== */
+@media(min-width:901px){
+  #layers>.wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:36px clamp(20px,3vw,40px);align-items:stretch}
+  #layers .ci-top{display:contents}
+  #layers .ci-top>div:first-child{grid-column:1/-1;text-align:center}
+  #layers .ci-top .ai-txt{display:flex;flex-direction:column;align-items:center}
+  #layers .ci-top .ai-txt h2{margin-inline:auto}
+  #layers .ci-top .ai-txt .pt-lead{margin-inline:auto;max-width:640px}
+  #layers .ci-sw{grid-column:1;grid-auto-rows:1fr;align-content:stretch}
+  #layers .ci-conv{grid-column:2;margin:0}
+}
+#layers .ci-top .ai-txt{text-align:center}
+#layers .ci-top .ai-txt h2,#layers .ci-top .ai-txt .pt-lead{margin-inline:auto}
+
+/* ai call scheduling steps: every card reserves two lines of copy, so the titles sit on one line across the row */
+.sc-hw .sc-st .kx-p{min-height:calc(2 * 1.55em)}
+
+/* pinned steps row on short laptop screens: tighter header and cards so the whole row stays in view while it slides */
+@media(min-width:901px) and (max-height:760px){
+  html body section.sc-pin.sc-pin>.wrap{padding-top:80px!important;padding-bottom:14px!important}
+  section.sc-pin .sec-head{margin-bottom:0}
+  section.sc-pin .sec-head h2{font-size:clamp(26px,3.2vw,38px);line-height:1.1}
+  section.sc-pin .sec-head .pt-lead{display:none}
+  section.sc-pin .sc-hw .kx-nav{margin-bottom:8px}
+  section.sc-pin .sc-hw .sc-st{min-height:0!important;height:clamp(200px,calc(100vh - 360px),260px)}
+}
+
+/* ===== ai call scheduling "Book, move, cancel": centred statement, short lead, three equal action cards ===== */
+.sc-say{justify-items:center;text-align:center;gap:20px}
+.sc-say>.eyebrow{width:fit-content;max-width:100%;justify-self:center}
+.sc-say .kx-say{font-size:clamp(32px,4.6vw,62px)!important;line-height:1.08!important;max-width:15em;margin-inline:auto;text-wrap:balance}
+.sc-say-g{display:grid!important;grid-template-columns:minmax(0,1fr)!important;gap:30px!important;border-top:0!important;padding-top:6px!important;width:100%;justify-items:center}
+.sc-say-g>.pt-lead{max-width:600px!important;text-align:center}
+.sc-acts{width:100%;max-width:960px;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:16px!important;text-align:left}
+.sc-acts li{flex-direction:column!important;align-items:flex-start;justify-content:flex-start;gap:6px;padding:22px 24px!important;border:0!important;border-radius:20px;background:#fff;box-shadow:0 24px 50px -38px rgba(120,60,30,.45),0 0 0 1px rgba(40,30,20,.07)}
+.sc-acts li b{width:auto!important;font-size:18px}
+.sc-acts li span{text-align:left!important;width:auto!important;font-size:14.5px;line-height:1.45}
+@media(max-width:760px){.sc-acts{grid-template-columns:minmax(0,1fr)!important}}
+
+/* ===== ai call scheduling "After the call": result card centred, five chips in a tidy symmetric frame ===== */
+.sc-cv .sc-core{text-wrap:balance}
+@media(min-width:1001px){
+  .sc-cv{min-height:420px}
+  .sc-cv .sc-core{width:min(340px,40%)!important;top:50%!important}
+  .sc-cv>.kx-callout{position:absolute!important;animation:none!important;transform:none!important;right:auto!important;bottom:auto!important;translate:none}
+  .sc-cv>.kx-callout:nth-of-type(1){left:5%!important;top:12%!important}
+  .sc-cv>.kx-callout:nth-of-type(2){left:auto!important;right:5%!important;top:12%!important}
+  .sc-cv>.kx-callout:nth-of-type(3){left:5%!important;top:auto!important;bottom:12%!important}
+  .sc-cv>.kx-callout:nth-of-type(4){left:auto!important;right:5%!important;top:auto!important;bottom:12%!important}
+  .sc-cv>.kx-callout:nth-of-type(5){left:50%!important;top:auto!important;bottom:5%!important;translate:-50% 0}
+}
+@media(max-width:1000px){
+  .sc-cv{display:flex!important;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;padding:24px;min-height:0!important}
+  .sc-cv .sc-core{position:static!important;transform:none!important;width:min(100%,360px)!important;flex:0 0 min(100%,360px);margin:0 auto 6px;box-sizing:border-box}
+  .sc-cv>.kx-callout{position:static!important;animation:none!important;transform:none!important;white-space:normal}
+}
+
+/* ===== ai follow-ups "Texting the right way": masonry columns become a bento grid with two even rows ===== */
+.af-wall{columns:auto!important;display:grid!important;gap:16px;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr}
+.af-wall>*{margin:0!important;min-width:0;display:flex;flex-direction:column;justify-content:flex-start;break-inside:auto}
+.af-wall>.af-big{grid-column:1/3;grid-row:1;justify-content:center}
+.af-wall>.af-chat{grid-column:1;grid-row:2;display:flex;flex-direction:column;gap:8px}
+.af-wall>.af-chat .af-b.me{align-self:flex-end}
+.af-wall>.af-chat .af-b.ai{align-self:flex-start}
+.af-wall>.af-chat .ai-pill{align-self:flex-start;margin-top:auto}
+.af-wall>:nth-child(3){grid-column:3;grid-row:1}
+.af-wall>:nth-child(5){grid-column:4;grid-row:1}
+.af-wall>:nth-child(4){grid-column:2;grid-row:2}
+.af-wall>.af-night{grid-column:3/5;grid-row:2;justify-content:flex-start}
+.af-wall .kx-ico{flex:none;align-self:flex-start}
+@media(max-width:1000px){
+  .af-wall{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto}
+  .af-wall>*,.af-wall>.af-big,.af-wall>.af-chat,.af-wall>.af-night,.af-wall>:nth-child(n){grid-column:auto;grid-row:auto}
+  .af-wall>.af-big,.af-wall>.af-night{grid-column:1/-1}
+}
+@media(max-width:600px){.af-wall{grid-template-columns:minmax(0,1fr)}}
+
+/* list + preview pairs (.kx-lp): every preview card shares one cell, so all of them have the same size and the layout never jumps between tabs */
+.kx-lp-pv{display:grid!important}
+.kx-lp-pv>.kx-pv{display:flex!important;flex-direction:column;justify-content:center;gap:0;grid-area:1/1;height:100%;box-sizing:border-box;visibility:hidden;opacity:0;pointer-events:none;animation:none}
+.kx-lp-pv>.kx-pv.on{visibility:visible;opacity:1;pointer-events:auto;transition:opacity .35s ease}
+.kx-lp-pv>.kx-pv>.ai-head+.ai-bub{margin-top:14px}
+.kx-lp-pv>.kx-pv>.ai-bub+.ai-bub{margin-top:10px}
+
+/* preview dialing laptop frame: soft grey, thin edge */
+.pv-dv-s .kx-dev.lap{background:linear-gradient(160deg,#b3ada8,#8e8883)!important;padding:5px 5px 8px!important;box-shadow:0 36px 70px -42px rgba(60,30,15,.4)!important}
+.pv-dv-s .kx-dev.lap>.kx-scr{border-radius:13px 13px 8px 8px}
+
+/* ===== preview dialing: area-code chips in a tidy frame around the live-call card ===== */
+@media(min-width:1001px){
+  .pv-cv{min-height:480px}
+  .pv-cv>.pv-ac{position:absolute!important;animation:none!important;transform:none!important;right:auto!important;bottom:auto!important;translate:none}
+  .pv-cv>.pv-ac:nth-of-type(1){left:5%!important;top:7%!important}
+  .pv-cv>.pv-ac:nth-of-type(7){left:50%!important;top:7%!important;translate:-50% 0}
+  .pv-cv>.pv-ac:nth-of-type(2){left:auto!important;right:5%!important;top:7%!important}
+  .pv-cv>.pv-ac:nth-of-type(3){left:5%!important;top:50%!important;translate:0 -50%}
+  .pv-cv>.pv-ac:nth-of-type(4){left:auto!important;right:5%!important;top:50%!important;translate:0 -50%}
+  .pv-cv>.pv-ac:nth-of-type(5){left:5%!important;top:auto!important;bottom:7%!important}
+  .pv-cv>.pv-ac:nth-of-type(8){left:50%!important;top:auto!important;bottom:7%!important;translate:-50% 0}
+  .pv-cv>.pv-ac:nth-of-type(6){left:auto!important;right:5%!important;top:auto!important;bottom:7%!important}
+}
+@media(max-width:1000px){
+  .pv-cv>.pv-ac{animation:none!important;transform:none!important}
+}
+
+/* ===== preview dialing "Everything on, no add-ons": cards share one title line; pinned sideways scroll fits short screens ===== */
+.pv-hw .pv-sc .kx-p{min-height:calc(2 * 1.55em)}
+@media(min-width:901px) and (max-height:760px){
+  html body section.pv-pin.pv-pin>.wrap{padding-top:80px!important;padding-bottom:14px!important}
+  section.pv-pin .sec-head{margin-bottom:0}
+  section.pv-pin .sec-head h2{font-size:clamp(26px,3.2vw,38px);line-height:1.1}
+  section.pv-pin .sec-head .pt-lead{display:none}
+  section.pv-pin .pv-hw .kx-nav{margin-bottom:8px}
+  section.pv-pin .pv-hw .pv-sc{min-height:0!important;height:clamp(200px,calc(100vh - 360px),260px)}
+}
+@media(min-width:701px) and (max-width:1000px){
+  .pv-cv{display:flex!important;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;padding:24px;min-height:0!important}
+  .pv-cv>.pv-core{position:static!important;transform:none!important;order:-1;flex:0 0 360px;width:360px!important;margin:0 calc(50% - 180px) 8px;box-sizing:border-box}
+  .pv-cv>.pv-ac{position:static!important}
+}
+
+/* preview dialing feature cards: a small product snapshot fills the space between the icon and the title */
+.pv-sc{display:flex;flex-direction:column}
+.pv-sc>.kx-ico{flex:none}
+.pv-sc>.pv-mk{display:grid;gap:8px;margin:14px 0 auto;padding:12px;border-radius:16px;background:linear-gradient(180deg,#fbf8f5,#f6f1ec);box-shadow:inset 0 0 0 1px rgba(40,30,20,.06)}
+.pv-sc>.kx-h{margin-top:16px}
+.pv-mk .mk-row{display:flex;align-items:center;gap:8px;font-size:12.5px;line-height:1.2;color:var(--ink,#2b2622)}
+.pv-mk .mk-t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.pv-mk .mk-row em{font-style:normal;font-size:11px;font-weight:600;letter-spacing:.02em;padding:3px 9px;border-radius:99px;background:#ece7e2;color:#5c5752;white-space:nowrap}
+.pv-mk .mk-row em.ok{background:#e1f2e9;color:#0f6b43}
+.pv-mk .mk-row em.no{background:#fde4de;color:#c0391f}
+.pv-mk .mk-dot{width:8px;height:8px;border-radius:50%;flex:none;background:#c9c2bb}
+.pv-mk .mk-dot.ok{background:#1ea36b}
+.pv-mk .mk-dot.no{background:#e0482b}
+@media(min-width:901px) and (max-height:760px){
+  section.pv-pin .pv-hw .pv-sc{height:clamp(250px,calc(100vh - 320px),310px)!important}
+  .pv-sc>.pv-mk{margin-top:10px;padding:9px 10px;gap:6px}
+  .pv-sc>.kx-h{margin-top:10px}
+}
+
+/* ===== preview dialing "Four steps, agent in control": four equal step cards, title and copy on shared lines ===== */
+@media(min-width:801px){
+  .pv-fl{gap:18px!important;align-items:stretch}
+  .pv-fl>.kx-fn{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0;padding:28px 22px 26px!important;border-radius:24px;background:#fff;box-shadow:0 26px 50px -40px rgba(120,60,30,.45),0 0 0 1px rgba(40,30,20,.07);align-content:start}
+  .pv-fl>.kx-fn>.n{margin:0 auto 20px}
+  .pv-fl>.kx-fn>.kx-h{margin:0 0 10px!important;align-self:start}
+  .pv-fl>.kx-fn>.kx-p{margin:0 auto!important;align-self:start}
+}
+@media(max-width:800px){
+  .pv-fl>.kx-fn{padding:24px 20px!important;border-radius:22px;background:#fff;box-shadow:0 22px 44px -36px rgba(120,60,30,.45),0 0 0 1px rgba(40,30,20,.07)}
+}
+
+/* numbered step rows (.kx-flowrow) on every page: equal cards, circle / title / copy on shared lines */
+@media(min-width:801px){
+  .kx-flowrow{gap:18px!important;align-items:stretch}
+  .kx-flowrow>.kx-fn{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0;padding:28px 22px 26px!important;border-radius:24px;background:#fff;box-shadow:0 26px 50px -40px rgba(120,60,30,.45),0 0 0 1px rgba(40,30,20,.07);align-content:start}
+  .kx-flowrow>.kx-fn>.n{margin:0 auto 20px}
+  .kx-flowrow>.kx-fn>.kx-h{margin:0 0 10px!important;align-self:start}
+  .kx-flowrow>.kx-fn>.kx-p{margin:0 auto!important;align-self:start;max-width:none}
+}
+@media(max-width:800px){
+  .kx-flowrow>.kx-fn{padding:24px 20px!important;border-radius:22px;background:#fff;box-shadow:0 22px 44px -36px rgba(120,60,30,.45),0 0 0 1px rgba(40,30,20,.07)}
+}
+@media(min-width:801px){
+  .kx-flowrow>.kx-fn:has(>.kx-k){grid-row:span 4}
+  .kx-flowrow>.kx-fn>.kx-k{margin:0 0 8px!important;align-self:start}
+}
+@media(min-width:801px){
+  .kx-flowrow>.kx-fn:has(>.pr-fi){grid-row:span 4}
+  .kx-flowrow>.kx-fn>.pr-fi{align-self:start;justify-self:center;margin:0 0 14px!important}
+}
+
+/* auto dialer "AI calls" preview: phone-sized, thin soft-grey frame, all three conversations share one screen size */
+.ad-dv-s .kx-dev.ad-ph{max-width:300px!important;width:100%;margin-inline:auto;padding:5px!important;border-radius:40px!important;background:linear-gradient(160deg,#b3ada8,#8e8883)!important;box-shadow:0 36px 70px -42px rgba(60,30,15,.4)!important}
+.ad-dv-s .kx-dev.ad-ph>.ad-scr{border-radius:35px!important;min-height:560px!important;padding:22px 16px 20px!important;display:grid!important;grid-template-columns:minmax(0,1fr);grid-template-rows:auto 1fr;gap:12px;align-content:stretch}
+.ad-dv-s .ad-scr>.ad-sh{grid-row:1;grid-column:1}
+.ad-dv-s .ad-scr>.ad-cv{grid-row:2;grid-column:1;display:grid!important;align-content:start;gap:10px;visibility:hidden;opacity:0;pointer-events:none;animation:none}
+.ad-dv-s .ad-scr>.ad-cv.on{visibility:visible;opacity:1;pointer-events:auto;transition:opacity .35s ease}
+.ad-dv-s .ad-cv .ai-bub{padding:11px 13px;font-size:13.5px}
+
+/* ===== auto dialer "TCPA enforcement at the dial layer": bento with no empty cells (4+2 / 2+2+2 / 6) ===== */
+@media(min-width:1001px){
+  .ad-bn>:nth-child(1){grid-column:span 4}
+  .ad-bn>:nth-child(2){grid-column:span 2}
+  .ad-bn>:nth-child(3),.ad-bn>:nth-child(4),.ad-bn>:nth-child(5){grid-column:span 2}
+  .ad-bn>:nth-child(6){grid-column:1/-1;flex-direction:row;align-items:center;gap:22px;min-height:0;padding-block:22px}
+  .ad-bn>:nth-child(6)>.kx-ico{flex:none;margin:0}
+  .ad-bn>:nth-child(6)>.kx-h{flex:0 1 auto;margin:0;white-space:nowrap}
+  .ad-bn>:nth-child(6)>.kx-p{flex:1 1 0;margin:0;min-width:0;text-align:right}
+}
+@media(max-width:1000px){
+  .ad-bn>*{grid-column:span 1}
+  .ad-bn>:nth-child(1),.ad-bn>:nth-child(6){grid-column:1/-1}
+}
+
+/* ===== auto dialer "Handled by the AI": masonry columns become a bento grid with no empty cells ===== */
+@media(min-width:1001px){
+  .ad-wall{columns:auto!important;display:grid!important;gap:16px;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,1fr)}
+  .ad-wall>*{margin:0!important;min-width:0;break-inside:auto;display:flex;flex-direction:column;justify-content:flex-start}
+  .ad-wall>:nth-child(1){grid-column:1;grid-row:1/3}
+  .ad-wall>:nth-child(2){grid-column:2;grid-row:1}
+  .ad-wall>:nth-child(3){grid-column:2;grid-row:2}
+  .ad-wall>:nth-child(4){grid-column:3/5;grid-row:1;justify-content:center}
+  .ad-wall>:nth-child(5){grid-column:3;grid-row:2}
+  .ad-wall>:nth-child(6){grid-column:4;grid-row:2}
+  .ad-wall>:nth-child(1) ul{flex:1;display:grid;align-content:space-between}
+}
+@media(max-width:1000px){
+  .ad-wall{columns:auto!important;display:grid!important;gap:16px;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ad-wall>*{margin:0!important;min-width:0;break-inside:auto}
+  .ad-wall>:nth-child(1){grid-column:1/-1}
+}
+@media(max-width:600px){.ad-wall{grid-template-columns:minmax(0,1fr)}}
+
+/* ===== auto dialer "From a list to a logged result": steps become even cards on the timeline ===== */
+.ad-tw-h h2{text-wrap:balance}
+.ad-tw-h .pt-lead{max-width:30em}
+.ad-tl{gap:16px!important;padding-left:48px!important;grid-auto-rows:1fr}
+.ad-tl::before,.ad-tl::after{left:16px!important;top:40px!important;bottom:40px!important}
+.ad-tl>li{display:flex;flex-direction:column;justify-content:center;gap:2px;padding:22px 26px;border-radius:22px;background:#fff;box-shadow:0 24px 48px -38px rgba(120,60,30,.45),0 0 0 1px rgba(40,30,20,.07)}
+.ad-tl>li::before{left:-40px!important;top:28px!important}
+.ad-tl .ad-st{display:inline-flex;align-self:flex-start;padding:4px 11px;border-radius:99px;background:rgba(255,122,92,.14);color:#c0391f;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.ad-tl .kx-h{margin:10px 0 4px!important}
+.ad-tl .kx-p{margin:0;max-width:44em}
+@media(max-width:600px){.ad-tl>li{padding:18px 18px}.ad-tl{padding-left:40px!important}.ad-tl>li::before{left:-34px!important}}
+
+/* ===== predictive dialing "A setup you control": masonry becomes a bento (routing row / compliance row / pairs row) ===== */
+.pd-wall{columns:auto!important;display:grid!important;gap:16px}
+.pd-wall>*{margin:0!important;min-width:0;break-inside:auto;height:auto!important;min-height:0!important;display:flex;flex-direction:column;justify-content:flex-start}
+@media(min-width:1001px){
+  .pd-wall{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:auto}
+  .pd-wall>:nth-child(1){grid-column:1/3;grid-row:1}
+  .pd-wall>:nth-child(3){grid-column:3;grid-row:1}
+  .pd-wall>:nth-child(5){grid-column:4;grid-row:1}
+  .pd-wall>:nth-child(2){grid-column:1;grid-row:2}
+  .pd-wall>:nth-child(4){grid-column:2;grid-row:2}
+  .pd-wall>:nth-child(6){grid-column:3/5;grid-row:2}
+  .pd-wall>:nth-child(7){grid-column:1/3;grid-row:3}
+  .pd-wall>:nth-child(8){grid-column:3/5;grid-row:3}
+}
+@media(max-width:1000px){.pd-wall{grid-template-columns:repeat(2,minmax(0,1fr))}.pd-wall>:nth-child(1){grid-column:1/-1}}
+@media(max-width:600px){.pd-wall{grid-template-columns:minmax(0,1fr)}}
+
+/* ===== predictive dialing "Follow one request from ring to rep": the four steps sit on the dotted path ===== */
+@media(min-width:1001px){
+  .pd-cv{min-height:520px}
+  .pd-cv>.kx-callout{position:absolute!important;animation:none!important;transform:none!important;translate:-50% -50%;right:auto!important;bottom:auto!important;white-space:nowrap;z-index:1}
+  .pd-cv>.kx-callout:nth-of-type(1){left:15%!important;top:22%!important}
+  .pd-cv>.kx-callout:nth-of-type(2){left:34%!important;top:39%!important}
+  .pd-cv>.kx-callout:nth-of-type(3){left:68%!important;top:64%!important}
+  .pd-cv>.kx-callout:nth-of-type(4){left:84%!important;top:78%!important}
+}
+@media(max-width:1000px){
+  .pd-cv{display:flex!important;flex-direction:column;align-items:stretch;gap:12px;padding:24px;min-height:0!important}
+  .pd-cv>.pd-ln{display:none}
+  .pd-cv>.kx-callout{position:static!important;animation:none!important;transform:none!important;white-space:normal}
+}
+
+/* ===== predictive dialing "Side by side": centred statement, two equal comparison cards ===== */
+.pd-say{justify-items:center;text-align:center;gap:22px!important}
+.pd-say>.eyebrow{width:fit-content;max-width:100%;justify-self:center}
+.pd-say .kx-say{font-size:clamp(32px,4.6vw,62px)!important;line-height:1.08!important;max-width:15em;margin-inline:auto;text-wrap:balance}
+.pd-two{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px!important;border-top:0!important;padding-top:6px!important;width:100%;max-width:960px;text-align:left}
+.pd-two>div{display:flex;flex-direction:column;gap:8px;padding:24px 26px;border-radius:22px;background:#fff;box-shadow:0 24px 50px -38px rgba(120,60,30,.45),0 0 0 1px rgba(40,30,20,.08)}
+.pd-two>div:last-child{background:linear-gradient(180deg,#fff7f3,#fff);box-shadow:0 24px 50px -38px rgba(232,85,58,.5),0 0 0 1px rgba(232,85,58,.28)}
+.pd-two .kx-k{margin:0}
+.pd-two .kx-p{margin:0;max-width:none}
+@media(max-width:700px){.pd-two{grid-template-columns:minmax(0,1fr)!important}}
+
+/* ===== header menus: open the moment the pointer is on the item, short and light animation ===== */
+.mega{transform:translateY(6px)!important;transition:opacity .12s ease,transform .16s ease,visibility 0s .16s!important}
+.mega.on{transform:none!important;transition:opacity .12s ease,transform .16s ease,visibility 0s!important}
+.mega.on .sv{animation:none!important}
+.mega-scrim,.nav.mx .mega-scrim{transition:opacity .15s!important}
+.nav-links .nl,.nav-links .nl::after{transition-duration:.15s!important}
+
+/* crm integrations: real HubSpot and Zoho logos in the plan cards */
+.cr-plans .kx-plan>.kx-h{display:flex;align-items:center;min-height:44px;margin:0}
+.cr-logo{gap:10px}
+.cr-logo .cr-hub{width:38px;height:38px;flex:none}
+.cr-logo .cr-wm{font-size:30px;font-weight:700;letter-spacing:-.03em;color:#33475B}
+.cr-logo .cr-zoho{height:40px;width:auto;aspect-ratio:24/11.6;flex:none}
+.cr-plans .cr-logo:has(.cr-zoho){width:fit-content;padding:6px 14px;border-radius:12px;background:#fff;min-height:48px}
+.cr-logo .cr-zoho{height:34px}
+.cr-plans .kx-plan.hot>.kx-p{color:rgba(255,255,255,.8)}
+/* zoho logo on its own, no plate behind it */
+.cr-plans .cr-logo:has(.cr-zoho){background:none;padding:0;border-radius:0;min-height:44px;width:auto}
+.cr-logo .cr-zoho{height:50px;filter:drop-shadow(0 0 0 transparent)}
+.cr-logo .cr-zoho path{fill:#FF3B3F}
+.cr-plans .kx-plan>.kx-h{min-height:56px!important}
+.cr-plans .kx-plan:not(.hot) .cr-logo .cr-zoho path{fill:#E42527}
+
+/* step cards: solid gradient numbers and a chevron between the steps */
+.kx-flowrow>.kx-beam{display:none}
+.kx-flowrow>.kx-fn>.n{background:var(--grad,linear-gradient(135deg,#FF5A3C,#FFB23E));color:#fff;box-shadow:0 0 0 8px rgba(255,122,92,.14),0 18px 34px -16px rgba(232,85,58,.65)}
+@media(min-width:801px){
+  .kx-flowrow>.kx-fn:not(:last-of-type)::after{content:"";position:absolute;top:56px;left:calc(100% + 2px);width:12px;height:12px;border-top:3px solid #FF8A6B;border-right:3px solid #FF8A6B;border-radius:2px;transform:rotate(45deg)}
+}
+
+/* step connector: a round chevron badge centred in the gap, level with the number circles */
+@media(min-width:801px){
+  .kx-flowrow{column-gap:30px!important}
+  .kx-flowrow>.kx-fn:not(:last-of-type)::after{
+    content:"";position:absolute;top:51px;left:calc(100% + 4px);width:22px;height:22px;
+    border:0;border-radius:50%;transform:none;
+    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF6B4A' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 5l7 7-7 7'/%3E%3C/svg%3E") center/12px no-repeat;
+    box-shadow:0 0 0 1.5px rgba(255,138,107,.45),0 6px 12px -6px rgba(232,85,58,.45)}
+}
+/* connector badge: vertically centred on the card, not on the number circle */
+@media(min-width:801px){
+  .kx-flowrow>.kx-fn:not(:last-of-type)::after{top:50%!important;margin-top:-11px}
+}
+
+/* ===== productivity tools "Your day, connected": phone card centred, six chips in a symmetric frame ===== */
+@media(min-width:1001px){
+  .pr-cv{min-height:520px}
+  .pr-cv>.pr-core{position:absolute!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;translate:-50% -50%;transform:none!important}
+  .pr-cv>.pr-c{position:absolute!important;animation:none!important;transform:none!important;translate:none;white-space:nowrap}
+  .pr-cv>.pr-c:nth-of-type(1){left:5%!important;right:auto!important;top:11%!important;bottom:auto!important}
+  .pr-cv>.pr-c:nth-of-type(2){left:auto!important;right:5%!important;top:11%!important;bottom:auto!important}
+  .pr-cv>.pr-c:nth-of-type(3){left:5%!important;right:auto!important;top:50%!important;bottom:auto!important;translate:0 -50%}
+  .pr-cv>.pr-c:nth-of-type(4){left:auto!important;right:5%!important;top:50%!important;bottom:auto!important;translate:0 -50%}
+  .pr-cv>.pr-c:nth-of-type(5){left:5%!important;right:auto!important;top:auto!important;bottom:11%!important}
+  .pr-cv>.pr-c:nth-of-type(6){left:auto!important;right:5%!important;top:auto!important;bottom:11%!important}
+}
+@media(min-width:701px) and (max-width:1000px){
+  .pr-cv{display:flex!important;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;padding:24px;min-height:0!important}
+  .pr-cv>.pr-core{position:static!important;translate:none;transform:none!important;order:-1;flex:0 0 300px;width:300px;margin:0 calc(50% - 150px) 8px;box-sizing:border-box}
+  .pr-cv>.pr-c{position:static!important;animation:none!important;transform:none!important}
+}
+@media(max-width:700px){.pr-cv>.pr-c{animation:none!important;transform:none!important}}
+
+/* ===== productivity tools "Workspace, chat and calendar": cards share one title line, pinned sideways scroll fits short screens ===== */
+.pr-hc{display:flex;flex-direction:column}
+.pr-hc .kx-p{min-height:calc(3 * 1.55em)}
+@media(min-width:901px) and (max-height:760px){
+  html body section.pr-pin.pr-pin>.wrap{padding-top:80px!important;padding-bottom:14px!important}
+  section.pr-pin .pr-hh{align-items:flex-end;gap:12px}
+  section.pr-pin .pr-hh .ai-txt h2{font-size:clamp(26px,3.2vw,38px);line-height:1.1;margin-top:8px}
+  section.pr-pin .pr-hh .pt-lead{display:none}
+  section.pr-pin .pr-hc{min-height:0!important;height:clamp(230px,calc(100vh - 330px),300px)}
+}
+
+/* ===== productivity tools "Four ways to get what you need": four-step path, effort increases left to right ===== */
+.pr-ways{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;max-width:1160px;margin-inline:auto}
+.pr-ways>.pw-i{position:relative;display:flex;flex-direction:column;gap:10px;padding:22px 22px 26px;border-radius:24px;background:#fff;box-shadow:0 26px 50px -40px rgba(120,60,30,.45),0 0 0 1px rgba(40,30,20,.07);overflow:hidden;transition:transform .25s ease,box-shadow .25s ease}
+.pr-ways>.pw-i:hover{transform:translateY(-3px);box-shadow:0 34px 60px -38px rgba(232,85,58,.45),0 0 0 1px rgba(232,85,58,.25)}
+.pr-ways .pw-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}
+.pr-ways .pw-n{font-size:46px;line-height:1;font-weight:700;letter-spacing:-.04em;background:var(--grad,linear-gradient(135deg,#FF5A3C,#FFB23E));-webkit-background-clip:text;background-clip:text;color:transparent}
+.pr-ways .pw-tag{margin-top:6px;padding:4px 10px;border-radius:99px;background:rgba(255,122,92,.14);color:#c0391f;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.pr-ways .kx-h{margin:0;font-size:clamp(18px,1.7vw,22px);line-height:1.2}
+.pr-ways .kx-p{margin:0;flex:1;font-size:14.5px;line-height:1.55}
+.pr-ways .pw-bar{display:block;height:4px;border-radius:4px;background:rgba(40,30,20,.08);margin-top:12px;overflow:hidden}
+.pr-ways .pw-bar>i{display:block;height:100%;width:var(--w);border-radius:4px;background:var(--grad,linear-gradient(90deg,#FF5A3C,#FFB23E))}
+.pr-tw .sec-head{margin-bottom:34px}
+@media(max-width:1000px){.pr-ways{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.pr-ways{grid-template-columns:minmax(0,1fr)}}
+@media(min-width:1001px){.pr-ways .kx-h{min-height:2.4em}}
+
+/* productivity stack: brand logos instead of names, cards sized to their content */
+.pr-hc{min-height:0!important;height:auto}
+.pr-hc .kx-p{min-height:0}
+.pr-hc .pr-hct{margin-bottom:6px}
+.pr-hc>.kx-h{margin:4px 0 6px}
+.pr-brand{display:flex;align-items:center;gap:10px;min-height:44px}
+.pr-brand .pb-ms,.pr-brand .pb-g,.pr-brand .pb-sl{width:34px;height:34px;flex:none}
+.pr-brand .pb-zp{width:44px;height:44px;flex:none;border-radius:10px}
+.pr-brand .pb-wm{font-size:22px;letter-spacing:-.02em;line-height:1}
+.pr-brand .pb-ms-t{font-weight:600;color:#5E5E5E;font-size:21px}
+.pr-brand .pb-g-t{font-weight:500;color:#5F6368}
+.pr-brand .pb-g-t b{font-weight:600}
+.pr-brand .pb-sl-t{font-weight:800;color:#4A154B;font-size:26px;letter-spacing:-.03em}
+@media(min-width:901px) and (max-height:760px){
+  section.pr-pin .pr-hc{height:auto!important}
+}
+.pr-hc>.kx-h{display:flex;align-items:center;min-height:44px}
+.pr-brand .pb-gc{width:30px;height:30px;flex:none}
+.pr-sso{gap:14px;flex-wrap:nowrap}
+.pr-sso .pb-it{display:inline-flex;align-items:center;gap:6px;min-width:0}
+.pr-sso .pb-ok{width:26px;height:26px;flex:none}
+.pr-sso .pb-ms,.pr-sso .pb-g{width:26px;height:26px;flex:none}
+.pr-sso .pb-ok-t{font-weight:700;color:#007DC1;font-size:20px;letter-spacing:-.02em}
+.pr-sso .pb-en-t{font-weight:600;color:#5E5E5E;font-size:15px;white-space:nowrap}
+
+/* productivity stack: the last two cards (Calendar sync, SSO + SCIM) get theme backgrounds, gradient and dark */
+#stack .kx-hs>.pr-hc:nth-last-child(2){background:var(--grad,linear-gradient(135deg,#FF5A3C,#FFB23E))!important;box-shadow:0 30px 60px -36px rgba(232,85,58,.6)!important;border-color:transparent}
+#stack .kx-hs>.pr-hc:nth-last-child(2) .kx-h{color:#fff!important}
+#stack .kx-hs>.pr-hc:nth-last-child(2) .kx-p{color:rgba(255,255,255,.93)!important}
+#stack .kx-hs>.pr-hc:nth-last-child(2) .kx-ico{background:rgba(255,255,255,.22)!important;color:#fff!important}
+#stack .kx-hs>.pr-hc:nth-last-child(2) .kx-ico svg{color:#fff!important;stroke:currentColor}
+#stack .kx-hs>.pr-hc:nth-last-child(2) .ai-pill{background:#fff!important;color:#c0391f!important}
+#stack .kx-hs>.pr-hc:last-child{background:linear-gradient(180deg,#241c18,#171210)!important;box-shadow:0 30px 60px -36px rgba(20,12,8,.7),inset 0 0 0 1px rgba(255,255,255,.1)!important;border-color:transparent}
+#stack .kx-hs>.pr-hc:last-child .kx-h{color:#fff!important}
+#stack .kx-hs>.pr-hc:last-child .kx-p{color:rgba(255,255,255,.78)!important}
+#stack .kx-hs>.pr-hc:last-child .kx-ico{background:rgba(255,255,255,.1)!important;color:#F5C46B!important}
+#stack .kx-hs>.pr-hc:last-child .kx-ico svg{color:#F5C46B!important;stroke:currentColor}
+#stack .kx-hs>.pr-hc:last-child .ai-pill{background:rgba(245,196,107,.2)!important;color:#F5C46B!important}
+
+/* productivity stack: the brand logo sits in the icon tile, the product name stays as the card title */
+.pr-hc .kx-ico.pb-tile{background:#fff;box-shadow:inset 0 0 0 1px rgba(40,30,20,.08);display:grid;place-items:center;width:66px;height:66px}
+.pr-hc .kx-ico.pb-tile svg{width:38px;height:38px;max-width:none;display:block}
+.pr-hc .kx-ico.pb-tile .pb-zp{width:44px;height:44px;border-radius:11px}
+.pr-hc .kx-ico{width:66px;height:66px;display:grid;place-items:center}.pr-hc .kx-ico:not(.pb-tile) svg{width:26px;height:26px}
+
+/* ===== helpdesk ticketing "What an agent sees on each call": step cards with a big number, pinned sideways scroll ===== */
+.hd-hc{position:relative;display:flex;flex-direction:column;gap:0;min-height:0!important;height:auto;overflow:hidden}
+.hd-hc>.kx-ico{width:60px;height:60px;display:grid;place-items:center;margin-bottom:22px}
+.hd-hc>.hd-num{position:absolute;top:14px;right:22px;font-size:68px;line-height:1;font-weight:700;letter-spacing:-.05em;background:var(--grad,linear-gradient(135deg,#FF5A3C,#FFB23E));-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.22;pointer-events:none}
+.hd-hc>.kx-k{margin:0 0 6px}
+.hd-hc>.kx-h{margin:0 0 8px}
+.hd-hc>.kx-p{margin:0;min-height:calc(2 * 1.55em)}
+@media(min-width:901px) and (max-height:760px){
+  html body section.hd-pin.hd-pin>.wrap{padding-top:80px!important;padding-bottom:14px!important}
+  section.hd-pin .hd-hh{align-items:flex-end;gap:12px}
+  section.hd-pin .hd-hh .ai-txt h2{font-size:clamp(26px,3.2vw,38px);line-height:1.1;margin-top:8px}
+  section.hd-pin .hd-hh .pt-lead{display:none}
+  section.hd-pin .hd-hc>.kx-ico{width:48px;height:48px;margin-bottom:14px}
+  section.hd-pin .hd-hc{padding-block:22px}
+}
+
+/* ===== helpdesk ticketing "What is live and what is on request": coverage cards with brand logos ===== */
+.hd-cov{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.hd-cv{display:flex;flex-direction:column;gap:8px;padding:22px 24px 26px;border-radius:24px;background:#fff;box-shadow:0 26px 50px -40px rgba(120,60,30,.45),0 0 0 1px rgba(40,30,20,.07);transition:transform .25s ease,box-shadow .25s ease}
+.hd-cv:hover{transform:translateY(-3px);box-shadow:0 34px 60px -38px rgba(232,85,58,.4),0 0 0 1px rgba(232,85,58,.22)}
+.hd-cv-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.hd-logo{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;flex:none;background:#fbf8f5;box-shadow:inset 0 0 0 1px rgba(40,30,20,.08)}
+.hd-logo svg{width:34px;height:34px;display:block}
+.hd-logo.hd-zap svg{width:42px;height:42px;border-radius:10px}
+.hd-logo svg.cr-zoho{width:42px;height:auto;aspect-ratio:24/11.6}
+.hd-logo.hd-ico{background:var(--chip,#f4f1ee);color:var(--coral,#E8553A)}
+.hd-logo.hd-ico svg{width:26px;height:26px;color:var(--coral,#E8553A)}
+.hd-cv .kx-h{margin:0;font-size:clamp(19px,1.8vw,24px)}
+.hd-cv .kx-p{margin:0;font-size:15px;line-height:1.55}
+.hd-cv .hd-pl{margin:0;white-space:nowrap}
+@media(max-width:1000px){.hd-cov{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.hd-cov{grid-template-columns:minmax(0,1fr)}}
+.hd-cov{grid-auto-rows:1fr}.hd-logo svg.cr-zoho{width:48px}.hd-logo svg.cr-zoho path{fill:#E42527}
+
+/* ===== helpdesk coverage as a bento: 2+1+1 / 1+1+2 ===== */
+@media(min-width:1001px){
+  .hd-cov{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:auto}
+  .hd-cov>.hd-cv:nth-child(1){grid-column:span 2;justify-content:flex-end}
+  .hd-cov>.hd-cv:nth-child(6){grid-column:span 2;justify-content:flex-end}
+  .hd-cov>.hd-cv:nth-child(1) .kx-p,.hd-cov>.hd-cv:nth-child(6) .kx-p{max-width:30em}
+}
+.hd-cov>.hd-cv:nth-child(1){background:linear-gradient(180deg,#261e1a,#171210);box-shadow:0 30px 60px -36px rgba(20,12,8,.7),inset 0 0 0 1px rgba(255,255,255,.1)}
+.hd-cov>.hd-cv:nth-child(1) .kx-h{color:#fff}
+.hd-cov>.hd-cv:nth-child(1) .kx-p{color:rgba(255,255,255,.78)}
+.hd-cov>.hd-cv:nth-child(1) .hd-logo{background:#fff}
+.hd-cov>.hd-cv:nth-child(1) .hd-pl{background:rgba(245,196,107,.2)!important;color:#F5C46B!important}
+.hd-cov>.hd-cv:nth-child(6){background:linear-gradient(135deg,#fff3ec,#ffe6da);box-shadow:0 26px 50px -40px rgba(232,85,58,.5),0 0 0 1px rgba(232,85,58,.2)}
+.hd-cov>.hd-cv:nth-child(6) .hd-logo{background:#fff}
+@media(max-width:1000px){
+  .hd-cov>.hd-cv:nth-child(1),.hd-cov>.hd-cv:nth-child(6){grid-column:1/-1}
+}
+
+/* ===== healthcare: "What protects the record" cards, content-sized, pinned sideways scroll ===== */
+.he-hc{display:flex;flex-direction:column;min-height:0!important;height:auto}
+.he-hc>.kx-ico{width:60px;height:60px;display:grid;place-items:center;margin-bottom:20px}
+.he-hc>.kx-h{margin:0 0 8px}
+.he-hc>.kx-p{margin:0 0 18px;flex:1;min-height:calc(3 * 1.55em)}
+.he-hc>.he-tg{align-self:flex-start;margin-top:auto}
+@media(min-width:901px) and (max-height:760px){
+  html body section.he-pin.he-pin>.wrap{padding-top:80px!important;padding-bottom:14px!important}
+  section.he-pin .he-hh{align-items:flex-end;gap:12px}
+  section.he-pin .he-hh .ai-txt h2{font-size:clamp(26px,3.2vw,38px);line-height:1.1;margin-top:8px}
+  section.he-pin .he-hh .pt-lead{display:none}
+  section.he-pin .he-hc>.kx-ico{width:48px;height:48px;margin-bottom:12px}
+  section.he-pin .he-hc{padding-block:20px}
+}
+
+/* ===== healthcare: "No native EHR connector is advertised", EHR card centred, four chips in a symmetric frame ===== */
+@media(min-width:1001px){
+  .he-cv{min-height:480px}
+  .he-cv>.he-dcore{position:absolute!important;left:50%!important;top:50%!important;right:auto!important;bottom:auto!important;translate:-50% -50%;transform:none!important}
+  .he-cv>.he-c{position:absolute!important;animation:none!important;transform:none!important;white-space:nowrap}
+  .he-cv>.he-c:nth-of-type(1){left:5%!important;right:auto!important;top:12%!important;bottom:auto!important}
+  .he-cv>.he-c:nth-of-type(2){left:auto!important;right:5%!important;top:12%!important;bottom:auto!important}
+  .he-cv>.he-c:nth-of-type(3){left:5%!important;right:auto!important;top:auto!important;bottom:12%!important}
+  .he-cv>.he-c:nth-of-type(4){left:auto!important;right:5%!important;top:auto!important;bottom:12%!important}
+}
+@media(min-width:701px) and (max-width:1000px){
+  .he-cv{display:flex!important;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;padding:24px;min-height:0!important}
+  .he-cv>.he-dcore{position:static!important;translate:none;transform:none!important;order:-1;flex:0 0 320px;width:320px;margin:0 calc(50% - 160px) 8px;box-sizing:border-box}
+  .he-cv>.he-c{position:static!important;animation:none!important;transform:none!important}
+}
+@media(max-width:700px){.he-cv>.he-c{animation:none!important;transform:none!important}}
+
+/* ===== healthcare: "From referral to record", the four steps as an even 2x2 grid beside the sticky intro ===== */
+@media(min-width:1001px){
+  .he-story{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,4vw,64px);align-items:start}
+  .he-story>.kx-stk{position:sticky;top:112px}
+  .he-story>.kx-flow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:16px}
+  .he-story>.kx-flow>.kx-step{margin:0;min-width:0;display:flex}
+  .he-story .he-sc{position:relative;flex:1;display:flex;flex-direction:column;gap:6px;padding:22px 24px 26px;min-height:0}
+  .he-story .he-sc>.kx-ico{width:56px;height:56px;display:grid;place-items:center;margin-bottom:14px}
+  .he-story .he-sc>.kx-h{margin:0;font-size:clamp(18px,1.6vw,22px)}
+  .he-story .he-sc>.kx-p{margin:0;font-size:14.5px;line-height:1.55}
+}
+@media(min-width:1001px){.he-story>.kx-flow>.kx-step{min-height:0!important}}
+
+/* footer: wider brand column so the newsletter field is comfortable to type in */
+@media(min-width:1001px){
+  footer.foot .f-top{grid-template-columns:minmax(0,1.65fr) repeat(4,minmax(0,1fr))}
+  footer.foot .f-brand p{max-width:30em}
+}
+footer.foot .news{max-width:min(100%,460px)}
+footer.foot .news input{font-size:15px;padding:0 18px}
+footer.foot .news button{width:44px;height:44px;flex:none}
+@media(min-width:1001px){footer.foot .fcol a{white-space:nowrap}}
+
+/* homepage team inbox demo: the scripted conversation must never trap the page scroll */
+#inbox,#inbox .col,#inbox .ib-msgs{overscroll-behavior:auto}
+#inbox .ib-msgs,#inbox .col,#inbox .col.info{overflow:hidden!important;scroll-behavior:auto!important}
+#inbox{contain:layout style}
+
+/* looping animations: waveform bars move by transform (compositor) instead of height (layout every frame) */
+.wave i{height:24px!important;transform:scaleY(.25);animation-name:wv2!important}
+@keyframes wv2{50%{transform:scaleY(1)}}
+/* sections that are off screen pause their looping animations */
+.anim-off,.anim-off *,.anim-off *::before,.anim-off *::after{animation-play-state:paused!important}
+
+/* homepage trust rows: plain items with thin dividers, no capsule / pill containers */
+#platform .stats{gap:0!important;flex-wrap:nowrap}
+#platform .stats .stat,#platform .stats .glass.stat{background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:6px clamp(14px,2vw,28px)!important;width:auto!important;flex:0 1 auto!important;min-width:0}
+#platform .stats .stat:first-child{padding-left:0!important}
+#platform .stats .stat+.stat{border-left:1px solid var(--line,rgba(40,30,20,.14))!important}
+#platform .stats .stat::before,#platform .stats .stat::after{display:none!important}
+
+#stories .rate{gap:0!important;flex-wrap:nowrap;align-items:center;justify-content:flex-end}
+#stories .rate .rt,#stories .rate .glass.rt{background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;padding:6px clamp(12px,1.8vw,24px)!important;flex:0 1 auto!important}
+#stories .rate .rt:first-child{padding-left:0!important}
+#stories .rate .rt+.rt{border-left:1px solid var(--line,rgba(40,30,20,.14))!important}
+@media(max-width:700px){
+  #platform .stats{flex-wrap:wrap}
+  #platform .stats .stat+.stat{border-left:0!important}
+  #stories .rate{flex-wrap:wrap;gap:8px 0!important}
+}
