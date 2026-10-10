@@ -1,0 +1,9 @@
+/* Phones: a shorter hero. Copy first, then a cropped peek of the product mockup that fades out. */
+@media(max-width:700px){
+  .hero .hero-copy{min-height:0!important;padding-block:clamp(20px,5vh,40px) 18px!important}
+  .hero .vm-copy{gap:14px}
+  .hero .stage,.hero .pt-stage,.hero .tm-stage,.hero .ai-win,.hero .vm-win,.hero .tf-stage{
+    max-height:600px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(#000 82%,transparent 100%);mask-image:linear-gradient(#000 82%,transparent 100%)}
+  .hero .stage{margin-top:6px}
+}

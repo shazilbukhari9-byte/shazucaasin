@@ -1,0 +1,245 @@
+/* ===== kx kit: section design language for the product pages =====
+   Skins, layouts and motion hooks. Everything animates with transform/opacity only. */
+:root{--kx-ink:#171210;--kx-ink2:#211a17;--kx-glow:rgba(255,122,92,.34);--kx-tint:#FBF3EC;--kx-ease:cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- skins (applied to <section> through the third item of a section entry) ---------- */
+main>section.kx-tint{background:var(--kx-tint)!important}
+main>section.kx-white{background:#fff!important}
+main>section.kx-grid{background-color:#FAF6F1!important;background-image:radial-gradient(rgba(43,38,34,.13) 1.1px,transparent 1.2px);background-size:24px 24px}
+main>section.kx-mesh{background:radial-gradient(55% 70% at 12% 8%,rgba(255,150,120,.28),transparent 62%),radial-gradient(45% 60% at 92% 18%,rgba(245,196,107,.3),transparent 60%),radial-gradient(50% 60% at 60% 100%,rgba(190,170,255,.18),transparent 62%),#FFF8F3!important}
+main>section.kx-sand{background:#F6F4F1!important}
+main>section.kx-peach{background:linear-gradient(180deg,#FFF1EA 0%,#FFF7F2 100%)!important}
+main>section.kx-butter{background:linear-gradient(180deg,#FFF8E6 0%,#FFFBF3 100%)!important}
+/* legacy dark skin is now a light peach wash with normal ink text (seniors: sections must be light) */
+main>section.kx-ink{background:linear-gradient(180deg,#FFF1EA 0%,#FFF7F2 100%)!important;color:var(--ink)}
+
+/* ---------- shared card + spotlight ---------- */
+.kx-card{position:relative;border-radius:26px;background:#fff;padding:24px;box-shadow:0 30px 60px -42px rgba(120,60,30,.4),0 0 0 1px rgba(40,30,20,.06);isolation:isolate;overflow:hidden;transition:transform .4s var(--kx-ease),box-shadow .4s}
+.kx-card.dark{background:linear-gradient(180deg,#211a17,#171210);color:#f4ece6;box-shadow:0 30px 60px -36px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.08)}
+.kx-card.glass{background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.kx-card.grad{background:var(--grad);color:#fff;box-shadow:0 30px 60px -30px rgba(232,85,58,.6)}
+[data-spot]{position:relative}
+[data-spot]::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(255,122,92,.18),transparent 62%)}
+.dark[data-spot]::before,.kx-ink [data-spot].dark::before{background:radial-gradient(340px circle at var(--mx,50%) var(--my,50%),rgba(255,160,130,.26),transparent 62%)}
+@media(hover:hover){[data-spot]:hover::before{opacity:1}.kx-card:hover{transform:translateY(-3px)}}
+.kx-ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--chip);color:var(--coral)}
+.kx-ico svg{width:20px;height:20px}
+.dark .kx-ico{background:rgba(255,255,255,.1);color:#F5C46B}
+.kx-k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--faint)}
+.dark .kx-k,.kx-ink .kx-k{color:rgba(255,255,255,.62)}
+.kx-h{font-size:clamp(20px,2.2vw,26px);line-height:1.18;font-weight:600;letter-spacing:-.02em;margin:10px 0 0}
+.kx-p{margin:10px 0 0;color:var(--muted);font-size:15px;line-height:1.55}
+.dark .kx-p,.kx-ink .kx-p{color:rgba(255,255,255,.72)}
+.kx-grad-t{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- 1. bento ---------- */
+.kx-bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;grid-auto-flow:dense}
+.kx-bento>.kx-b{grid-column:span 2;min-width:0}
+.kx-bento>.w3{grid-column:span 3}.kx-bento>.w4{grid-column:span 4}.kx-bento>.w6{grid-column:span 6}.kx-bento>.r2{grid-row:span 2}
+.kx-bento>.kx-b{display:flex;flex-direction:column;gap:6px;justify-content:flex-end;min-height:190px}
+.kx-bento>.kx-b.top{justify-content:flex-start}
+@media(max-width:1000px){.kx-bento{grid-template-columns:repeat(2,minmax(0,1fr))}.kx-bento>.kx-b,.kx-bento>.w3,.kx-bento>.w4{grid-column:span 1}.kx-bento>.w6{grid-column:span 2}}
+@media(max-width:620px){.kx-bento{grid-template-columns:minmax(0,1fr)}.kx-bento>.kx-b,.kx-bento>.w3,.kx-bento>.w4,.kx-bento>.w6{grid-column:span 1}.kx-bento>.r2{grid-row:auto}.kx-bento>.kx-b{min-height:0}}
+
+/* ---------- 2. sticky story (left stays, right scrolls) ---------- */
+.kx-story{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:clamp(32px,5vw,72px);align-items:start}
+.kx-story>.kx-stk{position:sticky;top:112px;align-self:start}
+.kx-story>.kx-flow{display:grid;gap:22px}
+.kx-step{min-height:44vh;display:grid;align-content:center}
+@media(max-width:1000px){.kx-story{grid-template-columns:minmax(0,1fr)}.kx-story>.kx-stk{position:static}.kx-step{min-height:0}}
+
+/* ---------- 3. horizontal snap carousel with progress ---------- */
+.kx-hswrap{position:relative}
+.kx-hs{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 22px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.kx-hs::-webkit-scrollbar{display:none}
+.kx-hs>*{flex:0 0 min(360px,84%);scroll-snap-align:start}
+.kx-prog{height:3px;border-radius:3px;background:rgba(120,100,90,.18);overflow:hidden;margin-top:4px}
+.kx-prog>i{display:block;height:100%;width:100%;background:var(--grad);transform-origin:0 50%;transform:scaleX(var(--p,.2))}
+.kx-nav{display:flex;gap:8px;justify-content:flex-end;margin-bottom:12px}
+.kx-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .25s,transform .25s}
+.kx-nav button:hover{background:var(--chip)}.kx-nav button:active{transform:scale(.94)}
+.kx-nav svg{width:18px;height:18px}
+.kx-ink .kx-nav button{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#fff}
+
+/* ---------- 4. vertical timeline, line fills while you scroll ---------- */
+.kx-tl{position:relative;list-style:none;margin:0;padding:0 0 0 44px;display:grid;gap:34px;--tlp:0}
+.kx-tl::before,.kx-tl::after{content:"";position:absolute;left:15px;top:8px;bottom:8px;width:2px;border-radius:2px}
+.kx-tl::before{background:var(--line)}
+.kx-tl::after{background:var(--grad);transform-origin:50% 0;transform:scaleY(var(--tlp))}
+.kx-tl>li{position:relative}
+.kx-tl>li::before{content:"";position:absolute;left:-37px;top:4px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid #E5D9D0;transition:border-color .4s,background .4s,transform .4s var(--kx-ease)}
+.kx-tl>li.kx-seen::before{border-color:var(--coral);background:#FFE3DA;transform:scale(1.15)}
+.kx-ink .kx-tl::before{background:rgba(255,255,255,.14)}.kx-ink .kx-tl>li::before{background:var(--kx-ink)}
+
+/* ---------- 5. stats band ---------- */
+.kx-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
+.kx-stat{padding:8px 24px;border-left:1px solid var(--line)}
+.kx-stat:first-child{border-left:0;padding-left:0}
+.kx-n{display:block;font-size:clamp(40px,5.6vw,76px);line-height:1;letter-spacing:-.045em;font-weight:600;font-variant-numeric:tabular-nums}
+.kx-stat small{display:block;margin-top:10px;color:var(--muted);font-size:14px;line-height:1.4}
+.kx-ink .kx-stat{border-color:rgba(255,255,255,.14)}.kx-ink .kx-stat small{color:rgba(255,255,255,.68)}
+@media(max-width:800px){.kx-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 0}.kx-stat:nth-child(odd){border-left:0;padding-left:0}}
+
+/* ---------- 6. marquee of chips ---------- */
+.kx-mq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.kx-mq-t{display:flex;gap:12px;width:max-content;animation:kxmq 46s linear infinite}
+.kx-mq.rev .kx-mq-t{animation-direction:reverse;animation-duration:54s}
+.kx-mq:hover .kx-mq-t{animation-play-state:paused}
+@keyframes kxmq{to{transform:translate3d(-50%,0,0)}}
+.kx-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:99px;background:#fff;box-shadow:0 0 0 1px rgba(40,30,20,.08);font-size:14px;white-space:nowrap;color:var(--ink)}
+.kx-chip svg{width:16px;height:16px;color:var(--coral)}
+.kx-ink .kx-chip{background:rgba(255,255,255,.08);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+
+/* ---------- 7. swiss matrix (hairlines, index numbers) ---------- */
+.kx-sw{border-top:2px solid var(--ink)}
+.kx-sw>.kx-row{display:grid;grid-template-columns:72px minmax(0,.9fr) minmax(0,1.5fr);gap:24px;padding:22px 0;border-bottom:1px solid var(--line);align-items:baseline;transition:background .3s,padding .3s}
+.kx-idx{font-size:13px;font-weight:600;color:var(--coral);font-variant-numeric:tabular-nums}
+.kx-sw .kx-h{margin:0;font-size:clamp(18px,1.8vw,22px)}.kx-sw .kx-p{margin:0}
+@media(hover:hover){.kx-sw>.kx-row:hover{background:linear-gradient(90deg,rgba(255,122,92,.08),transparent)}}
+.kx-ink .kx-sw{border-color:#fff}.kx-ink .kx-sw>.kx-row{border-color:rgba(255,255,255,.14)}
+@media(max-width:700px){.kx-sw>.kx-row{grid-template-columns:44px minmax(0,1fr);gap:6px 14px}.kx-sw>.kx-row>:nth-child(3){grid-column:2}}
+
+/* ---------- 8. list with live preview ---------- */
+.kx-lp{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(28px,5vw,64px);align-items:start}
+.kx-lp-list{display:grid}
+.kx-lp-li{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 4px;border:0;border-bottom:1px solid var(--line);background:none;font:inherit;text-align:left;color:var(--muted);cursor:pointer;font-size:clamp(20px,2.4vw,30px);letter-spacing:-.025em;font-weight:500;transition:color .3s,padding .3s}
+.kx-lp-li svg{width:20px;height:20px;opacity:0;transform:translateX(-6px);transition:.3s;color:var(--coral)}
+.kx-lp-li:hover,.kx-lp-li.on{color:var(--ink);padding-left:12px}.kx-lp-li.on svg,.kx-lp-li:hover svg{opacity:1;transform:none}
+.kx-lp-pv{position:sticky;top:112px}
+.kx-lp-pv>.kx-pv{display:none}.kx-lp-pv>.kx-pv.on{display:block;animation:kxup .5s var(--kx-ease)}
+.kx-ink .kx-lp-li{color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.14)}.kx-ink .kx-lp-li:hover,.kx-ink .kx-lp-li.on{color:#fff}
+@media(max-width:1000px){.kx-lp{grid-template-columns:minmax(0,1fr)}.kx-lp-pv{position:static}}
+
+/* ---------- 9. orbit ---------- */
+.kx-orbit{position:relative;aspect-ratio:1;max-width:520px;width:100%;margin-inline:auto}
+.kx-ring{position:absolute;inset:var(--in,0);border-radius:50%;border:1px dashed rgba(120,100,90,.3);animation:kxspin var(--sp,60s) linear infinite}
+.kx-ring.rev{animation-direction:reverse}
+.kx-node{position:absolute;left:50%;top:50%;width:0;height:0;transform:rotate(var(--a)) translateX(var(--r))}
+.kx-node>*{position:absolute;left:0;top:0;transform:translate(-50%,-50%) rotate(calc(-1*var(--a)));animation:kxspinr var(--sp,60s) linear infinite}
+.kx-core{position:absolute;inset:34%;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;text-align:center;font-weight:600;box-shadow:0 30px 70px -20px rgba(232,85,58,.6)}
+@keyframes kxspin{to{transform:rotate(360deg)}}@keyframes kxspinr{to{transform:translate(-50%,-50%) rotate(calc(-360deg - var(--a)))}}
+.kx-ink .kx-ring{border-color:rgba(255,255,255,.2)}
+
+/* ---------- 10. masonry wall ---------- */
+.kx-wall{columns:3 280px;column-gap:16px}
+.kx-wall>*{break-inside:avoid;margin:0 0 16px}
+
+/* ---------- 11. connected flow with animated beam ---------- */
+.kx-flowrow{position:relative;display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:20px}
+.kx-beam{position:absolute;left:0;right:0;top:34px;height:2px;pointer-events:none;overflow:visible}
+.kx-beam path{stroke:url(#kxg);stroke-width:2;fill:none;stroke-dasharray:var(--len,1000);stroke-dashoffset:var(--len,1000);transition:stroke-dashoffset 1.8s var(--kx-ease)}
+.kx-seen .kx-beam path,.kx-beam.kx-seen path{stroke-dashoffset:0}
+.kx-fn{position:relative;text-align:center}
+.kx-fn>.n{width:68px;height:68px;border-radius:50%;margin:0 auto;display:grid;place-items:center;background:#fff;box-shadow:0 0 0 8px var(--kx-tint),0 20px 40px -18px rgba(232,85,58,.5);font-weight:600;color:var(--coral);font-size:20px}
+@media(max-width:800px){.kx-flowrow{grid-template-columns:minmax(0,1fr);gap:28px}.kx-beam{display:none}}
+
+/* ---------- 12. terminal / code window ---------- */
+.kx-term{border-radius:20px;background:#14100e;color:#f3ece4;overflow:hidden;box-shadow:0 40px 80px -40px rgba(0,0,0,.7),inset 0 0 0 1px rgba(255,255,255,.08)}
+.kx-term-h{display:flex;align-items:center;gap:7px;padding:12px 16px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07);font-size:12px;color:rgba(255,255,255,.55)}
+.kx-term-h i{width:10px;height:10px;border-radius:50%;background:#FF8F7A}.kx-term-h i:nth-child(2){background:#F5C46B}.kx-term-h i:nth-child(3){background:#7BD3A2}
+.kx-term pre{margin:0;padding:18px;font:12.5px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow:auto;white-space:pre}
+.kx-term .c{color:#8d8279}.kx-term .k{color:#FF9A7C}.kx-term .s{color:#9ED8B5}.kx-term .f{color:#F5C46B}
+
+/* ---------- 13. tilt card stack ---------- */
+.kx-stackrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;perspective:1100px}
+[data-tilt]{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out;transform-style:preserve-3d}
+@media(max-width:800px){.kx-stackrow{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- 14. tabs with a big stage ---------- */
+.kx-tabs{display:inline-flex;position:relative;padding:5px;border-radius:99px;background:rgba(120,100,90,.12);gap:2px;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.kx-tabs::-webkit-scrollbar{display:none}
+.kx-tabs button{position:relative;z-index:1;border:0;background:none;font:inherit;font-size:14px;font-weight:500;color:var(--muted);padding:10px 18px;border-radius:99px;cursor:pointer;white-space:nowrap;transition:color .3s}
+.kx-tabs button.on{color:var(--ink)}
+.kx-tabs .kx-pill{position:absolute;z-index:0;top:5px;bottom:5px;left:0;border-radius:99px;background:#fff;box-shadow:0 8px 20px -10px rgba(120,60,30,.45);transition:transform .45s var(--kx-ease),width .45s var(--kx-ease)}
+.kx-stage>.kx-sg{display:none}.kx-stage>.kx-sg.on{display:block;animation:kxup .5s var(--kx-ease)}
+.kx-ink .kx-tabs{background:rgba(255,255,255,.1)}.kx-ink .kx-tabs button{color:rgba(255,255,255,.65)}.kx-ink .kx-tabs button.on{color:var(--ink)}
+
+/* ---------- 15. statement band with big type ---------- */
+.kx-say{font-size:clamp(30px,5vw,64px);line-height:1.06;letter-spacing:-.04em;font-weight:600;max-width:16em;margin:0}
+.kx-say em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- 16. device frames ---------- */
+.kx-dev{position:relative;border-radius:34px;padding:10px;background:linear-gradient(160deg,#2B2622,#0f0c0b);box-shadow:0 50px 90px -40px rgba(60,30,15,.6)}
+.kx-dev>.kx-scr{border-radius:26px;background:#fff;overflow:hidden;min-height:260px}
+.kx-dev.lap{border-radius:18px 18px 6px 6px;padding:10px 10px 14px}.kx-dev.lap>.kx-scr{border-radius:10px}
+
+/* ---------- motion hooks ---------- */
+@keyframes kxup{from{opacity:0;transform:translate3d(0,16px,0)}to{opacity:1;transform:none}}
+@keyframes kxfade{from{opacity:0}to{opacity:1}}
+@keyframes kxscale{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+.kx-js [data-r]:not(.kx-seen){opacity:0}
+[data-r].kx-seen{animation:kxup .7s var(--kx-ease) both;animation-delay:calc(var(--i,0)*70ms + var(--d,0ms))}
+[data-r="scale"].kx-seen{animation-name:kxscale}
+[data-r="fade"].kx-seen{animation-name:kxfade}
+[data-r="left"].kx-seen{animation-name:kxleft}[data-r="right"].kx-seen{animation-name:kxright}
+@keyframes kxleft{from{opacity:0;transform:translate3d(-28px,0,0)}to{opacity:1;transform:none}}
+@keyframes kxright{from{opacity:0;transform:translate3d(28px,0,0)}to{opacity:1;transform:none}}
+[data-par]{will-change:transform}
+@media(prefers-reduced-motion:reduce){
+  .kx-js [data-r]:not(.kx-seen){opacity:1}
+  [data-r].kx-seen,.kx-mq-t,.kx-ring,.kx-node>*,.kx-lp-pv>.kx-pv.on,.kx-stage>.kx-sg.on{animation:none!important}
+  .kx-beam path{stroke-dashoffset:0;transition:none}
+  [data-tilt]{transform:none!important}
+  .kx-card:hover{transform:none}
+}
+
+/* ---------- 17. plan-style matrix cards ---------- */
+.kx-plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch}
+.kx-plan{position:relative;border-radius:26px;padding:26px;background:#fff;box-shadow:0 30px 60px -44px rgba(120,60,30,.4),0 0 0 1px rgba(40,30,20,.07);display:flex;flex-direction:column;gap:14px}
+.kx-plan.hot{background:linear-gradient(180deg,#211a17,#171210);color:#f4ece6;box-shadow:0 40px 80px -36px rgba(232,85,58,.55),inset 0 0 0 1px rgba(255,255,255,.1);transform:translateY(-10px)}
+.kx-plan ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:14.5px}
+.kx-plan li{display:flex;gap:10px;align-items:flex-start;line-height:1.4}.kx-plan li svg{flex:none;width:17px;height:17px;margin-top:1px;color:var(--ok)}
+.kx-plan.hot li svg{color:#F5C46B}
+.kx-badge{align-self:flex-start;padding:4px 11px;border-radius:99px;background:rgba(255,122,92,.16);color:#c0391f;font-size:11.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.kx-plan.hot .kx-badge{background:rgba(245,196,107,.2);color:#F5C46B}
+@media(max-width:900px){.kx-plans{grid-template-columns:minmax(0,1fr)}.kx-plan.hot{transform:none}}
+
+/* ---------- 18. before / after comparison ---------- */
+.kx-cmp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border-radius:30px;overflow:hidden;box-shadow:0 40px 80px -46px rgba(120,60,30,.5),0 0 0 1px rgba(40,30,20,.07);position:relative}
+.kx-cmp>div{padding:clamp(24px,3vw,40px);min-width:0}
+.kx-cmp>.before{background:#F3EEE9;color:var(--muted)}
+.kx-cmp>.after{background:linear-gradient(160deg,#211a17,#171210);color:#f4ece6}
+.kx-cmp .kx-vs{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--grad);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;box-shadow:0 0 0 6px #fff}
+@media(max-width:800px){.kx-cmp{grid-template-columns:minmax(0,1fr)}.kx-cmp .kx-vs{top:auto;left:24px;transform:none;bottom:calc(50% - 23px)}}
+
+/* ---------- 19. dot-grid canvas with floating callouts ---------- */
+.kx-canvas{position:relative;border-radius:30px;min-height:380px;background-color:#fff;background-image:radial-gradient(rgba(43,38,34,.14) 1.1px,transparent 1.2px);background-size:22px 22px;box-shadow:0 40px 80px -50px rgba(120,60,30,.45),0 0 0 1px rgba(40,30,20,.07);overflow:hidden}
+.kx-callout{position:absolute;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:14px;background:#fff;box-shadow:0 14px 30px -14px rgba(60,30,15,.4),0 0 0 1px rgba(40,30,20,.08);font-size:13px;white-space:nowrap}
+.kx-callout svg{width:15px;height:15px;color:var(--coral)}
+.kx-callout.float{animation:kxfloat 6s ease-in-out infinite;animation-delay:var(--fd,0s)}
+@keyframes kxfloat{50%{transform:translate3d(0,-8px,0)}}
+@media(prefers-reduced-motion:reduce){.kx-callout.float{animation:none}}
+@media(max-width:700px){.kx-canvas{min-height:0;padding:16px;display:grid;gap:10px}.kx-callout{position:static;white-space:normal}}
+
+/* heading colours in dark contexts (body h3 rules would otherwise win) */
+.kx-card.dark :is(h1,h2,h3,h4),.kx-plan.hot :is(h1,h2,h3,h4),.kx-cmp>.after :is(h1,h2,h3,h4),.kx-term :is(h1,h2,h3,h4){color:#fff}
+main>section.kx-ink :is(h3,h4){color:#fff}
+main>section.kx-ink .ai-panel :is(h3,h4),main>section.kx-ink .kx-card:not(.dark) :is(h3,h4),main>section.kx-ink .kx-plan:not(.hot) :is(h3,h4),main>section.kx-ink .kx-light :is(h3,h4){color:var(--ink)}
+
+/* grid children must be allowed to shrink (prevents 1 to 10px overflow on narrow phones) */
+.kx-tl{grid-template-columns:minmax(0,1fr)}
+.kx-tl>li,.kx-story>*,.kx-lp>*,.kx-flow>*,.kx-cmp>div,.kx-flowrow>*,.kx-stats>*,.kx-stackrow>*,.kx-plans>*,.kx-bento>*{min-width:0}
+.kx-hs>*{min-width:0}
+.kx-beam{width:100%;max-width:100%}
+
+/* text on dark cards (kept where they look professional): always readable */
+.kx-card.dark :is(p,li,small,.kx-p){color:rgba(255,255,255,.74)}
+.kx-card.dark :is(b,.kx-h,h2,h3,h4){color:#fff}
+
+/* ===== motion polish applied to every product page ===== */
+[data-spot]{isolation:isolate}
+.kx-progress{position:fixed;left:0;top:0;height:3px;width:100%;z-index:90;pointer-events:none;background:var(--grad);transform-origin:0 50%;transform:scaleX(var(--sp,0));opacity:.9}
+@media(hover:hover){
+  .ai-panel:hover{box-shadow:0 46px 90px -52px rgba(120,60,30,.4),0 0 0 1px rgba(232,85,58,.12)}
+  .ai-fi:hover h3,.ai-ucc:hover h3{color:var(--coral)}
+  .ai-fi h3,.ai-ucc h3{transition:color .3s}
+  .ai-pill{transition:transform .25s var(--kx-ease),box-shadow .25s}
+  .ai-chip:hover,.ai-seg button:hover{transform:translateY(-1px)}
+  .btn:hover{transform:translateY(-2px)}
+  .fq:hover{box-shadow:0 18px 36px -28px rgba(120,60,30,.45)}
+  a.kx-card:hover,.ai-pr a:hover b{color:var(--coral)}
+}
+.btn:active,.ai-chip:active,.ai-seg button:active,.ai-btn:active{transform:translateY(0) scale(.98)}
+.btn,.ai-chip,.ai-seg button,.ai-btn{transition:transform .25s var(--kx-ease),background .3s,color .3s,box-shadow .3s,border-color .3s}
+.fq .pm{transition:transform .4s var(--kx-ease),background .3s,color .3s}
+@media(prefers-reduced-motion:reduce){.kx-progress{display:none}}

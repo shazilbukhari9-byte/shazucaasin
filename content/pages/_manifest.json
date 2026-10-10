@@ -1,0 +1,206 @@
+[
+  {
+    "slug": "ucaas-homepage",
+    "title": "UCaaS Homepage"
+  },
+  {
+    "slug": "phone-texting-full",
+    "title": "UCaaS · Phone & Texting"
+  },
+  {
+    "slug": "video-meetings-full",
+    "title": "UCaaS · HD Video Meetings"
+  },
+  {
+    "slug": "toll-free-numbers-full",
+    "title": "UCaaS · Toll-free Numbers"
+  },
+  {
+    "slug": "team-messaging-full",
+    "title": "UCaaS · Team Messaging"
+  },
+  {
+    "slug": "blog-full",
+    "title": "UCaaS · Blog"
+  },
+  {
+    "slug": "ai-receptionist",
+    "title": "UCaaS · AI Receptionist"
+  },
+  {
+    "slug": "ai-agent-assist",
+    "title": "UCaaS · AI Agent Assist"
+  },
+  {
+    "slug": "conversation-intelligence",
+    "title": "UCaaS · Conversation Intelligence"
+  },
+  {
+    "slug": "unified-communications",
+    "title": "UCaaS · Unified Communications Platform"
+  },
+  {
+    "slug": "phone-system",
+    "title": "UCaaS · Hosted Phone System"
+  },
+  {
+    "slug": "business-sms",
+    "title": "UCaaS · Business SMS & MMS"
+  },
+  {
+    "slug": "online-fax",
+    "title": "UCaaS · Online Fax"
+  },
+  {
+    "slug": "auto-attendant",
+    "title": "UCaaS · Auto-attendant & IVR"
+  },
+  {
+    "slug": "call-recording",
+    "title": "UCaaS · Call Recording"
+  },
+  {
+    "slug": "supervisor-tools",
+    "title": "UCaaS · Supervisor Tools"
+  },
+  {
+    "slug": "remote-teams",
+    "title": "UCaaS · Remote & Hybrid Teams"
+  },
+  {
+    "slug": "smb-owners",
+    "title": "UCaaS · SMB Owner-Operators"
+  },
+  {
+    "slug": "enterprise-it",
+    "title": "UCaaS · Enterprise IT"
+  },
+  {
+    "slug": "sales-teams",
+    "title": "UCaaS · Sales Teams"
+  },
+  {
+    "slug": "financial-services",
+    "title": "UCaaS · Financial Services"
+  },
+  {
+    "slug": "retail-ecom",
+    "title": "UCaaS · Retail & eCom"
+  },
+  {
+    "slug": "saas-tech",
+    "title": "UCaaS · SaaS & Tech"
+  },
+  {
+    "slug": "logistics",
+    "title": "UCaaS · Logistics"
+  },
+  {
+    "slug": "support-teams",
+    "title": "UCaaS · Support Teams"
+  },
+  {
+    "slug": "live-chat",
+    "title": "UCaaS · Live Chat"
+  },
+  {
+    "slug": "ai-chatbot",
+    "title": "UCaaS · AI Chatbot"
+  },
+  {
+    "slug": "inbox",
+    "title": "UCaaS · Inbox"
+  },
+  {
+    "slug": "omnichannel",
+    "title": "UCaaS · Omnichannel"
+  },
+  {
+    "slug": "ai-follow-ups",
+    "title": "UCaaS · AI Follow-Ups"
+  },
+  {
+    "slug": "ai-call-scheduling",
+    "title": "UCaaS · AI Call Scheduling"
+  },
+  {
+    "slug": "preview-dialing",
+    "title": "UCaaS · Preview Dialing"
+  },
+  {
+    "slug": "progressive-dialing",
+    "title": "UCaaS · Progressive Dialing"
+  },
+  {
+    "slug": "predictive-dialing",
+    "title": "UCaaS · Predictive Dialing"
+  },
+  {
+    "slug": "auto-dialer",
+    "title": "UCaaS · Auto Dialer"
+  },
+  {
+    "slug": "crm-integrations",
+    "title": "UCaaS · CRM Integrations"
+  },
+  {
+    "slug": "helpdesk-ticketing",
+    "title": "UCaaS · Helpdesk & Ticketing"
+  },
+  {
+    "slug": "productivity-tools",
+    "title": "UCaaS · Productivity Tools"
+  },
+  {
+    "slug": "healthcare-ehr",
+    "title": "UCaaS · Healthcare EHR"
+  },
+  {
+    "slug": "rest-apis",
+    "title": "UCaaS · REST APIs"
+  },
+  {
+    "slug": "local-numbers",
+    "title": "UCaaS · Local Numbers"
+  },
+  {
+    "slug": "mobile-numbers",
+    "title": "UCaaS · Mobile Numbers"
+  },
+  {
+    "slug": "by-country",
+    "title": "UCaaS · By Country"
+  },
+  {
+    "slug": "callback-scheduling",
+    "title": "UCaaS · Callback Scheduling"
+  },
+  {
+    "slug": "live-wallboards",
+    "title": "UCaaS · Live Wallboards"
+  },
+  {
+    "slug": "compare",
+    "title": "UCaaS · Compare"
+  },
+  {
+    "slug": "integrations",
+    "title": "UCaaS · Integrations"
+  },
+  {
+    "slug": "free-tools",
+    "title": "UCaaS · Free Tools"
+  },
+  {
+    "slug": "auth",
+    "title": "UCaaS · Sign in"
+  },
+  {
+    "slug": "privacy-policy",
+    "title": "UCaaS · Privacy Policy"
+  },
+  {
+    "slug": "terms",
+    "title": "UCaaS · Terms & Conditions"
+  }
+]

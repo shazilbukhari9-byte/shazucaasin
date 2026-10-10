@@ -1,0 +1,18 @@
+/* Footer: even columns, one type scale, clear hierarchy. Works on the dark and the light footer variants. */
+footer.foot .f-top{display:grid;grid-template-columns:minmax(0,1.05fr) repeat(4,minmax(0,1fr));gap:40px clamp(24px,2.6vw,40px);align-items:start;padding-top:clamp(52px,6vw,76px)}
+footer.foot .f-brand p{max-width:320px;margin:16px 0 0;font-size:14.5px;line-height:1.6;color:var(--ft-muted,var(--foot-muted))}
+footer.foot .fcol{display:flex;flex-direction:column;align-items:flex-start;gap:0;min-width:0}
+footer.foot .fcol h4{margin:0 0 6px;padding:0 0 14px;width:100%;font-size:12px;line-height:1;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ft-muted,var(--foot-muted));border-bottom:1px solid var(--ft-line,var(--foot-line))}
+footer.foot .fcol a{display:inline-block;padding:7px 0;font-size:14.5px;line-height:1.4;font-weight:400;color:var(--ft-fg,var(--foot-fg));opacity:.82;text-decoration:none;transition:opacity .2s,transform .2s,color .2s}
+footer.foot .fcol a:hover{opacity:1;color:var(--ft-fg,var(--foot-fg));transform:translateX(3px)}
+footer.foot .fcol a:focus-visible{outline:2px solid var(--coral,#E8553A);outline-offset:3px;border-radius:4px;opacity:1}
+footer.foot .f-status{margin-top:clamp(36px,4vw,52px)}
+footer.foot .f-bot{padding-block:22px 28px}
+footer.foot .f-bot nav{display:flex;gap:22px;flex-wrap:wrap}
+@media(max-width:1000px){footer.foot .f-top{grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 32px}footer.foot .f-brand{grid-column:1/-1}}
+@media(max-width:480px){footer.foot .f-top{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:30px 20px}footer.foot .fcol a{font-size:14px}}
+@media(prefers-reduced-motion:reduce){footer.foot .fcol a{transition:none}footer.foot .fcol a:hover{transform:none}}
+/* footer cover (see footer-cover.js) */
+html.fc-on main{position:sticky;z-index:1}
+html.fc-on main::after{content:"";position:absolute;inset:0;z-index:50;pointer-events:none;background:#140E0B;opacity:calc(var(--fc,0)*.5)}
+html.fc-on footer.foot{position:relative;z-index:2;margin-top:0;border-radius:36px 36px 0 0;box-shadow:0 -24px 60px -20px rgba(20,10,5,.45)}

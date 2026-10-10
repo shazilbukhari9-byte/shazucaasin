@@ -1,0 +1,14 @@
+/* The hero is exactly one screen tall (or taller when its content needs it).
+   Its content sits in the middle of that screen, so there is no empty band under it and the next section never peeks in at the bottom edge.
+   It works the same on every device because the height follows the screen. */
+.hero{
+  min-height:100vh;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  margin-top:-76px;
+  padding-top:calc(76px + clamp(14px,3vh,36px))!important;
+  padding-bottom:clamp(24px,4vh,48px)!important;
+}
+.hero>.wrap{width:100%}
+.hero .hero-copy{min-height:0!important}
+/* very short screens: let the content decide the height instead of squeezing it */
+@media(max-height:560px){.hero{min-height:0}}

@@ -1,0 +1,35 @@
+/* shared polish for the older pages: performance, contrast, reduced motion, small screens */
+.aurora i{filter:blur(56px)}
+@media(max-width:700px){.aurora i{animation:none;will-change:auto;filter:blur(40px)}}
+.mega.cold{content-visibility:hidden}
+main{--faint:#6b655e}
+.hero{contain:paint}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .mq-t{animation:none!important}
+}
+@media(pointer:coarse){main button,main .btn{min-height:44px}}
+/* narrow phones (320 to 400) */
+@media(max-width:400px){
+  .vm-pv{max-width:100%;flex-wrap:wrap;justify-content:center;border-radius:22px}
+  .vm-pv button{padding:8px 10px;gap:6px;font-size:13px}
+  .tf-bv,.tf-bp,.tf-tl{min-width:0}
+  .tf-bv ul,.tf-bv li,.tf-bp .site a{min-width:0;max-width:100%;overflow-wrap:anywhere;white-space:normal}
+  .tf-bp .site{flex-wrap:wrap}
+  .tf-tl{overflow-x:auto}
+}
+body{overflow-x:clip}
+/* decorative motion must never create a sideways scrollbar */
+main>section{overflow-x:clip}
+.mega{overflow-x:hidden;overflow-y:auto}
+.mg-p:not(.on){bottom:0;overflow:hidden}
+/* contrast (Lighthouse) */
+.mq-track .m{color:#c0391f}
+.vm-fr .bd{color:#7d510c}
+.tf-s.ok,.tm-note,#brSync span{color:#0a7a4b}
+.tm-chip#prChip{background:#c9343a}
+/* phones: translucent blur layers are costly to paint, keep the tint without the blur */
+@media(max-width:700px){.glass,.nglass,.mega,.mnav{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+/* homepage: skip rendering of the heaviest below-the-fold blocks until they are close to the screen */
+#dashboard,#mobile,#cta,footer.foot{content-visibility:auto;contain-intrinsic-size:auto 900px}
+.hero .aurora{inset:-10% -10% auto;height:900px}

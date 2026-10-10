@@ -1,0 +1,16 @@
+/* Visible, consistent card borders across all pages.
+   The old hairline (9% brown) and the white glass border disappeared on white and cream backgrounds. */
+html:root{--line:rgba(30,20,10,.15);--line-strong:rgba(30,20,10,.2)}
+.glass:not(.nav):not(.badge):not([class*="float"]):not(.mnav){border:1px solid rgba(40,30,20,.13)!important}
+.btn.btn-glass{border:1px solid rgba(30,20,10,.2)!important;background:#fff}
+.btn.btn-glass:hover{border-color:rgba(232,85,58,.5)!important}
+.pw-pc,.tf-pc,.tm-pc2,.vm-pc,.pt-ban,.sp,.vm-u{border:1px solid rgba(30,20,10,.14)!important}
+.pw-pc:hover,.tf-pc:hover,.tm-pc2:hover,.vm-pc:hover{border-color:rgba(232,85,58,.42)!important}
+/* mockup parts that sit on white: a soft inner outline keeps their edges readable without changing layout */
+.ai-mini,.ai-seg,.ai-quote,.ai-seat,.kx-scr,.vm-tr,.vm-steps,.vm-nt,.vm-end,.vm-wk,.vm-ed,.vm-sec,.vm-jw,.vm-fr,.tf-sbar,.tf-row,.tf-sent,.rc-t,.cap,.pan{outline:1px solid rgba(30,20,10,.1);outline-offset:-1px}
+/* feature showcase window (Phone & Texting): a floating card with a full border instead of a sheet that bleeds off two edges */
+#features .sx-slide .sx-win{margin:auto clamp(18px,2.2vw,28px) clamp(18px,2.2vw,26px)!important;border-radius:18px!important;border:1px solid rgba(30,20,10,.16)!important;box-shadow:0 22px 44px -26px rgba(60,30,15,.45)!important}
+#features .sx-slide{padding-bottom:0}
+@media(max-width:700px){#features .sx-slide .sx-win{margin-inline:14px;margin-bottom:14px!important}}
+/* phone mockups: a soft grey bezel instead of near-black */
+.mphone{background:linear-gradient(145deg,#DAD8D5 0%,#B9B6B2 100%)!important;border:0!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55),0 40px 70px -30px rgba(20,10,5,.4),0 10px 24px -12px rgba(20,10,5,.22)!important}
