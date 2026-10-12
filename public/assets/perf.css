@@ -883,3 +883,43 @@ footer.foot .news button{width:44px;height:44px;flex:none}
 
 /* orbit rings: a reversed ring must counter-rotate its labels the other way too, so the text stays upright */
 .kx-ring.rev .kx-node>*{animation-direction:reverse}
+
+/* ===== free tools ===== */
+/* SMS demo phone: soft grey frame, thin edge */
+.kx-dev.ft-ph{background:linear-gradient(160deg,#b3ada8,#8e8883)!important;padding:5px!important;border-radius:36px!important;box-shadow:0 36px 70px -42px rgba(60,30,15,.4)!important}
+.kx-dev.ft-ph>.kx-scr{border-radius:31px!important}
+
+/* tool demos: intro text aligned to the top of the panel, sample codes as one even row, results as clean rows */
+.ft-sgi{align-items:start!important}
+.ft-sgi>div:first-child{padding-top:6px}
+.ft-sgi>div:first-child .kx-h{margin-top:14px}
+.ft-pn .ft-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}
+.ft-pn .ft-row input{border-radius:12px!important;min-height:52px}
+.ft-pn .ft-go{border-radius:12px!important;min-height:52px;padding:0 24px}
+#acTry{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:8px;margin:14px 0 6px}
+.ft-pn .ai-chips .ai-chip{border-radius:10px!important;min-height:40px;padding:0 10px;justify-content:center;white-space:nowrap}
+.ft-pn .ai-head{margin-bottom:6px}
+.ft-res{margin-top:10px;border-top:1px solid var(--line,rgba(40,30,20,.12))}
+.ft-res>*{padding:13px 4px}
+@media(max-width:600px){.ft-pn .ft-row{grid-template-columns:minmax(0,1fr)}}
+#acTry{grid-template-columns:repeat(auto-fit,minmax(58px,1fr))!important}
+#acTry .ai-chip{font-size:13px;padding:0 6px}
+.ft-scr .ft-go,.ft-scr button{border-radius:12px!important}
+.ft-scr input{border-radius:12px!important}
+
+/* ===== remote teams "The phone system should work the same everywhere": four place cards in the corners, hub in the centre ===== */
+@media(min-width:1001px){
+  .rt-cv{min-height:520px}
+  .rt-cv>.rt-hub{position:absolute!important;left:50%!important;top:50%!important;translate:-50% -50%;transform:none!important}
+  .rt-cv>.rt-co{position:absolute!important;animation:none!important;transform:none!important;width:min(300px,34%)!important;right:auto!important;bottom:auto!important;padding:14px 16px;border-radius:16px}
+  .rt-cv>.rt-co:nth-of-type(1){left:4%!important;top:8%!important}
+  .rt-cv>.rt-co:nth-of-type(2){left:auto!important;right:4%!important;top:8%!important}
+  .rt-cv>.rt-co:nth-of-type(3){left:4%!important;top:auto!important;bottom:8%!important}
+  .rt-cv>.rt-co:nth-of-type(4){left:auto!important;right:4%!important;top:auto!important;bottom:8%!important}
+  .rt-cv .rt-ln line:nth-child(1){x2:24;y2:24}
+  .rt-cv .rt-ln line:nth-child(2){x2:76;y2:24}
+  .rt-cv .rt-ln line:nth-child(3){x2:24;y2:76}
+  .rt-cv .rt-ln line:nth-child(4){x2:76;y2:76}
+}
+@media(max-width:1000px){.rt-cv>.rt-co{animation:none!important;transform:none!important}}
+.rt-co.on{box-shadow:0 0 0 2px var(--coral,#E8553A),0 24px 40px -24px rgba(232,85,58,.45)!important}
