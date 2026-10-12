@@ -1897,3 +1897,29 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   #sxSpot.sx-acc .sx-row.on::after{transform:rotate(90deg);opacity:1;color:var(--coral,#E8553A)}
 }
 @media(max-width:700px) and (prefers-reduced-motion:reduce){#sxSpot.sx-acc .sx-row::after{transition:none}}
+
+/* phone texting hero: smaller phone mockup on phones (scaled as one piece so the chat keeps its proportions) */
+@media(max-width:700px){.hero .pt-stage .pt-phone{zoom:.8;max-width:300px}}
+@media(max-width:374px){.hero .pt-stage .pt-phone{zoom:.76}}
+/* hero phone on phones, smaller again: real sizes instead of zoom so the chat text stays crisp and readable */
+@media(max-width:700px){
+  .hero .pt-stage .pt-phone{zoom:1!important;width:220px!important;max-width:220px!important;padding:7px!important;border-radius:36px!important}
+  .hero .pt-phone .pt-scr{height:372px!important;border-radius:29px!important}
+  .hero .pt-phone .pt-scr::before{top:7px;width:62px;height:17px}
+  .hero .pt-phone .pt-sh{gap:8px!important;padding:31px 12px 9px!important}
+  .hero .pt-phone .pt-sh .av{width:28px!important;height:28px!important;font-size:10.5px!important}
+  .hero .pt-phone .pt-sh b{font-size:12.5px!important}
+  .hero .pt-phone .pt-sh small{font-size:10px!important}
+  .hero .pt-phone .pt-msgs{gap:7px!important;padding:10px 10px!important;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 18px);mask-image:linear-gradient(180deg,transparent 0,#000 18px)}
+  .hero .pt-phone .pt-m{max-width:86%!important;padding:7px 10px!important;border-radius:14px!important;font-size:12px!important;line-height:1.38!important}
+  .hero .pt-phone .pt-m em{font-size:9.5px!important;margin-bottom:2px!important}
+  .hero .pt-phone .pt-m em svg{width:10px;height:10px}
+  .hero .pt-phone .pt-typing{padding:9px 11px!important}
+  .hero .pt-phone .pt-typing i{width:5px;height:5px}
+  .hero .pt-phone .pt-comp{margin:0 9px 9px!important;padding:7px 11px!important;font-size:11px!important}
+  .hero .pt-phone .pt-comp svg{width:14px;height:14px}
+}
+@media(max-width:700px){
+  .hero .pt-phone .pt-sh>div{min-width:0;line-height:1.25}
+  .hero .pt-phone .pt-sh small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:9.5px!important;margin-top:1px}
+}
