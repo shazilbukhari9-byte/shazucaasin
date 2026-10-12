@@ -1390,3 +1390,326 @@ footer.foot .news button{width:44px;height:44px;flex:none}
 .auth-switch.leaving .auth-logo{transform:scale(1.06)}
 .auth-logo{cursor:pointer}
 @media(prefers-reduced-motion:reduce){.auth-switch,.auth-switch.leaving{transition:none;transform:none;filter:none}}
+
+/* ===================== mobile & tablet polish (laptop and desktop layouts are not touched) ===================== */
+/* homepage dashboard mockup: on narrow screens the trend line sits under the figure instead of on top of the text */
+@media(max-width:700px){
+  .dk .kb{flex-wrap:wrap;align-items:center;gap:4px 8px}
+  .dk .kb .d em{display:none}
+  .dk .kb svg{flex:1 1 100%;width:100%;max-height:18px}
+}
+/* comfortable touch targets */
+@media(max-width:900px){
+  .lg-st button{min-height:40px;padding-inline:14px}
+  .ai-list2 a{display:inline-flex;align-items:center;min-height:40px}
+  .f-bot a{display:inline-flex;align-items:center;min-height:40px}
+}
+/* laptop mockup bases never reach past the screen edge on tablets */
+@media(max-width:1100px){
+  .un-base{margin-inline:0!important}
+}
+/* retail queue rows on phones: the conversation takes the full width, tags and wait time sit underneath */
+@media(max-width:600px){
+  #queue .rt-row{grid-template-columns:minmax(0,1fr)!important;gap:8px!important}
+  #queue .rt-row .r{justify-content:flex-start;flex-wrap:wrap;gap:6px}
+  #queue .rt-row .r .w{margin-left:auto}
+}
+
+/* ===================== homepage · phones ===================== */
+@media(max-width:700px){
+  /* 60s · 40+ · 24/7 in one row */
+  #platform .stats{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:0!important;width:100%}
+  #platform .stats .stat{display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center;gap:6px!important;padding:4px 6px!important;border-left:0!important}
+  #platform .stats .stat+.stat{border-left:1px solid var(--line,rgba(40,30,20,.14))!important}
+  #platform .stats .stat .si{margin:0!important}
+  #platform .stats .stat b{font-size:22px!important;line-height:1}
+  #platform .stats .stat small{font-size:12px!important;line-height:1.3;white-space:normal!important}
+
+  /* product lists inside each platform tab: three per row */
+  #platform .caps{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+  #platform .caps .cap{flex-direction:column!important;align-items:flex-start!important;gap:8px!important;padding:12px 10px!important;min-width:0;height:100%;box-sizing:border-box}
+  #platform .caps .cap>span{min-width:0}
+  #platform .caps .cap b{font-size:13.5px!important;line-height:1.25;display:block}
+  #platform .caps .cap small{font-size:12px!important;line-height:1.35;display:block;margin-top:3px}
+  #platform .caps .cap :is(.mi,.ic,.ico,i:first-child){width:32px!important;height:32px!important;flex:none}
+
+  /* Explore button and Talk to sales side by side */
+  #platform .p-cta{flex-wrap:nowrap!important;align-items:center;gap:14px!important}
+  #platform .p-cta .btn{padding:12px 16px!important;font-size:14px!important;white-space:nowrap}
+  #platform .p-cta .btn .arr{width:26px;height:26px}
+  #platform .p-cta>*{flex:none}
+  #platform .p-cta>a:not(.btn){font-size:14.5px;white-space:nowrap}
+
+  /* product card chips: one row of four small tiles */
+  .pcards .chips{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px!important}
+  .pcards .chips>span{flex-direction:column!important;justify-content:center;align-items:center;text-align:center;gap:5px!important;padding:9px 4px!important;border-radius:12px!important;font-size:11.5px!important;line-height:1.2;white-space:normal!important;min-width:0}
+  .pcards .chips>span svg{width:16px;height:16px;flex:none}
+}
+@media(max-width:700px){
+  #platform .glass.panel{padding:16px 12px!important;grid-template-columns:minmax(0,1fr)!important}
+  #platform .caps .cap{padding:12px 9px!important;gap:8px!important}
+  #platform .caps .cap b{font-size:13px!important;overflow-wrap:anywhere;hyphens:auto}
+  #platform .caps .cap small{font-size:11.5px!important}
+  #platform .p-cta{gap:12px!important}
+  #platform .p-cta .btn{padding:11px 14px!important;font-size:13.5px!important}
+  #platform .p-cta .p-link{font-size:14px}
+  .pcards .chips>span{font-size:11px!important;overflow-wrap:anywhere;padding:9px 3px!important}
+}
+@media(max-width:370px){
+  #platform .p-cta .btn .arr{display:none}
+}
+@media(max-width:700px){
+  #platform .stats .stat small{border:0!important;padding:0!important;margin:0!important}
+  #platform .caps .cap b{overflow-wrap:normal!important;hyphens:none!important;word-break:normal;font-size:12.5px!important;letter-spacing:-.01em}
+  .pcards .chips>span{overflow-wrap:normal!important;word-break:normal;font-size:10.5px!important;letter-spacing:-.01em;padding:9px 2px!important}
+}
+@media(max-width:374px){
+  #platform .caps{gap:6px!important}
+  #platform .caps .cap{padding:11px 7px!important}
+  #platform .caps .cap b{font-size:11.5px!important}
+  #platform .caps .cap small{font-size:11px!important}
+  .pcards .chips{gap:4px!important}
+  .pcards .chips>span{font-size:9.5px!important}
+  #platform .stats .stat small{font-size:11px!important}
+}
+/* hero checks (No card needed · Local numbers · uptime) in one row on phones */
+@media(max-width:700px){
+  .hero-meta{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:0!important;width:100%;justify-items:center}
+  .hero-meta>span{display:flex!important;flex-direction:column;align-items:center;text-align:center;gap:4px!important;padding:0 6px!important;font-size:12px!important;line-height:1.3;border:0!important;min-width:0}
+  .hero-meta>span+span{border-left:1px solid var(--line,rgba(40,30,20,.14))!important}
+  .hero-meta>span::before,.hero-meta>span::after{display:none!important}
+  .hero-meta svg{width:15px;height:15px;flex:none;margin:0!important}
+}
+@media(max-width:374px){.hero-meta>span{font-size:11px!important;padding:0 4px!important}}
+/* homepage AI call panel on phones: Live sentiment and Detected intent side by side */
+@media(max-width:700px){
+  .ai-side{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px!important}
+  .ai-side>.ai-card{margin:0!important;min-width:0;padding:12px!important}
+  .ai-side>.ai-card:nth-child(n+3){grid-column:1/-1}
+  .ai-side>.ai-card h6{font-size:10.5px!important;letter-spacing:.08em}
+  .ai-side>.ai-sent{display:flex!important;flex-direction:column;align-items:center;text-align:center;gap:8px}
+  .ai-side>.ai-sent h6{align-self:flex-start}
+  .ai-side>.ai-sent .ai-gauge{width:64px!important;height:64px!important;margin:0!important}
+  .ai-side>.ai-sent .ai-gauge b{font-size:15px!important}
+  .ai-side>.ai-sent .pill{font-size:11.5px!important;padding:4px 10px!important;margin:0!important}
+  .ai-side .ai-intent{flex-direction:column!important;align-items:flex-start!important;gap:8px!important}
+  .ai-side .ai-intent b{font-size:14px!important;line-height:1.25}
+  .ai-side .ai-intent small{font-size:12px!important}
+}
+@media(max-width:700px){
+  #platform .ai-side{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #platform .ai-side>.ai-card:nth-child(n+3){grid-column:1/-1!important}
+  #platform .ai-side>.ai-sent .ai-gauge,#platform .ai-side>.ai-sent .ai-gauge svg{width:60px!important;height:60px!important}
+}
+
+/* ===================== homepage · phones, round 2 ===================== */
+@media(max-width:700px){
+  /* product card chip tiles: icon and label on the same lines in every tile */
+  .pcards .chips>span{justify-content:flex-start!important;padding:10px 4px 9px!important;gap:6px!important}
+  .pcards .chips>span svg{margin:0 auto!important}
+  .pcards .chips>span{display:grid!important;grid-template-rows:18px auto;justify-items:center;align-content:start;min-height:66px;box-sizing:border-box}
+
+  /* Intent · Language · CRM: three tiles in one row */
+  .rc-row{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+  .rc-row>.rc-t{flex-direction:column!important;align-items:flex-start!important;gap:8px!important;padding:12px 10px!important;min-width:0}
+  .rc-row>.rc-t .ci2{width:32px!important;height:32px!important;flex:none}
+  .rc-row>.rc-t small{font-size:11.5px!important;display:block}
+  .rc-row>.rc-t b{font-size:12.5px!important;line-height:1.3;display:block}
+
+  /* feature tags (Live calendar · Real openings · Invite sent, etc.): one row */
+  .feat .ft{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px!important}
+  .feat .ft>li{margin:0!important;text-align:center;justify-content:center;padding:8px 4px!important;font-size:12px!important;line-height:1.25;white-space:normal!important;display:flex;align-items:center}
+
+  /* ratings: Trustpilot · G2 · Gartner in one row, logo above the score */
+  #stories .rate{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:0!important;width:100%}
+  #stories .rate .rt{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start;text-align:center;gap:5px!important;padding:2px 4px!important;min-width:0}
+  #stories .rate .rt+.rt{border-left:1px solid var(--line,rgba(40,30,20,.14))!important}
+  #stories .rate .rt>*{margin:0!important;border:0!important;padding:0!important}
+  #stories .rate .rt svg{max-width:100%}
+  #stories .rate .rt-logo{height:18px!important;width:auto!important}
+
+  /* proof figures: 4.6/5 · 100,000+ · 17 years in one row */
+  #stories .proof{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:0!important}
+  #stories .proof>div{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:0 4px;min-width:0}
+  #stories .proof>div+div{border-left:1px solid var(--line,rgba(40,30,20,.14))}
+  #stories .proof b{font-size:clamp(22px,6.4vw,28px)!important;line-height:1;white-space:nowrap}
+  #stories .proof small{font-size:11.5px!important;line-height:1.3}
+
+  /* closing banner: Book a demo and Talk to sales side by side */
+  .cta-btns{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px!important;width:100%}
+  .cta-btns>*{width:auto!important;min-width:0;justify-content:space-between;padding:10px 10px 10px 14px!important;font-size:13.5px!important;white-space:nowrap;gap:8px}
+  .cta-btns .cta-ar,.cta-btns .cta-b2>svg,.cta-btns .cta-b2>i{width:32px!important;height:32px!important;flex:none}
+}
+@media(max-width:700px){
+  #ctaBanner .cta-r,#ctaBanner .cta-btns{width:100%}
+  #ctaBanner .cta-btns{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;flex-direction:row!important;gap:8px!important}
+  #ctaBanner .cta-btns>*{width:100%!important;max-width:none!important;margin:0!important}
+}
+@media(max-width:700px){
+  #ctaBanner .cta-btns>*{display:flex!important;align-items:center;justify-content:center!important;gap:8px!important;padding:13px 10px!important;font-size:14px!important;overflow:hidden}
+  #ctaBanner .cta-btns .cta-ar{position:static!important;width:22px!important;height:22px!important;margin:0!important;transform:none!important;flex:none}
+  #ctaBanner .cta-btns .cta-ar svg{width:12px;height:12px}
+  #ctaBanner .cta-btns .cta-b2>svg,#ctaBanner .cta-btns .cta-b2>i{position:static!important;width:18px!important;height:18px!important;margin:0!important;flex:none;order:2}
+}
+@media(max-width:700px){
+  /* closing banner icons keep their round chip and stay visible */
+  #ctaBanner .cta-btns .cta-b2>svg{width:30px!important;height:30px!important;padding:7px!important;box-sizing:border-box!important;border-radius:50%;flex:none}
+  #ctaBanner .cta-btns .cta-ar{width:30px!important;height:30px!important;display:grid!important;place-items:center}
+  #ctaBanner .cta-btns .cta-ar svg{width:14px!important;height:14px!important}
+  #ctaBanner .cta-btns>*{padding:9px 9px 9px 14px!important;justify-content:space-between!important}
+  /* chip tiles: labels always fit inside the tile */
+  .pcards .chips{gap:5px!important}
+  .pcards .chips>span{padding:10px 2px 9px!important;font-size:clamp(9.5px,2.6vw,11px)!important;letter-spacing:-.015em!important;overflow:hidden}
+}
+@media(max-width:700px){
+  #ctaBanner .cta-btns{gap:10px!important}
+  #ctaBanner .cta-btns>*{overflow:visible!important;padding:8px 8px 8px 16px!important;min-height:48px;font-size:clamp(12.5px,3.5vw,14px)!important;gap:8px!important;box-sizing:border-box}
+  #ctaBanner .cta-btns .cta-ar,#ctaBanner .cta-btns .cta-b2>svg{width:32px!important;height:32px!important;margin:0!important;flex:0 0 32px!important}
+}
+@media(max-width:700px){
+  #ctaBanner .cta-in{padding:28px 16px!important}
+  #ctaBanner .cta-btns{gap:8px!important}
+  #ctaBanner .cta-btns>*{padding:7px 7px 7px 14px!important;min-height:46px;font-size:13.5px!important;gap:6px!important;letter-spacing:-.01em}
+  #ctaBanner .cta-btns .cta-ar,#ctaBanner .cta-btns .cta-b2>svg{width:30px!important;height:30px!important;flex:0 0 30px!important}
+}
+@media(max-width:374px){
+  #ctaBanner .cta-in{padding:24px 12px!important}
+  #ctaBanner .cta-btns>*{padding:6px 6px 6px 11px!important;font-size:12.5px!important}
+  #ctaBanner .cta-btns .cta-ar,#ctaBanner .cta-btns .cta-b2>svg{width:28px!important;height:28px!important;flex:0 0 28px!important}
+  #ctaBanner .cta-btns .cta-b2>svg{padding:6px!important}
+}
+
+/* ===================== homepage dashboard mockup on phones: full width, live calls as readable rows ===================== */
+@media(max-width:700px){
+  #dashboard .dash{grid-template-columns:minmax(0,1fr)!important}
+  #dashboard .dash>.side{display:none!important}
+  #dashboard .dmain{width:100%;min-width:0}
+  #dashboard .pan.tscroll{overflow:visible!important}
+  #dashboard .pan.tscroll h5{display:flex!important;align-items:center;justify-content:space-between;gap:10px;flex-wrap:nowrap}
+  #dashboard .pan.tscroll .lc-h{display:inline-flex;align-items:center;gap:10px;white-space:nowrap}
+  #dashboard .tbl,#dashboard .tbl tbody{display:block!important;width:100%!important;min-width:0!important}
+  #dashboard .tbl thead{display:none!important}
+  #dashboard .tbl tr{display:flex!important;flex-wrap:wrap;align-items:center;gap:4px 8px;padding:10px 0;border-top:1px solid var(--line,rgba(40,30,20,.1))}
+  #dashboard .tbl td{display:block;padding:0!important;border:0!important;font-size:12px;color:var(--muted);white-space:nowrap}
+  #dashboard .tbl td:nth-child(1){order:1;flex:1 1 auto;min-width:0;color:var(--ink,#2b2622);font-size:13.5px}
+  #dashboard .tbl td:nth-child(5){order:2;flex:none}
+  #dashboard .tbl td:nth-child(2){order:3;flex:0 0 auto;padding-left:34px!important}
+  #dashboard .tbl td:nth-child(3){order:4}
+  #dashboard .tbl td:nth-child(4){order:5}
+  #dashboard .tbl td:nth-child(3)::before,#dashboard .tbl td:nth-child(4)::before{content:"·";margin-right:8px;color:var(--faint,#b0a69e)}
+  #dashboard .tbl td:nth-child(6){order:6;margin-left:auto}
+  #dashboard .tbl td:nth-child(1)::after{content:"";display:block}
+  #dashboard .tbl tr::after{content:"";order:2;flex-basis:100%;height:0}
+  #dashboard .tbl td:nth-child(5){order:2}
+  #dashboard .tbl td .pill{border-radius:8px}
+}
+@media(max-width:700px){
+  #dashboard .tbl tr{column-gap:6px!important}
+  #dashboard .tbl td{font-size:11.5px!important}
+  #dashboard .tbl td:nth-child(1){font-size:13.5px!important}
+  #dashboard .tbl td:nth-child(2){padding-left:30px!important}
+  #dashboard .tbl td:nth-child(3)::before,#dashboard .tbl td:nth-child(4)::before{margin-right:5px}
+  #dashboard .tbl td:nth-child(6) .ab{display:inline-flex;align-items:center;padding:4px 10px!important;font-size:11px!important;border-radius:8px!important;white-space:nowrap}
+}
+@media(max-width:700px){#dashboard .tbl td.ac,#dashboard .tbl td:nth-child(6){width:auto!important;flex:none!important;text-align:right}}
+@media(max-width:700px){#dashboard .tbl td:nth-child(6) .ab{padding:3px 9px!important;font-size:10.5px!important;line-height:1.4!important;min-height:0!important}#dashboard .tbl td:nth-child(2){padding-left:28px!important}#dashboard .tbl tr{column-gap:5px!important}}
+
+/* ===================== homepage "The same workspace in your pocket" on phones: three phones fanned, no sideways scroll ===================== */
+@media(max-width:700px){
+  #mobile .mob{display:grid!important;grid-template-columns:1fr;justify-items:center;overflow:visible!important;scroll-snap-type:none!important;padding:8px 0 18px!important;scrollbar-width:none}
+  #mobile .mob::-webkit-scrollbar{display:none}
+  #mobile .mob>.mphone{grid-area:1/1;margin:0!important;flex:none;scroll-snap-align:none}
+  #mobile .mob>.mphone:nth-child(2){z-index:3;box-shadow:0 30px 60px -28px rgba(60,30,15,.55)}
+  #mobile .mob>.mphone:nth-child(1){z-index:1;translate:-36% 4%;scale:.8;filter:saturate(.9);opacity:.96}
+  #mobile .mob>.mphone:nth-child(3){z-index:2;translate:36% 4%;scale:.8;filter:saturate(.9);opacity:.96}
+  #mobile{overflow-x:clip}
+}
+@media(max-width:374px){
+  #mobile .mob>.mphone:nth-child(1){translate:-33% 4%;scale:.76}
+  #mobile .mob>.mphone:nth-child(3){translate:33% 4%;scale:.76}
+}
+
+/* homepage mobile phones on phones: swipe to rotate */
+.mob-dots{display:none}
+@media(max-width:700px){
+  #mobile .mob.mob-rot>.mphone{translate:0 0;scale:1;transition:translate .5s cubic-bezier(.22,.8,.2,1),scale .5s cubic-bezier(.22,.8,.2,1),opacity .4s ease,filter .4s ease;touch-action:pan-y;cursor:grab}
+  #mobile .mob.mob-rot>.mphone.pos-c{z-index:3!important;translate:0 0!important;scale:1!important;opacity:1!important;filter:none!important;box-shadow:0 30px 60px -28px rgba(60,30,15,.55)}
+  #mobile .mob.mob-rot>.mphone.pos-l{z-index:1!important;translate:-36% 4%!important;scale:.8!important;opacity:.96!important;filter:saturate(.9)!important;cursor:pointer}
+  #mobile .mob.mob-rot>.mphone.pos-r{z-index:2!important;translate:36% 4%!important;scale:.8!important;opacity:.96!important;filter:saturate(.9)!important;cursor:pointer}
+  #mobile .mob.mob-rot{touch-action:pan-y;outline:none;user-select:none}
+  .mob-dots{display:flex;justify-content:center;gap:8px;margin:2px 0 22px}
+  .mob-dots button{width:8px;height:8px;padding:0;border:0;border-radius:99px;background:rgba(40,30,20,.2);cursor:pointer;transition:width .3s ease,background .3s ease}
+  .mob-dots button.on{width:22px;background:var(--coral,#E8553A)}
+}
+@media(max-width:374px){
+  #mobile .mob.mob-rot>.mphone.pos-l{translate:-33% 4%!important;scale:.76!important}
+  #mobile .mob.mob-rot>.mphone.pos-r{translate:33% 4%!important;scale:.76!important}
+}
+@media(prefers-reduced-motion:reduce){#mobile .mob.mob-rot>.mphone{transition:none}}
+@media(max-width:700px){.mob-dots button{height:8px!important;min-height:0!important;min-width:0!important;line-height:0!important;box-shadow:none!important}.mob-dots{gap:6px!important;padding:6px 0}}
+
+/* customer stories carousel on phones and tablets: cards are always shown (their reveal never fired for cards that start off to the side) */
+@media(max-width:1000px){
+  #storyRow .story{opacity:1!important;transform:none!important;animation:none!important;visibility:visible!important}
+}
+/* customer story cards on phones: smaller cards, still easy to read */
+@media(max-width:700px){
+  #storyRow .mq-track{gap:12px!important}
+  #storyRow .story{width:252px!important;min-width:252px!important;max-width:252px!important;height:auto!important;min-height:0!important;padding:18px 18px 16px!important;gap:12px!important;border-radius:20px!important;flex:0 0 252px!important}
+  #storyRow .story .m{font-size:11.5px!important;padding:5px 10px!important;border-radius:8px!important;align-self:flex-start;white-space:nowrap}
+  #storyRow .story blockquote{font-size:14px!important;line-height:1.5!important;margin:0!important}
+  #storyRow .story footer{gap:10px!important;margin-top:auto}
+  #storyRow .story footer .av{width:34px!important;height:34px!important;font-size:12px!important;flex:none}
+  #storyRow .story footer b{font-size:13.5px!important}
+  #storyRow .story footer span{font-size:12px!important;line-height:1.35}
+}
+
+
+/* ===================== footer on phones: four compact link columns side by side ===================== */
+@media(max-width:700px){
+  footer.foot .f-top{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;column-gap:10px!important;row-gap:0!important}
+  footer.foot .f-top>.f-brand{grid-column:1/-1;margin-bottom:28px}
+  footer.foot .f-top>.fcol{display:flex!important;flex-direction:column;min-width:0}
+  footer.foot .f-top>.fcol>h4{margin:0 0 12px!important;padding:0 0 10px!important;font-size:10px!important;letter-spacing:.1em!important;white-space:nowrap}
+  footer.foot .f-top>.fcol>a{display:block!important;width:auto!important;padding:6px 0!important;min-height:0!important;font-size:12px!important;line-height:1.3!important;white-space:normal!important}
+}
+@media(max-width:374px){
+  footer.foot .f-top{column-gap:8px!important}
+  footer.foot .f-top>.fcol>h4{font-size:9px!important;letter-spacing:.06em!important}
+  footer.foot .f-top>.fcol>a{font-size:11px!important}
+}
+@media(max-width:700px){
+  footer.foot .f-top{column-gap:8px!important}
+  footer.foot .f-top>.fcol>a{font-size:11.5px!important;overflow-wrap:break-word;hyphens:auto}
+}
+@media(max-width:420px){footer.foot .f-top>.fcol>a{font-size:10.5px!important}}
+@media(max-width:374px){footer.foot .f-top{column-gap:6px!important}footer.foot .f-top>.fcol>a{font-size:10px!important}}
+/* footer bottom bar on phones: social icons, legal links and copyright stacked and centred */
+@media(max-width:700px){
+  footer.foot .f-bot{display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center;gap:16px!important;padding-block:24px 30px!important}
+  footer.foot .f-bot>.soc{order:1;justify-content:center;gap:10px}
+  footer.foot .f-bot>nav{order:2;justify-content:center;gap:0!important}
+  footer.foot .f-bot>nav a{min-height:0!important;padding:4px 14px;font-size:13px}
+  footer.foot .f-bot>nav a+a{border-left:1px solid var(--ft-line,rgba(244,241,238,.18))}
+  footer.foot .f-bot>span{order:3;font-size:12px;opacity:.8}
+  footer.foot .soc a{display:grid!important;place-items:center!important;width:42px!important;height:42px!important;min-height:0!important;padding:0!important}
+  footer.foot .soc a svg{width:18px;height:18px;margin:0!important}
+}
+/* footer brand block on phones: logo on the left, newsletter field and consent beside it, description underneath */
+@media(max-width:700px){
+  footer.foot .f-top>.f-brand{display:grid!important;grid-template-columns:auto minmax(0,1fr);column-gap:14px;row-gap:8px;align-items:center}
+  footer.foot .f-brand>.brand{grid-column:1;grid-row:1/3;align-self:center;margin:0!important}
+  footer.foot .f-brand>.brand img{height:46px!important;width:auto!important}
+  footer.foot .f-brand>.news{grid-column:2;grid-row:1;margin:0!important;max-width:none!important;width:100%;padding:4px!important;box-sizing:border-box}
+  footer.foot .f-brand>.news input{font-size:13px!important;padding:0 10px!important;min-width:0}
+  footer.foot .f-brand>.news button{width:36px!important;height:36px!important;flex:none}
+  footer.foot .f-brand>.consent{grid-column:2;grid-row:2;margin:0!important;font-size:11px!important;line-height:1.35;align-items:flex-start;gap:6px}
+  footer.foot .f-brand>.consent input{width:14px;height:14px;flex:none;margin-top:1px}
+  footer.foot .f-brand>p{grid-column:1/-1;grid-row:3;margin:14px 0 0!important}
+}
+@media(max-width:700px){footer.foot .f-brand>.brand{align-self:start!important;margin-top:0!important}}
+/* footer UCAAS wordmark on phones: there is no hover, so the coral fill rises into each letter when the footer comes into view and stays */
+@media(max-width:700px){
+  footer.foot .wm span{-webkit-text-stroke-color:rgba(255,255,255,0)!important;transition:background-size .9s cubic-bezier(.22,1,.36,1)!important}
+  footer.foot .wm.in span{background-size:100% 100%,100% 100%!important;transition-delay:calc(var(--k)*.12s + .35s)!important}
+}
