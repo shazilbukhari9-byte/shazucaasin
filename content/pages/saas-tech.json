@@ -54,6 +54,10 @@
     {
       "src": "assets/footer-cover.js",
       "mode": "defer"
+    },
+    {
+      "mode": "sync",
+      "code": "/* stack-start: open on layer 01, so the list reads top to bottom from the dial tone up */\n(function(){var nd=[].slice.call(document.querySelectorAll(\"#stack .sd-nd\"));if(nd.length)setTimeout(function(){nd[nd.length-1].click()},60)})();"
     }
   ]
 }
