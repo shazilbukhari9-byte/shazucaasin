@@ -1323,3 +1323,14 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   #the-math .kx-flow>.kx-step>.kx-card .cp-cv{margin-top:6px}
   #the-math .kx-flow>.kx-step>.kx-card>.kx-h{margin:0}
 }
+/* the stack holds in place after the white card lands, so it stops there before the section moves on */
+@media(min-width:1001px){
+  #the-math .kx-flow>.kx-step:nth-child(3){margin-bottom:46vh!important}
+}
+@media(min-width:1001px){
+  #the-math .kx-flow{display:flow-root!important}
+}
+@media(min-width:1001px){
+  #the-math .kx-flow>.kx-step:nth-child(3){margin-bottom:0!important}
+  #the-math .kx-flow::after{content:"";display:block;height:46vh}
+}
