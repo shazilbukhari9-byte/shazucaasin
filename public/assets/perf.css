@@ -1741,3 +1741,27 @@ footer.foot .news button{width:44px;height:44px;flex:none}
 }
 @media(max-width:700px){#p0 .cp-dash .cp-bar{padding-top:44px!important}#p0 .cp-dash .cp-bar>span{visibility:visible}}
 @media(max-width:700px){#p0 .cp-stage{padding-bottom:0!important}#platform .glass.panel{padding-bottom:14px!important}}
+
+/* phone texting AI conversation on phones and tablets: the thread box keeps one height while the messages type in, so the page below never jumps */
+@media(max-width:1000px){.pt-tl{height:280px!important;min-height:280px!important;overflow:hidden!important}}
+@media(max-width:700px){.pt-tl{height:362px!important;min-height:362px!important}}
+@media(max-width:374px){.pt-tl{height:384px!important;min-height:384px!important}}
+/* phone texting call summary figures on phones: 88 · 14 · 214 · 97% in one row */
+@media(max-width:700px){
+  .pt-kp{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:0!important}
+  .pt-kp>div{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:0 4px!important;border:0!important;min-width:0}
+  .pt-kp>div+div{border-left:1px solid var(--line,rgba(40,30,20,.12))!important}
+  .pt-kp b{font-size:clamp(19px,5.6vw,24px)!important;line-height:1;white-space:nowrap}
+  .pt-kp small{font-size:10.5px!important;line-height:1.25}
+}
+
+/* "Pairs well with" cards on phones: a 2 x 2 grid of compact cards */
+@media(max-width:700px){
+  .pw-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .pw-grid>.pw-pc{display:flex!important;flex-direction:column;gap:6px!important;padding:14px 12px 14px!important;border-radius:18px!important;min-width:0;margin:0!important;height:100%;box-sizing:border-box}
+  .pw-grid>.pw-pc .mi{width:36px!important;height:36px!important;border-radius:11px!important;margin-bottom:4px!important}
+  .pw-grid>.pw-pc .mi svg{width:17px;height:17px}
+  .pw-grid>.pw-pc h3{font-size:14px!important;line-height:1.25;margin:0!important}
+  .pw-grid>.pw-pc p{font-size:12px!important;line-height:1.4;margin:0!important;flex:1}
+  .pw-grid>.pw-pc em{font-size:12.5px!important;margin-top:4px!important;display:inline-flex;align-items:center;gap:4px}
+}
