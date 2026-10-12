@@ -1845,7 +1845,7 @@ footer.foot .news button{width:44px;height:44px;flex:none}
 }
 
 /* AI conversation box (phone texting): fixed height on every screen, thread starts at the top and glides up as messages arrive */
-.pt-ai .pt-tl{justify-content:flex-start!important;overflow:hidden!important;overscroll-behavior:contain}
+.pt-ai .pt-tl{justify-content:flex-start!important;overflow:hidden!important;overscroll-behavior:auto!important}
 .pt-ai .pt-tl>.pt-b{flex:none}
 .pt-ai .pt-tl.is-full{-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 26px);mask-image:linear-gradient(180deg,transparent 0,#000 26px)}
 @media(min-width:1001px){.pt-ai .pt-tl{height:262px!important;min-height:262px!important}}
@@ -1923,3 +1923,195 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   .hero .pt-phone .pt-sh>div{min-width:0;line-height:1.25}
   .hero .pt-phone .pt-sh small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:9.5px!important;margin-top:1px}
 }
+
+/* phone texting hero on phones: phone mockup to the right, a small floating softphone card pinned to its upper-left corner */
+@media(max-width:700px){
+  .hero .pt-stage{display:block!important;position:relative;max-height:none!important;height:auto!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important;padding:6px 0 22px!important;margin-top:4px}
+  .hero .pt-stage>.pt-card:last-child{display:none!important}
+  .hero .pt-stage .pt-phone{display:block;margin:0 4px 0 auto!important;position:relative;z-index:1}
+  .hero .pt-stage>.pt-card:first-child{position:absolute!important;left:0;top:26px;z-index:3;width:170px;box-sizing:border-box;padding:11px 11px 12px!important;gap:8px!important;border-radius:16px!important;background:rgba(255,255,255,.94)!important;border:1px solid rgba(30,20,10,.1)!important;box-shadow:0 22px 40px -18px rgba(90,40,15,.38),0 2px 6px rgba(90,40,15,.06)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+  .hero .pt-stage>.pt-card:first-child .hd{gap:6px!important;font-size:10px!important}
+  .hero .pt-stage>.pt-card:first-child .hd svg{width:12px;height:12px}
+  .hero .pt-stage>.pt-card:first-child .hd b{font-size:11px!important;font-weight:600}
+  .hero .pt-stage>.pt-card:first-child .hd .pill{font-size:8.5px!important;padding:2px 6px!important;line-height:1.3}
+  .hero .pt-stage>.pt-card:first-child .pt-contact{gap:7px!important}
+  .hero .pt-stage>.pt-card:first-child .pt-contact .av{width:26px!important;height:26px!important;font-size:9.5px!important;flex:none}
+  .hero .pt-stage>.pt-card:first-child .pt-contact>div{min-width:0;line-height:1.2}
+  .hero .pt-stage>.pt-card:first-child .pt-contact b{font-size:11px!important;font-weight:600;white-space:nowrap}
+  .hero .pt-stage>.pt-card:first-child .pt-contact small{font-size:8.5px!important;white-space:nowrap}
+  .hero .pt-stage>.pt-card:first-child .pt-time{font-size:11.5px!important;font-weight:500}
+  .hero .pt-stage>.pt-card:first-child .wave{height:16px!important;gap:2px!important;overflow:hidden}
+  .hero .pt-stage>.pt-card:first-child .wave i{width:2px!important;height:14px!important}
+  .hero .pt-stage>.pt-card:first-child .pt-ctrls,.hero .pt-stage>.pt-card:first-child .pt-endrow{display:none!important}
+}
+@media(max-width:700px){
+  .hero .pt-stage .pt-phone{margin-top:66px!important}
+  .hero .pt-stage>.pt-card:first-child{top:6px!important;background:#fff!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+/* phone texting hero on phones: "One number, every device" as a second small floating card, lower-left of the phone */
+@media(max-width:700px){
+  .hero .pt-stage>.pt-card:last-child{display:flex!important;position:absolute!important;left:0;bottom:34px;z-index:3;width:162px;box-sizing:border-box;padding:11px 10px 10px!important;gap:7px!important;border-radius:16px!important;background:#fff!important;border:1px solid rgba(30,20,10,.1)!important;box-shadow:0 22px 40px -18px rgba(90,40,15,.38),0 2px 6px rgba(90,40,15,.06)!important;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .hero .pt-stage>.pt-card:last-child .hd{gap:6px!important;font-size:10px!important;padding:0 1px}
+  .hero .pt-stage>.pt-card:last-child .hd svg{width:12px;height:12px;flex:none}
+  .hero .pt-stage>.pt-card:last-child .hd b{font-size:10.5px!important;font-weight:600;white-space:nowrap}
+  .hero .pt-stage>.pt-card:last-child .pt-num{font-size:12.5px!important;font-weight:600;padding:0 1px;white-space:nowrap}
+  .hero .pt-stage>.pt-card:last-child .pt-dev{gap:6px!important;padding:4px 5px!important;border-radius:9px!important}
+  .hero .pt-stage>.pt-card:last-child .pt-dev .mi{width:20px!important;height:20px!important;border-radius:6px!important;flex:none}
+  .hero .pt-stage>.pt-card:last-child .pt-dev .mi svg{width:11px;height:11px}
+  .hero .pt-stage>.pt-card:last-child .pt-dev>div{min-width:0;line-height:1.1}
+  .hero .pt-stage>.pt-card:last-child .pt-dev b{font-size:10px!important;font-weight:600;white-space:nowrap}
+  .hero .pt-stage>.pt-card:last-child .pt-dev small{display:none}
+  .hero .pt-stage>.pt-card:last-child .pt-dev .pill{font-size:8px!important;padding:2px 5px!important;line-height:1.25;gap:3px}
+  .hero .pt-stage>.pt-card:last-child .pt-dev .pill svg{width:7px;height:7px}
+  .hero .pt-stage>.pt-card:last-child>div[style]{gap:2px!important}
+  .hero .pt-stage>.pt-card:last-child .pt-up,.hero .pt-stage>.pt-card:last-child .pt-foot{display:none!important}
+}
+@media(max-width:700px){
+  .hero .pt-stage>.pt-card:last-child{width:150px!important;bottom:4px!important}
+  .hero .pt-stage>.pt-card:last-child .hd b{white-space:normal!important;line-height:1.2;min-width:0}
+  .hero .pt-stage>.pt-card:last-child .pt-num{font-size:11.5px!important}
+  .hero .pt-stage>.pt-card:last-child .pt-dev b{font-size:9.5px!important}
+}
+@media(max-width:700px){
+  /* status pills become small status dots so device names never collide with them */
+  .hero .pt-stage>.pt-card:last-child .pt-dev .pill{font-size:0!important;width:7px;height:7px;padding:0!important;border-radius:50%!important;flex:none;margin-left:auto;background:#12A66A!important;box-shadow:0 0 0 3px rgba(18,166,106,.16)}
+  .hero .pt-stage>.pt-card:last-child .pt-dev .pill.sig{background:#E8853A!important;box-shadow:0 0 0 3px rgba(232,133,58,.18)}
+  .hero .pt-stage>.pt-card:last-child .pt-dev .pill *{display:none!important}
+}
+
+/* video meetings stats on phones: 200 · ~30s · 50 · 0 in one row */
+@media(max-width:700px){
+  .vm-stats,.hero .vm-stats{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:0!important;padding-top:16px!important}
+  .vm-stats>div{display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px;padding:0 4px!important;border-left:0!important;min-width:0}
+  .vm-stats>div+div{border-left:1px solid var(--line,rgba(40,30,20,.12))!important}
+  .vm-stats b,.hero .vm-stats b{font-size:clamp(19px,5.6vw,24px)!important;line-height:1;white-space:nowrap}
+  .vm-stats small{font-size:10.5px!important;line-height:1.25}
+}
+
+/* video meetings hero on phones: smaller meeting window, 3 x 2 participant grid */
+@media(max-width:700px){
+  .hero .vm-win .vm-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+  .hero .vm-win .vm-grid>*{border-radius:12px!important;min-height:0!important}
+  .hero .vm-win .vm-grid>* b,.hero .vm-win .vm-grid>* .nm,.hero .vm-win .vm-grid>* span:not([class*="av"]):last-child{font-size:9.5px!important}
+}
+@media(max-width:700px){
+  .hero .vm-win{-webkit-mask-image:none!important;mask-image:none!important;max-height:none!important}
+  .hero .vm-win .vm-top b{white-space:nowrap;font-size:14px!important;min-width:0;overflow:hidden;text-overflow:ellipsis}
+}
+@media(max-width:400px){.hero .vm-win .vm-top .dots{display:none!important}}
+/* video meetings hero transcript on phones/tablets: fixed height so new lines never grow the window (older lines roll off the top) */
+@media(max-width:1000px){.hero .vm-tr .vm-ls{height:132px!important;min-height:132px!important;max-height:132px!important;flex:none!important;justify-content:flex-end!important}}
+
+/* video meetings "after the call" on phones: the 4 steps as one compact row, a tighter detail card below */
+@media(max-width:700px){
+  .vm-after{padding:10px!important;gap:10px!important;border-radius:24px!important}
+  .vm-steps{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;padding:4px!important;border-radius:16px!important}
+  .vm-s{flex-direction:column!important;align-items:center!important;justify-content:flex-start;text-align:center!important;gap:6px!important;padding:10px 4px 12px!important;border-radius:12px!important;min-width:0}
+  .vm-s .mi{width:30px!important;height:30px!important;flex:none}
+  .vm-s .mi svg{width:14px;height:14px}
+  .vm-s>span:last-child{min-width:0}
+  .vm-s small{font-size:10px!important;line-height:1.2}
+  .vm-s b{font-size:10.5px!important;line-height:1.25!important;font-weight:600!important;margin-top:2px;text-wrap:balance}
+  .vm-big{min-height:0!important;height:186px;box-sizing:border-box;padding:18px 18px 20px!important;justify-content:flex-start!important;border-radius:18px!important}
+  .vm-big::before{width:160px;height:160px;right:-50px;top:-50px}
+  .vm-big .tm{font-size:42px!important}
+  .vm-big .tm small{font-size:9.5px!important;margin-left:6px!important}
+  .vm-sd h3{font-size:19px!important;margin:10px 0 4px!important}
+  .vm-sd p{font-size:13.5px!important;max-width:none!important}
+}
+
+/* video meetings "What meetings need" on phones: compact join mockup (camera beside the form) and tighter feature rows */
+@media(max-width:700px){
+  .vm-join{padding:16px!important;gap:12px!important;border-radius:22px!important}
+  .vm-jt .z{font-size:40px!important}
+  .vm-jt .z small{font-size:13px!important}
+  .vm-jt span{font-size:12px!important}
+  .vm-jw{padding:12px!important;border-radius:16px!important}
+  .vm-jw .bar{font-size:12px}
+  .vm-url{font-size:11px!important;padding:7px 10px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vm-url svg{flex:none}
+  .vm-jb{grid-template-columns:minmax(0,.85fr) minmax(0,1fr)!important;gap:12px!important;align-items:center!important;padding:0!important}
+  .vm-cam{aspect-ratio:auto!important;height:150px!important;border-radius:14px!important}
+  .vm-cam .av{width:44px!important;height:44px!important;font-size:14px!important}
+  .vm-cam .cc i{width:24px!important;height:24px!important}
+  .vm-cam .cc svg{width:11px!important;height:11px!important}
+  .vm-jf b{font-size:13px!important;margin-bottom:7px!important}
+  .vm-inp{padding:8px 10px!important;font-size:12px!important;margin-bottom:7px!important}
+  .vm-jn{padding:9px 8px!important;font-size:12.5px!important;gap:6px!important;white-space:nowrap}
+  .vm-jf small{font-size:10.5px!important;margin-top:7px!important}
+  .vm-fl{gap:7px!important}
+  .vm-fr{padding:12px 14px!important;border-radius:16px!important}
+  .vm-fr .h{gap:12px!important}
+  .vm-fr .mi{width:36px!important;height:36px!important;border-radius:11px!important;flex:none}
+  .vm-fr .mi svg{width:17px;height:17px}
+  .vm-fr b{font-size:14.5px!important;font-weight:600!important;gap:4px 8px!important;line-height:1.3}
+  .vm-fr .bd{font-size:10px!important;padding:2px 8px!important;font-weight:600}
+  .vm-fr .dsc>p{padding-left:48px!important;font-size:13px!important;line-height:1.5!important}
+  .vm-fr.on .dsc>p{min-height:0!important;padding-top:6px!important}
+}
+@media(max-width:700px){.vm-fr b{flex-direction:column!important;align-items:flex-start!important;gap:4px!important}}
+
+/* video meetings scheduling on phones: calendar events line up and read cleanly, compact event card and security card */
+@media(max-width:700px){
+  .vm-cal{padding:12px!important;gap:12px!important;border-radius:24px!important}
+  .vm-ct time{font-size:12.5px!important;padding-left:4px}
+  .vm-wk{border-radius:16px!important}
+  .vm-wh{grid-template-columns:44px repeat(5,minmax(0,1fr))!important;font-size:9.5px!important}
+  .vm-wh div{padding:8px 0!important}
+  .vm-wh b{width:26px!important;height:26px!important;font-size:13px!important}
+  .vm-wb{grid-template-columns:44px repeat(5,minmax(0,1fr))!important;grid-template-rows:repeat(4,56px)!important}
+  .vm-wb .tc{font-size:9.5px!important;padding:5px 6px 0 0!important;white-space:nowrap;text-align:right}
+  /* events are placed inline for a 52px time column; shift them to match the 44px column */
+  .vm-wb .vm-ev{margin-left:-8px;width:calc((100% - 44px)/5 - 5px)!important;padding:4px 4px 4px 5px!important;font-size:9.5px!important;line-height:1.2!important;border-radius:7px!important;border-left-width:2px!important;hyphens:none;overflow-wrap:normal;word-break:normal}
+  .vm-wb .vm-ev:nth-of-type(n){left:auto}
+  .vm-wb .vm-ev.n{white-space:normal!important;height:auto!important;min-height:22px;padding:4px 5px!important;font-size:9px!important;z-index:2}
+  .vm-ed{display:grid!important;grid-template-columns:auto minmax(0,1fr);gap:11px 8px!important;padding:16px!important;border-radius:18px!important;align-items:center}
+  .vm-ed>*{grid-column:1/-1}
+  .vm-ed .src{font-size:11.5px!important;gap:8px!important}
+  .vm-ed .src i.pi{width:24px!important;height:24px!important}
+  .vm-ed h4{font-size:19px!important;line-height:1.25}
+  .vm-ed .r{font-size:12.5px!important;align-items:flex-start!important}
+  .vm-ed .r svg{flex:none;margin-top:3px}
+  .vm-chips{gap:5px!important}.vm-chips span{font-size:11.5px!important;padding:3px 9px!important}
+  .vm-ed .vm-add{grid-column:1;font-size:12.5px!important;padding:8px 13px!important;white-space:nowrap;margin:0!important}
+  .vm-ed .vm-inv{grid-column:2;justify-self:start;font-size:12.5px!important;padding:8px 12px!important;margin:0!important;white-space:nowrap}
+  .vm-sec{grid-template-columns:40px minmax(0,1fr)!important;gap:12px 12px!important;align-items:start!important;padding:16px!important;border-radius:18px!important}
+  .vm-sec .mi{width:40px!important;height:40px!important;border-radius:12px!important}
+  .vm-sec h4{font-size:15px!important;font-weight:600!important}
+  .vm-sec p{font-size:13px!important;line-height:1.5!important}
+  .vm-sl{grid-column:1/-1!important;grid-template-columns:minmax(0,1fr)!important;gap:9px!important;font-size:12.5px!important;padding-top:12px;border-top:1px solid rgba(232,85,58,.14)}
+  .vm-sl svg{flex:none}
+}
+@media(max-width:700px){
+  .vm-wb .vm-ev,.vm-wb .vm-ev.n{font-size:9px!important;padding:3px 3px 3px 4px!important;letter-spacing:-.01em}
+  .vm-wb .vm-ev.n{text-overflow:clip!important}
+  .vm-ed .vm-add{font-size:11.5px!important;padding:8px 11px!important;gap:6px!important}
+  .vm-ed .vm-inv{font-size:11.5px!important;padding:8px 10px!important;gap:6px!important}
+  .vm-ed .vm-add svg,.vm-ed .vm-inv svg{width:13px;height:13px}
+}
+@media(max-width:374px){.vm-ed .vm-inv{grid-column:1/-1}}
+@media(max-width:700px){.vm-wb .vm-ev.n{font-size:8.5px!important;letter-spacing:-.02em;padding:3px 2px 3px 4px!important}}
+
+/* hero buttons on phones: Book a demo and Talk to sales side by side */
+@media(max-width:700px){
+  .hero .hero-cta{display:flex!important;flex-wrap:nowrap!important;gap:8px!important;width:100%}
+  .hero .hero-cta>.btn{flex:1 1 0!important;min-width:0;justify-content:center;padding:12px 10px!important;font-size:14px!important;white-space:nowrap;gap:8px}
+  .hero .hero-cta>.btn .arr{width:24px!important;height:24px!important;flex:none}
+  .hero .hero-cta>.btn .arr svg{width:12px;height:12px}
+}
+@media(max-width:374px){.hero .hero-cta>.btn{font-size:13px!important;padding:11px 8px!important}.hero .hero-cta>.btn .arr{width:22px!important;height:22px!important}}
+
+/* AI chatbot "One bot, every surface" channel picker on phones: all six in one row */
+@media(max-width:700px){
+  .ab-seg .ai-seg{grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:3px!important;padding:4px!important;border-radius:16px!important;max-width:none!important}
+  .ab-seg .ai-seg button{padding:9px 1px!important;min-height:38px!important;font-size:10px!important;border-radius:12px!important;letter-spacing:-.01em;overflow:hidden;text-overflow:clip}
+}
+@media(max-width:374px){.ab-seg .ai-seg button{font-size:9px!important}}
+
+/* live chat channels on phones: all six chips in one row, smaller */
+@media(max-width:700px){
+  .lc-orb .kx-ring:not(.rev){display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:4px!important;width:100%}
+  .lc-orb .kx-ring:not(.rev) .kx-node{min-width:0;display:block}
+  .lc-orb .lc-oc{display:flex!important;justify-content:center;width:100%;box-sizing:border-box;padding:7px 2px!important;font-size:10px!important;letter-spacing:-.01em;border-radius:10px!important;box-shadow:0 8px 16px -10px rgba(120,60,30,.5),0 0 0 1px rgba(40,30,20,.06)!important}
+}
+@media(max-width:374px){.lc-orb .lc-oc{font-size:9px!important}}
