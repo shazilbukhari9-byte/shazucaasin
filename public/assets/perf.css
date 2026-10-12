@@ -1713,3 +1713,31 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   footer.foot .wm span{-webkit-text-stroke-color:rgba(255,255,255,0)!important;transition:background-size .9s cubic-bezier(.22,1,.36,1)!important}
   footer.foot .wm.in span{background-size:100% 100%,100% 100%!important;transition-delay:calc(var(--k)*.12s + .35s)!important}
 }
+
+/* homepage platform tabs on phones: all four visible as a 2 x 2 switcher, nothing hidden off to the side */
+@media(max-width:700px){
+  #platform .tabs{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px!important;overflow:visible!important;padding:6px!important;border-radius:20px!important;width:100%;box-sizing:border-box}
+  #platform .tabs::before,#platform .tabs::after{display:none!important}
+  #platform .tabs .tab{width:100%!important;min-width:0;justify-content:center;gap:7px;padding:11px 8px!important;border-radius:14px!important;font-size:13.5px!important;white-space:nowrap}
+  #platform .tabs .tab svg{width:16px;height:16px;flex:none}
+  #platform .tabs .tab .new{font-size:9.5px!important;padding:2px 6px!important;margin-left:2px}
+}
+@media(max-width:374px){#platform .tabs .tab{font-size:12.5px!important;gap:5px;padding:10px 6px!important}}
+/* homepage Cloud Phone mockup on phones: a smaller phone that sits neatly on the dashboard */
+@media(max-width:700px){
+  #p0 .cp-phone{zoom:.76;margin-bottom:-110px!important}
+  #p0 .cp-dash .cp-bar{padding-top:96px!important}
+}
+@media(max-width:374px){#p0 .cp-phone{zoom:.72}}
+@media(max-width:700px){
+  #p0 .cp-phone{margin-bottom:-64px!important}
+  #p0 .cp-dash .cp-bar{padding-top:72px!important}
+}
+@media(max-width:700px){#p0 .cp-dash .cp-bar>span{visibility:hidden}}
+@media(max-width:700px){
+  #platform .glass.panel{row-gap:22px!important}
+  #p0 .cp-phone{top:0!important}
+  #p0 .cp-stage{padding-bottom:24px!important}
+}
+@media(max-width:700px){#p0 .cp-dash .cp-bar{padding-top:44px!important}#p0 .cp-dash .cp-bar>span{visibility:visible}}
+@media(max-width:700px){#p0 .cp-stage{padding-bottom:0!important}#platform .glass.panel{padding-bottom:14px!important}}
