@@ -3519,3 +3519,6 @@ h1.hl-rot[data-final="0"] .hl-c{display:none}
 /* privacy policy and terms: the hero background runs up behind the floating navbar (no white strip above it) */
 .lgp .lgp-hero{margin-top:-76px;padding-top:calc(clamp(120px,13vw,160px) + 76px)}
 @media print{.lgp .lgp-hero{margin-top:0;padding-top:20px}}
+
+/* the dropdown never scrolls sideways (its decorative glow reaches past the edge); same on every page, including the blog */
+.mega{overflow-x:hidden!important;overflow-y:auto}
