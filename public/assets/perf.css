@@ -3503,3 +3503,15 @@ h1.hl-rot[data-final="0"] .hl-c{display:none}
 @media(min-width:1001px){
   #psArt{padding-left:36px}
 }
+
+/* footer: when the page is scrolled to the end the footer sits under the sticky navbar, so on shorter screens the big UCAAS
+   watermark gives up height until the link columns clear the bar (it is full size on tall screens) */
+@media(min-width:1001px){
+  footer.foot .wm{font-size:clamp(56px,min(22vw,calc((100vh - 540px) * 1.25)),290px)!important;margin-top:clamp(10px,3vh,34px)!important}
+}
+
+/* footer on short desktop screens: the black footer fills the whole screen at the end of the page, so the navbar always floats over black
+   (otherwise the footer's rounded top edge ends up tucked right under the bar) */
+@media(min-width:1001px) and (max-height:880px){
+  footer.foot{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end}
+}
