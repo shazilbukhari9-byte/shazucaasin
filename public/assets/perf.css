@@ -3461,9 +3461,40 @@ h1.hl-rot .hl-l1,h1.hl-rot .hl-l2{display:inline-block}
 h1.hl-rot .hl-word{display:inline-grid;justify-items:start;white-space:nowrap}
 h1.hl-rot .hl-word>*{grid-area:1/1}
 h1.hl-rot .hl-sz{visibility:hidden}
-h1.hl-rot .hl-live::after{content:"";display:inline-block;width:.06em;height:.8em;margin-left:.05em;border-radius:2px;background:var(--coral,#FF7A5C);vertical-align:-.03em;-webkit-text-fill-color:initial;animation:hlCaret 1s steps(1) infinite}
+h1.hl-rot .hl-live::after{content:"";display:inline-block;width:.46em;height:.085em;margin-left:.06em;border-radius:1px;background:var(--coral,#FF7A5C);vertical-align:baseline;-webkit-text-fill-color:initial;animation:hlCaret .55s steps(1) infinite}
 h1.hl-rot .hl-live{opacity:1}
 h1.hl-rot .hl-word:not(.hl-typing) .hl-live::after{opacity:0;animation:none}
 @keyframes hlCaret{50%{opacity:0}}
 @keyframes hlFade{0%{opacity:0}100%{opacity:1}}
 h1.hl-rot .hl-fade{animation:hlFade .5s cubic-bezier(.25,.6,.3,1) both}
+
+/* hero headline: "call," sits on the first line next to "Every business"; on phones it drops back to the word line so the headline stays two lines */
+h1.hl-rot .hl-c2{display:none}
+h1.hl-rot[data-final="0"] .hl-c{display:none}
+@media(max-width:700px){h1.hl-rot[data-final="1"] .hl-c{display:none}h1.hl-rot[data-final="1"] .hl-c2{display:inline}}
+
+/* blog post header: the image box spans exactly the text block (from "All blog posts" to the share row) */
+@media(min-width:821px){
+  .ps-split>div:not(.ps-l){padding-block:22px;box-sizing:border-box}
+  .ps-split .ps-hero{height:100%;min-height:0;aspect-ratio:auto;margin:0}
+}
+
+/* blog post header: the image box reaches back to where the article text begins (260px contents column + 56px gap);
+   the text column is an editorial stack - back link, category and title on top, author and share anchored to the bottom */
+@media(min-width:1000px){
+  .ps-split{grid-template-columns:calc(316px - 18px - 28px) minmax(0,1fr);min-height:456px}
+  .ps-split .ps-l{padding:22px 6px 22px 24px;gap:0;justify-content:flex-start}
+  .ps-split .ps-back{font-size:13.5px;margin-bottom:22px}
+  .ps-split .ps-l h1{font-size:clamp(25px,2vw,30px);line-height:1.16;letter-spacing:-.025em}
+  .ps-split .ps-meta{margin-top:18px;gap:10px 10px;font-size:13px}
+  .ps-split .ps-meta>span:last-child{flex-basis:100%}
+  .ps-split .ps-au{margin-top:auto;padding:18px 0;gap:12px;font-size:15px;border-top:1px solid var(--line);border-bottom:0}
+  .ps-split .ps-au small{font-size:12.5px;line-height:1.45}
+  .ps-split .ps-sh{gap:8px;flex-wrap:nowrap;padding-top:2px}
+  .ps-split .ps-sh span{margin-right:2px}
+  .ps-split .ps-sh a{width:38px;height:38px;border-radius:12px}
+  .ps-split .ps-sh svg{width:16px;height:16px}
+}
+@media(min-width:821px) and (max-width:999px){
+  .ps-split{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}
+}
