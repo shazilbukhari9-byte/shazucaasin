@@ -3501,5 +3501,5 @@ h1.hl-rot[data-final="0"] .hl-c{display:none}
 
 /* blog post: article text sits a little to the right of the image edge */
 @media(min-width:1001px){
-  #psArt{padding-left:28px}
+  #psArt{padding-left:36px}
 }
