@@ -3253,3 +3253,37 @@ footer.foot .news button{width:44px;height:44px;flex:none}
 }
 @media(min-width:1001px){.mnav,.mnav[hidden]{display:none!important}}
 @media(prefers-reduced-motion:reduce){.mnav,.mnav[hidden],.mnav>*,.menu-btn svg{transition:none!important}}
+
+/* sign in / sign up on phones and small tablets: the whole screen fits the viewport, no scrolling */
+@media(max-width:870px){
+  html:has(.auth-switch),body:has(.auth-switch){height:100svh;overflow:hidden}
+  .auth-switch{min-height:0!important;height:100svh}
+  .auth-switch .container{height:100svh!important;min-height:0!important;max-height:100svh}
+  .auth-switch form{padding:0 1.4rem!important}
+  .auth-switch .title{font-size:1.65rem!important;margin:0 0 4px!important}
+  .auth-switch .input-field{height:46px!important;margin:6px 0!important;border-radius:46px!important;max-width:340px}
+  .auth-switch .input-field i svg{width:18px!important;height:18px!important}
+  .auth-switch .input-field input{font-size:.95rem!important}
+  .auth-switch .btn{height:44px!important;border-radius:44px!important;margin:8px 0!important;width:150px}
+  .auth-switch .btn.transparent{height:36px!important;margin:0!important;width:110px!important}
+  .auth-switch .social-text{padding:.35rem 0 .45rem!important;font-size:.9rem!important}
+  .auth-switch .social-icon{height:40px!important;width:40px!important}
+  .auth-switch .social-icon svg{width:18px;height:18px}
+  .auth-switch .social-media{gap:12px!important}
+  .auth-switch .panel{padding:1.2rem 8%!important}
+  .auth-switch .panel h3{font-size:1.15rem!important;margin:0 0 4px!important}
+  .auth-switch .panel p{font-size:.78rem!important;padding:.3rem 0 .5rem!important;line-height:1.35}
+  /* sign-up: the form starts right below the logo so nothing overlaps */
+  .auth-switch .container.sign-up-mode .signin-signup{top:64px!important}
+  .auth-switch .auth-logo{top:10px!important}
+  .auth-switch .auth-logo img{height:40px!important}
+}
+@media(max-width:870px) and (max-height:620px){
+  .auth-switch .input-field{height:42px!important;margin:4px 0!important}
+  .auth-switch .title{font-size:1.45rem!important}
+  .auth-switch .btn{height:40px!important;margin:6px 0!important}
+  .auth-switch .social-icon{height:36px!important;width:36px!important}
+  .auth-switch .container.sign-up-mode .signin-signup{top:54px!important}
+  .auth-switch .auth-logo img{height:34px!important}
+  .auth-switch .panel p{font-size:.72rem!important}
+}
