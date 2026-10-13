@@ -2771,3 +2771,119 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   [data-tilt],.kx-card,.kx-card[data-tilt]{transform:none!important;transform-style:flat!important;-webkit-font-smoothing:antialiased;backface-visibility:visible}
   [data-tilt]>*{transform:none!important}
 }
+
+/* AI chatbot hero mockup on phones: no height cap (bubbles were squashed and overlapping), compact and aligned (laptop untouched) */
+@media(max-width:700px){
+  #abHero{padding:12px!important;gap:9px!important;border-radius:22px!important;max-height:none!important;height:auto!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important}
+  #abHero>*{flex:none!important}
+  #abHero .ai-top{font-size:12.5px!important;gap:8px!important;padding:0 2px!important;flex-wrap:wrap}
+  #abHero .ai-top .ti{width:26px!important;height:26px!important;border-radius:8px!important}
+  #abHero .ai-top .ti svg{width:14px!important;height:14px!important}
+  #abHero .ai-top b{font-size:13px!important}
+  #abHero .ai-top .rt{font-size:11px!important;gap:6px!important}
+  #abHero .ai-live{font-size:9.5px!important;padding:3px 8px!important}
+  #abHero .ai-bub{padding:9px 12px!important;border-radius:14px!important;font-size:12.5px!important;line-height:1.45!important;min-height:0!important}
+  #abHero .ai-bub .who{font-size:9.5px!important;margin-bottom:3px!important;gap:5px!important}
+  #abHero .ai-bub .who svg{width:11px!important;height:11px!important}
+  #abHero #abMsg{min-height:54px}
+  #abHero .ai-head{display:flex!important;align-items:center;gap:6px 10px!important;flex-wrap:wrap}
+  #abHero .ai-lbl{font-size:9.5px!important;letter-spacing:.09em}
+  #abHero #abTone{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px!important;flex:1 1 100%;order:3}
+  #abHero #abTone .ai-chip{padding:7px 2px!important;font-size:11.5px!important;min-height:0!important;text-align:center;border-radius:10px!important}
+  #abHero .ab-sig{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important}
+  #abHero .ab-sig>div{padding:9px 9px 10px!important;border-radius:12px!important;min-width:0}
+  #abHero .ab-sig small{font-size:9.5px!important;letter-spacing:.07em}
+  #abHero .ab-sig b{font-size:13px!important;margin-top:2px;white-space:nowrap}
+  #abHero .ai-rd{gap:16px!important;margin-top:2px!important;flex-wrap:nowrap!important}
+  #abHero .ai-rd div b{font-size:17px!important;white-space:nowrap}
+  #abHero .ai-rd div small{font-size:10.5px!important;white-space:nowrap}
+}
+@media(max-width:374px){#abHero .ab-sig b{font-size:12px!important}#abHero .ai-rd{gap:12px!important}}
+
+/* AI chatbot "Three steps" on phones: the three step cards in one row */
+@media(max-width:700px){
+  #build .kx-flow{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-auto-rows:1fr;gap:8px!important;margin-top:8px}
+  #build .kx-flow>.kx-step{min-height:0!important;margin:0!important;display:flex;min-width:0}
+  #build .ab-st{display:flex!important;flex-direction:column;gap:7px!important;padding:11px 9px 12px!important;border-radius:16px!important;width:100%;min-width:0;height:100%;box-sizing:border-box;min-height:0!important}
+  #build .ab-sth{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin:0!important}
+  #build .ab-sth .kx-ico{width:30px!important;height:30px!important;border-radius:9px!important;margin:0!important}
+  #build .ab-sth .kx-ico svg{width:15px;height:15px}
+  #build .ab-n{font-size:9px!important;letter-spacing:.1em;line-height:1}
+  #build .ab-st .kx-h{font-size:12.5px!important;line-height:1.25!important;margin:0!important;overflow-wrap:normal;hyphens:none}
+  #build .ab-st .kx-p{font-size:10.5px!important;line-height:1.38!important;margin:0!important;flex:1}
+  #build .ab-code{align-self:flex-start;font-size:9px!important;line-height:1.35;padding:4px 6px!important;border-radius:7px!important;white-space:normal;word-break:break-word;max-width:100%}
+}
+@media(max-width:340px){#build .kx-flow{gap:6px!important}#build .ab-st{padding:10px 7px 11px!important}#build .ab-st .kx-h{font-size:11.5px!important}#build .ab-st .kx-p{font-size:10px!important}}
+/* AI chatbot channel picker on phones: a little breathing room around each name, still one row */
+@media(max-width:700px){
+  .ab-seg{margin-inline:-8px}
+  .ab-seg .ai-seg{gap:4px!important;padding:6px!important;border-radius:18px!important}
+  .ab-seg .ai-seg button{padding:11px 5px!important;font-size:9.5px!important;font-weight:600!important;letter-spacing:0!important;border-radius:12px!important}
+}
+@media(max-width:374px){.ab-seg .ai-seg button{font-size:8.5px!important;padding:11px 3px!important}}
+@media(max-width:700px){
+  .ab-seg{margin-inline:-12px}
+  .ab-seg .ai-seg{gap:3px!important;padding:5px!important}
+  .ab-seg .ai-seg button{padding:11px 0!important;font-size:9px!important;letter-spacing:0!important;overflow:visible}
+}
+@media(max-width:374px){.ab-seg .ai-seg button{font-size:8px!important}}
+
+/* integrations "Don't see your tool?" on phones: Build it yourself + Zapier-ready in one row, then the last three cards (MCM products, Developer docs, SSO + SCIM) in one row */
+@media(max-width:700px){
+  #request .kx-wall{display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:8px!important;columns:auto!important}
+  #request .kx-wall>.kx-card{grid-column:1/-1!important;grid-row:auto!important;min-width:0}
+  #request .kx-wall>.kx-card:nth-child(2),#request .kx-wall>.kx-card:nth-child(3){grid-column:span 3!important}
+  #request .kx-wall>.kx-card:nth-child(n+4){grid-column:span 2!important}
+  #request .kx-wall>.kx-card:nth-child(n+2){display:flex!important;flex-direction:column;gap:7px!important;padding:12px 9px 13px!important;border-radius:16px!important;min-height:0!important;height:100%;box-sizing:border-box}
+  #request .kx-wall>.kx-card:nth-child(n+2) .kx-ico{width:30px!important;height:30px!important;border-radius:9px!important;margin:0 0 2px!important}
+  #request .kx-wall>.kx-card:nth-child(n+2) .kx-ico svg{width:15px;height:15px}
+  #request .kx-wall>.kx-card:nth-child(n+2) .kx-h{font-size:12.5px!important;line-height:1.25!important;margin:0!important;overflow-wrap:normal;hyphens:none}
+  #request .kx-wall>.kx-card:nth-child(n+2) .kx-p{font-size:10.5px!important;line-height:1.38!important;margin:0!important;flex:1}
+  #request .kx-wall>.kx-card:nth-child(n+2) .ig-ln{font-size:11px!important;gap:3px!important;margin-top:auto;align-self:flex-start;line-height:1.25}
+  #request .kx-wall>.kx-card:nth-child(n+2) .ig-ln svg{width:11px;height:11px}
+  #request .kx-wall>.kx-card:nth-child(n+2) .ai-pill{font-size:9px!important;padding:3px 7px!important;margin-top:auto!important;align-self:flex-start;white-space:normal}
+  /* the two wider cards get slightly roomier type */
+  #request .kx-wall>.kx-card:nth-child(2),#request .kx-wall>.kx-card:nth-child(3){padding:14px 12px 15px!important;gap:8px!important}
+  #request .kx-wall>.kx-card:nth-child(2) .kx-h,#request .kx-wall>.kx-card:nth-child(3) .kx-h{font-size:14px!important}
+  #request .kx-wall>.kx-card:nth-child(2) .kx-p,#request .kx-wall>.kx-card:nth-child(3) .kx-p{font-size:11.5px!important}
+}
+@media(max-width:340px){#request .kx-wall{gap:6px!important}#request .kx-wall>.kx-card:nth-child(n+2){padding:11px 7px 12px!important}#request .kx-wall>.kx-card:nth-child(n+2) .kx-h{font-size:11.5px!important}#request .kx-wall>.kx-card:nth-child(n+2) .kx-p{font-size:10px!important}}
+
+/* integrations "Open API" buttons on phones: See the API + Request integration in one row */
+@media(max-width:700px){
+  .ig-btns{display:flex!important;flex-wrap:nowrap!important;gap:8px!important;width:100%}
+  .ig-btns>.btn{flex:1 1 0!important;min-width:0;justify-content:center;padding:12px 8px!important;font-size:13px!important;white-space:nowrap;gap:6px}
+  .ig-btns>.btn .arr{width:22px!important;height:22px!important;flex:none}
+  .ig-btns>.btn .arr svg{width:11px;height:11px}
+}
+@media(max-width:374px){.ig-btns>.btn{font-size:11.5px!important;padding:11px 6px!important}.ig-btns>.btn .arr{width:20px!important;height:20px!important}}
+
+/* integrations hero mockup on phones: compact, nothing faded out (laptop untouched) */
+@media(max-width:700px){
+  #igHero{padding:12px!important;gap:9px!important;border-radius:22px!important;max-height:none!important;height:auto!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important}
+  #igHero>*{flex:none!important}
+  #igHero .ai-top{font-size:12.5px!important;gap:8px!important;padding:0 2px!important;flex-wrap:wrap}
+  #igHero .ai-top .ti{width:26px!important;height:26px!important;border-radius:8px!important}
+  #igHero .ai-top .ti svg{width:14px!important;height:14px!important}
+  #igHero .ai-top b{font-size:13px!important}
+  #igHero .ai-top .rt{font-size:11px!important;gap:6px!important}
+  #igHero .ai-live{font-size:9.5px!important;padding:3px 8px!important}
+  #igHero .ai-head{display:grid!important;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:8px 12px!important}
+  #igHero .ai-lbl{font-size:9.5px!important;letter-spacing:.09em}
+  #igHero #igPick{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px!important}
+  #igHero #igPick .ai-chip{padding:8px 4px!important;font-size:12px!important;min-height:0!important;text-align:center;white-space:nowrap;border-radius:10px!important}
+  #igHero .ai-mini{padding:9px 12px!important;border-radius:12px!important}
+  #igHero .ai-mini b{font-size:12.5px!important}
+  #igHero .ai-mini>span{font-size:11.5px!important}
+  #igHero .ig-steps{gap:0!important}
+  #igHero .ig-st{gap:10px!important;padding:8px 0!important;align-items:center}
+  #igHero .ig-st .av{width:26px!important;height:26px!important;font-size:0!important;flex:none}
+  #igHero .ig-st .av svg{width:13px!important;height:13px!important}
+  #igHero .ig-st b{font-size:12.5px!important;line-height:1.3!important}
+  #igHero .ig-go{padding:11px 14px!important;font-size:13px!important;gap:8px!important;min-height:0!important;border-radius:99px!important}
+  #igHero .ig-go svg{width:14px!important;height:14px!important}
+  #igHero .ai-rd{gap:14px!important;margin-top:2px!important;flex-wrap:nowrap!important}
+  #igHero .ai-rd div{min-width:0}
+  #igHero .ai-rd div b{font-size:16px!important;white-space:nowrap}
+  #igHero .ai-rd div small{font-size:10px!important;line-height:1.25!important}
+}
