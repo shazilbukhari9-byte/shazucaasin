@@ -3384,10 +3384,55 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   .mega .mg:not(.single)>.mg-r{display:grid}
   .mega .mg:not(.single)>.mg-r>.mg-p,
   .mega .mg:not(.single)>.mg-r>.mg-p:not(.on){position:relative;top:auto;left:auto;right:auto;bottom:auto;overflow:visible;grid-area:1/1;pointer-events:none}
-  .mega .mg:not(.single)>.mg-r>.mg-p.on{pointer-events:auto}
   /* a short tab keeps its items at the top and the banner stays the same size */
   .mega .mg:not(.single)>.mg-r>.mg-p>.mg-g{align-content:start}
+  /* the active panel takes clicks only while its menu is open (a closed menu must never cover the page) */
+  .mega.on .mg:not(.single)>.mg-r>.mg-p.on{pointer-events:auto}
 }
 
 /* page swap: keep the incoming page hidden until its stylesheets have loaded (see components/StyleGate.tsx) */
 html[data-css-wait] #ucaas-page{visibility:hidden}
+
+/* homepage hero: the phone is as tall as the dashboard behind it (their bottoms line up) */
+@media(min-width:621px){
+  #p0 .cp-phone{bottom:121px;height:auto;display:flex;flex-direction:column}
+  #p0 .cp-phone .softphone{flex:1}
+  #p0 .cp-phone .ctrls{margin-top:auto}
+}
+
+/* homepage hero phone: grey frame and island instead of black */
+#p0 .cp-phone{background:#A6A6AC!important;box-shadow:0 0 0 1.5px #C9C9CE inset,0 40px 70px -30px rgba(20,10,5,.4),0 10px 24px -12px rgba(20,10,5,.25)!important}
+#p0 .cp-phone .cp-isl{background:#A6A6AC!important}
+
+/* homepage product cards: same plain white surface as the other boxes, and the mockup comes alive when the card is hovered */
+#products .pcard{background:#fff!important;border:1px solid var(--line)!important;box-shadow:0 24px 50px -36px rgba(120,60,30,.3)!important}
+#products .pcard::before,#products .pcard::after{content:none!important;display:none!important}
+#products .pcard .pc-vis{background:#FBF8F5!important;transition:transform .35s cubic-bezier(.22,.8,.2,1),box-shadow .35s}
+#products .pcard:hover .pc-vis{transform:translateY(-3px);box-shadow:0 18px 30px -22px rgba(120,60,30,.35)}
+#products .pv-q .qb em i,#products .pv-bar i{transform-origin:left center}
+@keyframes pcFill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pcPop{0%{transform:translateY(0) scale(1)}40%{transform:translateY(-4px) scale(1.1)}100%{transform:translateY(0) scale(1)}}
+@keyframes pcRing{0%{box-shadow:0 0 0 0 rgba(255,122,92,.45)}100%{box-shadow:0 0 0 12px rgba(255,122,92,0)}}
+@keyframes pcIn{from{opacity:.35;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media all{
+  #products .pcard:hover .wave i{animation-duration:.5s}
+  #products .pcard:hover .pv-q .qb em i{animation:pcFill .9s cubic-bezier(.22,.8,.2,1) both}
+  #products .pcard:hover .pv-q .qb>div:nth-child(2) em i{animation-delay:.1s}
+  #products .pcard:hover .pv-q .qb>div:nth-child(3) em i{animation-delay:.2s}
+  #products .pcard:hover .pv-bar i{animation:pcFill .8s cubic-bezier(.22,.8,.2,1) both}
+  #products .pcard:hover .pv-bar i:nth-child(2){animation-delay:.08s}
+  #products .pcard:hover .pv-bar i:nth-child(3){animation-delay:.16s}
+  #products .pcard:hover .pv-bar i:nth-child(4){animation-delay:.24s}
+  #products .pcard:hover .pv-kp>div{animation:pcPop .6s cubic-bezier(.22,.8,.2,1) both}
+  #products .pcard:hover .pv-kp>div:nth-child(2){animation-delay:.07s}
+  #products .pcard:hover .pv-kp>div:nth-child(3){animation-delay:.14s}
+  #products .pcard:hover .pv-kp>div:nth-child(4){animation-delay:.21s}
+  #products .pcard:hover .pv-ctl span{animation:pcPop .6s cubic-bezier(.22,.8,.2,1) both}
+  #products .pcard:hover .pv-ctl span:nth-child(2){animation-delay:.06s}
+  #products .pcard:hover .pv-ctl span:nth-child(3){animation-delay:.12s}
+  #products .pcard:hover .pv-ctl span:nth-child(4){animation-delay:.18s}
+  #products .pcard:hover .pv-ctl span:nth-child(5){animation-delay:.24s}
+  #products .pcard:hover .pv-av{animation:pcRing .9s ease-out both}
+  #products .pcard:hover .pv-ts{animation:pcIn .5s cubic-bezier(.22,.8,.2,1) both}
+}
+@media(prefers-reduced-motion:reduce){#products .pcard:hover *{animation:none!important}#products .pcard:hover .pc-vis{transform:none}}
