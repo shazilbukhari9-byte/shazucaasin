@@ -3522,3 +3522,7 @@ h1.hl-rot[data-final="0"] .hl-c{display:none}
 
 /* the dropdown never scrolls sideways (its decorative glow reaches past the edge); same on every page, including the blog */
 .mega{overflow-x:hidden!important;overflow-y:auto}
+
+/* hover bridge: while a dropdown is open, an invisible strip under the bar joins the tab to the panel so the menu stays open on the way down
+   (the blog pages carried an older stylesheet without it) */
+.nav.mx::after{content:"";position:absolute;left:0;right:0;top:100%;height:34px}
