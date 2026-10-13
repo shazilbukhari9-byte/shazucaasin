@@ -3168,3 +3168,88 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   .hero .ai-win .ai-res small{font-size:10px!important;line-height:1.3!important}
   .hero .ai-win .ai-res mark{padding:0 3px!important}
 }
+
+/* "What you get" sections on phones: compact 2-column grids of equal cards instead of long single-column stacks */
+@media(max-width:700px){
+  :is(.st-bn,.sb-wall,.sd-fs,.fx-wall,.bc-wall){display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:auto;gap:10px!important;columns:auto!important}
+  :is(.st-bn,.sb-wall,.sd-fs,.fx-wall,.bc-wall)>*{grid-column:auto!important;grid-row:auto!important;margin:0!important;min-width:0;min-height:0!important;height:auto!important;padding:14px 12px 15px!important;border-radius:18px!important;display:flex!important;flex-direction:column;align-items:flex-start;gap:7px!important;box-sizing:border-box}
+  :is(.st-bn,.sb-wall,.sd-fs,.fx-wall,.bc-wall)>* .kx-ico{width:34px!important;height:34px!important;border-radius:10px!important;margin:0 0 2px!important}
+  :is(.st-bn,.sb-wall,.sd-fs,.fx-wall,.bc-wall)>* .kx-ico svg{width:16px;height:16px}
+  :is(.st-bn,.sb-wall,.sd-fs,.fx-wall,.bc-wall)>* :is(h3,.kx-h,.st-bt b){font-size:14px!important;line-height:1.25!important;margin:0!important;overflow-wrap:normal;hyphens:none}
+  :is(.st-bn,.sb-wall,.sd-fs,.fx-wall,.bc-wall)>* :is(p,.kx-p,.st-bt small,.st-bt p){font-size:12px!important;line-height:1.42!important;margin:0!important}
+  :is(.st-bn,.sb-wall,.sd-fs,.fx-wall,.bc-wall)>* :is(.st-tag,.sd-tag,.fx-tag,.bc-wt,.kx-chip,.sb-chips span){font-size:10px!important;padding:3px 8px!important;border-radius:8px!important;line-height:1.25}
+  :is(.st-bn,.sb-wall,.sd-fs,.fx-wall,.bc-wall)>* :is(.sb-chips,.st-cl){display:flex;flex-wrap:wrap;gap:5px!important}
+  .st-bn>*:first-child,.bc-wall>*:last-child:nth-child(odd){grid-column:1/-1!important}
+  /* rows tables: phone system and supervisor tools */
+  :is(.ph-sw,.sf-sw){display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important;border-top:0!important}
+  :is(.ph-sw,.sf-sw)>.kx-row{display:flex!important;flex-direction:column;align-items:flex-start;gap:7px!important;padding:14px 12px!important;border:1px solid rgba(30,20,10,.1)!important;border-radius:18px;background:#fff;min-width:0}
+  :is(.ph-sw,.sf-sw)>.kx-row :is(.kx-idx,.sf-key){width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(135deg,#FFE7DD,#FFF1DA);color:#c0391f;font-size:12px!important;font-weight:700;margin:0}
+  :is(.ph-sw,.sf-sw)>.kx-row .kx-h{font-size:14px!important;line-height:1.25!important;margin:0!important}
+  :is(.ph-sw,.sf-sw)>.kx-row :is(.kx-p,div){font-size:12px!important;line-height:1.42!important;margin:0!important}
+  .ph-sw>.kx-row:last-child:nth-child(odd){grid-column:1/-1}
+}
+@media(max-width:700px){
+  :is(.ph-sw,.sf-sw)>.kx-row{overflow:hidden}
+  :is(.ph-sw,.sf-sw)>.kx-row>*{max-width:100%;min-width:0}
+  :is(.ph-sw,.sf-sw)>.kx-row :is(.ai-pill,.pill,span:not(.kx-idx):not(.sf-key):not(.mi)){white-space:normal!important;max-width:100%;overflow-wrap:break-word}
+  :is(.ph-sw,.sf-sw)>.kx-row .kx-h{display:flex;align-items:center;gap:8px}
+}
+
+/* "What you get" with built-in demos (business sms, call recording, toll-free, sales plans): same cards, tighter and smaller on phones */
+@media(max-width:700px){
+  :is(.sm-bento,.cr-fg,.tf-bento,.sk-pl){gap:10px!important}
+  :is(.sm-bento,.cr-fg,.tf-bento,.sk-pl)>*{padding:16px 14px 16px!important;border-radius:20px!important;min-height:0!important;height:auto!important;gap:8px!important}
+  :is(.sm-bento,.cr-fg,.tf-bento,.sk-pl) :is(h3,.kx-h){font-size:16px!important;line-height:1.25!important;margin:0!important}
+  :is(.sm-bento,.cr-fg,.tf-bento,.sk-pl) :is(p,.kx-p,small){font-size:12.5px!important;line-height:1.45!important;margin:0!important}
+  :is(.sm-bento,.cr-fg,.tf-bento,.sk-pl) .kx-k{font-size:10px!important}
+  :is(.sm-bento,.cr-fg,.tf-bento,.sk-pl) .kx-ico{width:34px!important;height:34px!important;border-radius:10px!important}
+  .sm-bento .sm-demo{padding:10px!important;border-radius:14px!important;gap:6px!important;font-size:12px!important;margin-top:4px!important}
+  .sm-bento .sm-demo *{font-size:12px!important;line-height:1.35!important}
+  .tf-bento .tf-bv{transform:none;margin:0 0 4px!important;min-height:0!important;height:auto!important;padding:10px!important;border-radius:14px!important}
+  .tf-bento .tf-tag{font-size:10px!important;padding:3px 8px!important}
+  .sk-pl .sk-p ul{gap:6px!important}
+  .sk-pl .sk-p li{font-size:12.5px!important;line-height:1.4!important;padding:2px 0!important}
+}
+@media(max-width:700px){
+  .cr-fg{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+  .cr-fg>*{min-width:0;margin:0!important;grid-column:auto!important;padding:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;display:block!important;height:100%}
+  .cr-fg>*>.kx-card{height:100%;box-sizing:border-box;display:flex!important;flex-direction:column;align-items:flex-start;gap:7px!important;padding:14px 12px 15px!important;border-radius:18px!important}
+  .cr-fg .kx-ico{width:34px!important;height:34px!important;margin:0 0 2px!important}
+  .cr-fg :is(h3,.kx-h){font-size:14px!important;line-height:1.25!important}
+  .cr-fg :is(p,.kx-p){font-size:12px!important;line-height:1.42!important}
+  .cr-fg .kx-k{font-size:9px!important;letter-spacing:.07em}
+  .cr-fg :is(.kx-chip,.ai-pill,.cr-tag,[class*="tag"]){font-size:10px!important;padding:3px 8px!important;border-radius:8px!important;white-space:normal;line-height:1.25}
+}
+
+/* mobile menu: drops down from the header smoothly and rolls back up on close (pure CSS, driven by the existing [hidden] toggle) */
+@media(max-width:1000px){
+  .mnav,.mnav[hidden]{display:flex!important;transform-origin:50% 0;will-change:transform,opacity,clip-path}
+  .mnav{
+    visibility:visible;opacity:1;pointer-events:auto;
+    transform:translateY(0) scale(1);
+    clip-path:inset(0 0 0 0 round 22px);
+    transition:transform .42s cubic-bezier(.22,1,.36,1),opacity .28s ease,clip-path .42s cubic-bezier(.22,1,.36,1),visibility 0s linear 0s;
+  }
+  .mnav[hidden]{
+    visibility:hidden;opacity:0;pointer-events:none;
+    transform:translateY(-14px) scale(.98);
+    clip-path:inset(0 0 100% 0 round 22px);
+    transition:transform .3s cubic-bezier(.4,0,1,1),opacity .22s ease,clip-path .3s cubic-bezier(.4,0,.2,1),visibility 0s linear .3s;
+  }
+  /* items settle in one after another */
+  .mnav>*{transition:opacity .32s ease,transform .42s cubic-bezier(.22,1,.36,1)}
+  .mnav[hidden]>*{opacity:0;transform:translateY(-8px)}
+  .mnav:not([hidden])>*{opacity:1;transform:none}
+  .mnav:not([hidden])>:nth-child(1){transition-delay:.04s}
+  .mnav:not([hidden])>:nth-child(2){transition-delay:.06s}
+  .mnav:not([hidden])>:nth-child(3){transition-delay:.08s}
+  .mnav:not([hidden])>:nth-child(4){transition-delay:.10s}
+  .mnav:not([hidden])>:nth-child(5){transition-delay:.12s}
+  .mnav:not([hidden])>:nth-child(6){transition-delay:.14s}
+  .mnav:not([hidden])>:nth-child(n+7){transition-delay:.16s}
+  /* hamburger icon turns with the menu */
+  .menu-btn svg{transition:transform .35s cubic-bezier(.22,1,.36,1)}
+  .menu-btn[aria-expanded="true"] svg{transform:scale(.88)}
+}
+@media(min-width:1001px){.mnav,.mnav[hidden]{display:none!important}}
+@media(prefers-reduced-motion:reduce){.mnav,.mnav[hidden],.mnav>*,.menu-btn svg{transition:none!important}}
