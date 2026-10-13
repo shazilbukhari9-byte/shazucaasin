@@ -3443,3 +3443,15 @@ html[data-css-wait] #ucaas-page{visibility:hidden}
   .nav-in>.nav-links{margin:0 3px 0 -3px;justify-content:center}
   .nav-in>.nav-end{margin-left:0;justify-self:end}
 }
+
+/* blog index: tighter vertical rhythm (the hero no longer fills a whole screen; sections sit closer together) */
+.hero.bl-hero{min-height:0!important;height:auto!important;padding-top:132px!important;padding-bottom:8px!important}
+#ucaas-page section.browse{padding-bottom:28px!important}
+section:has(>.wrap>.bl-nl){padding-bottom:36px!important}
+section:has(>.wrap>.bl-nl)+section#cta,section:has(>.wrap>.bl-nl)~section#cta{padding-top:0!important;padding-bottom:48px!important}
+@media(max-width:700px){
+  .hero.bl-hero{padding-top:112px!important}
+  #ucaas-page section.browse{padding-bottom:20px!important}
+  section:has(>.wrap>.bl-nl){padding-bottom:24px!important}
+  section:has(>.wrap>.bl-nl)~section#cta{padding-bottom:32px!important}
+}
