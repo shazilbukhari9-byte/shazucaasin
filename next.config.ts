@@ -11,6 +11,15 @@ const nextConfig: NextConfig = {
   cacheComponents: false,
   // the page scripts run once per page and are cleaned up on navigation; a second, simulated mount in development would run them twice
   reactStrictMode: false,
+  async headers() {
+    return [
+      // the site CSS / JS is linked with ?v= or edited between releases: serve from cache, refresh in the background
+      { source: "/assets/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=604800" }] },
+      // fonts and the big shared stylesheets never change under the same name: cache them for a year (later rules win)
+      { source: "/assets/fonts/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
+      { source: "/assets/css/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
+    ];
+  },
   async redirects() {
     return [
       // old links and bookmarks: "page.html" -> "/page", and the homepage lives at "/"

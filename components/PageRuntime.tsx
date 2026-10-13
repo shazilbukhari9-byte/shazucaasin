@@ -178,6 +178,8 @@ export default function PageRuntime({ slug, scripts }: { slug: string; scripts: 
     current = sb;
 
     (async () => {
+      // the page's stylesheets come first, so scripts that measure the layout see the styled page
+      await (window as unknown as { __ucaasCss?: Promise<void> }).__ucaasCss;
       for (const s of scripts) {
         if (sb.dead) return;
         // the Motion library only needs loading once

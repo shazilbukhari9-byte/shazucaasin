@@ -206,5 +206,85 @@
   {
     "slug": "pricing",
     "title": "UCaaS · Pricing"
+  },
+  {
+    "slug": "blog-porting-your-business-number",
+    "title": "UCaaS · Porting your business number without a gap in service"
+  },
+  {
+    "slug": "blog-10dlc-explained",
+    "title": "UCaaS · 10DLC explained: getting your business texts delivered"
+  },
+  {
+    "slug": "blog-choosing-a-dialing-mode",
+    "title": "UCaaS · Preview, progressive or predictive: choosing a dialing mode"
+  },
+  {
+    "slug": "blog-desk-phone-softphone-or-mobile-app",
+    "title": "UCaaS · Desk phone, softphone or mobile app: what each is best for"
+  },
+  {
+    "slug": "blog-what-to-look-for-in-a-cloud-phone-system",
+    "title": "UCaaS · What to look for in a cloud phone system"
+  },
+  {
+    "slug": "blog-meetings-that-write-their-own-notes",
+    "title": "UCaaS · Meetings that write their own notes"
+  },
+  {
+    "slug": "blog-connecting-your-crm",
+    "title": "UCaaS · Connecting your CRM so calls log themselves"
+  },
+  {
+    "slug": "blog-building-a-visual-ivr",
+    "title": "UCaaS · Building a visual IVR callers actually like"
+  },
+  {
+    "slug": "blog-call-recording-and-consent",
+    "title": "UCaaS · Call recording and consent: a plain-English guide"
+  },
+  {
+    "slug": "blog-reading-sentiment-in-real-time",
+    "title": "UCaaS · Reading sentiment in real time"
+  },
+  {
+    "slug": "blog-text-enabling-your-landline-number",
+    "title": "UCaaS · Text-enabling your landline number"
+  },
+  {
+    "slug": "blog-do-not-call-and-time-zone-rules",
+    "title": "UCaaS · Do-not-call and time-zone rules for outbound teams"
+  },
+  {
+    "slug": "blog-queue-metrics-worth-watching",
+    "title": "UCaaS · Queue metrics worth watching on a live wallboard"
+  },
+  {
+    "slug": "blog-running-a-remote-team-on-one-number",
+    "title": "UCaaS · Running a remote team on one number"
+  },
+  {
+    "slug": "blog-booking-appointments-by-phone-with-ai",
+    "title": "UCaaS · Booking appointments by phone with AI"
+  },
+  {
+    "slug": "blog-two-way-texting-best-practices",
+    "title": "UCaaS · Two-way texting best practices for support teams"
+  },
+  {
+    "slug": "blog-hosting-client-calls-from-a-browser",
+    "title": "UCaaS · Hosting client calls guests join from a browser"
+  },
+  {
+    "slug": "blog-from-helpdesk-ticket-to-callback",
+    "title": "UCaaS · From helpdesk ticket to callback in one click"
+  },
+  {
+    "slug": "blog-first-week-checklist-for-new-admins",
+    "title": "UCaaS · A first-week checklist for new UCaaS admins"
+  },
+  {
+    "slug": "blog-ai-receptionist-answers-every-call",
+    "title": "UCaaS · How an AI receptionist answers every call, and what it hands to your team"
   }
 ]

@@ -3377,3 +3377,17 @@ footer.foot .news button{width:44px;height:44px;flex:none}
 }
 .pr2-plan.hot .pr2-price b{color:#fff}
 .pr2-plan.hot .pr2-badge{z-index:1}
+
+/* desktop mega menu: every tab of a dropdown shares one height, so the panel no longer jumps up and down
+   when you move between tabs (the inactive tabs used to be out of flow and the height followed the active one) */
+@media(min-width:1001px){
+  .mega .mg:not(.single)>.mg-r{display:grid}
+  .mega .mg:not(.single)>.mg-r>.mg-p,
+  .mega .mg:not(.single)>.mg-r>.mg-p:not(.on){position:relative;top:auto;left:auto;right:auto;bottom:auto;overflow:visible;grid-area:1/1;pointer-events:none}
+  .mega .mg:not(.single)>.mg-r>.mg-p.on{pointer-events:auto}
+  /* a short tab keeps its items at the top and the banner stays the same size */
+  .mega .mg:not(.single)>.mg-r>.mg-p>.mg-g{align-content:start}
+}
+
+/* page swap: keep the incoming page hidden until its stylesheets have loaded (see components/StyleGate.tsx) */
+html[data-css-wait] #ucaas-page{visibility:hidden}
