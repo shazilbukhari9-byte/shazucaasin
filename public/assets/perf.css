@@ -3124,3 +3124,47 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   .hero .ai-win .ai-mini:has(.ai-bar){height:auto!important;min-height:0!important;overflow:visible!important;padding:12px 14px 14px!important}
   .hero .ai-win .ai-mini .ai-bar{padding:4px 0!important;line-height:1.35}
 }
+
+/* product hero mockups on phones: show ALL of the content (the small phone styles used to hide notes, action chips and subtitles) */
+@media(max-width:700px){
+  .hero .ai-win>.ai-note{display:block!important;font-size:10.5px!important;line-height:1.4!important;margin:0!important;color:var(--muted)}
+  .hero .ai-win>.ai-acts{display:grid!important}
+  /* helpdesk: ticket owner names back under each ticket */
+  .hero .ai-win .hd-t small{display:block!important;font-size:10px!important;line-height:1.25;color:var(--muted)}
+  /* productivity tools: the whole list, no inner scroll */
+  .hero .ai-win #prList{max-height:none!important;overflow:visible!important;padding-right:0!important}
+  /* conversation intelligence: every match visible, no inner scroll or fade */
+  .hero .ai-win>div[style*="max-height:236px"]{max-height:none!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important}
+  /* scheduling grid: Free / Busy words stay, tick/dash marks go (the words and colours carry the meaning) */
+  .hero .ai-win .sc-s{font-size:10.5px!important;min-height:30px!important}
+  .hero .ai-win .sc-s::after{content:none!important}
+  .hero .ai-win .sc-wh b,.hero .ai-win .sc-wr>b{font-size:10.5px!important}
+}
+
+/* hero mockups on phones: no ellipsis / single-line clipping, long labels wrap instead */
+@media(max-width:700px){
+  .hero .ai-win *{text-overflow:clip!important}
+  .hero .ai-win :is(b,span,small,em,p,div)[style*="nowrap"],.hero .ai-win .ai-call>div>b,.hero .ai-win .ai-call>div>small{white-space:normal!important;overflow:visible!important}
+  .hero .ai-win .ai-ct,.hero .ai-win [class*="count"],.hero .ai-win [id*="Cnt"],.hero .ai-win [id*="cnt"]{white-space:normal!important;overflow:visible!important}
+  #crTr,.hero .ai-win #crTr{max-height:none!important;height:auto!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important}
+}
+@media(max-width:700px){
+  /* action chips: text wraps instead of being cut */
+  .hero .ai-win .ai-acts>span{white-space:normal!important;overflow:visible!important;line-height:1.3;align-items:center}
+  /* supervisor floor rows: rank + avatar + name on top, score and timer on a second line, nothing truncated */
+  #sfHero .sf-row{flex-wrap:wrap!important;gap:6px 10px!important;padding:10px 12px!important}
+  #sfHero .sf-who{flex:1 1 0!important;min-width:0!important}
+  #sfHero .sf-who small{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;font-size:11.5px!important}
+  #sfHero .sf-sc{flex:1 1 100%!important;display:flex!important;align-items:center;justify-content:space-between;gap:8px;padding-left:4px}
+  #sfHero .sf-sc small{font-size:11px!important}
+}
+/* conversation intelligence: compact match rows so all five fit in a much shorter window */
+@media(max-width:700px){
+  .hero .ai-win .ai-res{padding:9px 0 9px!important;gap:3px!important}
+  .hero .ai-win .ai-res .t{display:flex!important;align-items:center;flex-wrap:nowrap;gap:8px!important;font-size:12px!important;line-height:1.3}
+  .hero .ai-win .ai-res .t .ai-pill{font-size:8.5px!important;padding:2px 7px!important;letter-spacing:.04em;flex:none}
+  .hero .ai-win .ai-res .t>span:last-child{margin-left:auto;font-size:10.5px!important;flex:none}
+  .hero .ai-win .ai-res p{font-size:12px!important;line-height:1.38!important;margin:4px 0 2px!important}
+  .hero .ai-win .ai-res small{font-size:10px!important;line-height:1.3!important}
+  .hero .ai-win .ai-res mark{padding:0 3px!important}
+}
