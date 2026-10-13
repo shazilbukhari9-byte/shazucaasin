@@ -2225,3 +2225,156 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   #handoff .lc-sw .kx-row .kx-h{font-size:15.5px!important}
   #handoff .lc-sw .kx-row .kx-p{font-size:13.5px;line-height:1.5}
 }
+
+/* inbox "Every channel, same desktop": 3 x 2 cards instead of a hairline table */
+#channels .ib-sw{border-top:0!important;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+#channels .ib-sw>.kx-row{display:flex!important;flex-direction:column;align-items:flex-start!important;gap:10px!important;padding:22px 22px 24px!important;border:1px solid rgba(30,20,10,.1)!important;border-radius:22px;background:#fff!important;box-shadow:0 20px 40px -32px rgba(120,60,30,.4);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+#channels .ib-sw>.kx-row:last-child{border-bottom:1px solid rgba(30,20,10,.1)!important}
+#channels .ib-sw .kx-idx{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,#FFE7DD,#FFF1DA);color:#c0391f;font-size:14px;font-weight:700;margin-bottom:6px;transition:background .3s,color .3s}
+#channels .ib-sw .kx-h{font-size:clamp(17px,1.5vw,20px)!important;font-weight:600;line-height:1.3;margin:0}
+#channels .ib-sw .kx-p{font-size:14.5px;line-height:1.55;color:var(--muted);margin:0}
+@media(hover:hover){#channels .ib-sw>.kx-row:hover{background:#fff!important;transform:translateY(-4px);border-color:rgba(232,85,58,.3)!important;box-shadow:0 28px 48px -30px rgba(120,60,30,.45)}
+  #channels .ib-sw>.kx-row:hover .kx-idx{background:var(--grad,linear-gradient(135deg,#FF7A5C,#F5C46B));color:#fff}}
+@media(max-width:1000px){#channels .ib-sw{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){
+  #channels .ib-sw{grid-template-columns:minmax(0,1fr);gap:10px}
+  #channels .ib-sw>.kx-row{display:grid!important;grid-template-columns:34px minmax(0,1fr);grid-template-areas:"idx h" "idx p";column-gap:12px!important;row-gap:3px!important;padding:14px!important;border-radius:16px}
+  #channels .ib-sw .kx-idx{grid-area:idx;width:34px;height:34px;border-radius:10px;font-size:12.5px;margin:0}
+  #channels .ib-sw .kx-h{grid-area:h;font-size:15.5px!important;align-self:center}
+  #channels .ib-sw .kx-p{grid-area:p;font-size:13.5px;line-height:1.5}
+}
+
+/* inbox "CRM sync, two-way": copy on the left, three compact cards on the right (one wide, two side by side) */
+@media(min-width:1001px){
+  #crm .ib-story{align-items:center}
+  #crm .ib-story>.kx-flow{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  #crm .ib-story>.kx-flow>.kx-step{min-height:0!important;margin:0!important;display:flex}
+  #crm .ib-story>.kx-flow>.kx-step:first-child{grid-column:1/-1}
+  #crm .ib-story>.kx-flow>.kx-step>.kx-card{width:100%}
+}
+#crm .ib-story .ib-sc{position:relative;display:flex!important;flex-direction:column;align-items:flex-start;gap:10px!important;padding:24px 24px 26px!important;border:1px solid rgba(30,20,10,.1);border-radius:22px;background:#fff;box-shadow:0 22px 44px -34px rgba(120,60,30,.4);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+#crm .ib-story .ib-sc .kx-ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#FFE7DD,#FFF1DA);color:#c0391f;margin:0 0 4px!important}
+#crm .ib-story .ib-n{top:20px;right:20px;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#FFF1E8;font-size:11.5px;letter-spacing:.04em}
+#crm .ib-story .ib-sc .kx-h{font-size:clamp(18px,1.6vw,21px)!important;font-weight:600;line-height:1.3;margin:0}
+#crm .ib-story .ib-sc .kx-p{font-size:14.5px;line-height:1.55;color:var(--muted);margin:0}
+#crm .ib-story .ib-chs{margin-top:6px!important;gap:8px}
+@media(hover:hover){#crm .ib-story .ib-sc:hover{transform:translateY(-4px);border-color:rgba(232,85,58,.3);box-shadow:0 30px 50px -32px rgba(120,60,30,.45)}}
+@media(max-width:1000px){#crm .ib-story>.kx-flow{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:8px}
+  #crm .ib-story>.kx-flow>.kx-step{min-height:0!important;margin:0!important;display:flex}
+  #crm .ib-story>.kx-flow>.kx-step:first-child{grid-column:1/-1}
+  #crm .ib-story>.kx-flow>.kx-step>.kx-card{width:100%}}
+@media(max-width:700px){
+  #crm .ib-story>.kx-flow{grid-template-columns:minmax(0,1fr);gap:10px}
+  #crm .ib-story .ib-sc{padding:16px 16px 18px!important;border-radius:18px;gap:7px!important}
+  #crm .ib-story .ib-sc .kx-ico{width:38px;height:38px;border-radius:11px}
+  #crm .ib-story .ib-n{top:14px;right:14px;width:28px;height:28px;font-size:10.5px}
+  #crm .ib-story .ib-sc .kx-h{font-size:16px!important}
+  #crm .ib-story .ib-sc .kx-p{font-size:13.5px;line-height:1.5}
+}
+
+/* inbox "AI on every message": centred section heading */
+#ai .ib-lpw{display:flex;justify-content:center;margin-bottom:clamp(24px,3vw,40px)}
+#ai .ib-lpw>.ai-txt{max-width:760px;margin-inline:auto;text-align:center;display:flex;flex-direction:column;align-items:center}
+#ai .ib-lpw .ai-txt h2{text-wrap:balance;margin-inline:auto}
+#ai .ib-lpw .ai-txt .pt-lead{max-width:600px;margin-inline:auto;text-wrap:pretty}
+#ai .ib-lpw{max-width:none!important;width:100%}
+#ai .ib-lpw>.ai-txt{max-width:860px!important}#ai .ib-lpw .ai-txt h2{max-width:none!important;width:100%}
+
+/* inbox "Every channel, same desktop": centred section heading */
+#channels .ib-swh{display:flex;justify-content:center}
+#channels .ib-swh>.ai-txt{max-width:860px;margin-inline:auto;text-align:center;display:flex;flex-direction:column;align-items:center}
+#channels .ib-swh .ai-txt h2{text-wrap:balance;margin-inline:auto}
+
+/* inbox CRM sync cards on phones: all three in one row */
+@media(max-width:700px){
+  #crm .ib-story>.kx-flow{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+  #crm .ib-story>.kx-flow>.kx-step:first-child{grid-column:auto!important}
+  #crm .ib-story .ib-sc{padding:12px 9px 13px!important;border-radius:16px!important;gap:6px!important;height:100%;box-sizing:border-box}
+  #crm .ib-story .ib-sc .kx-ico{width:30px!important;height:30px!important;border-radius:9px!important;margin:0!important}
+  #crm .ib-story .ib-sc .kx-ico svg{width:15px;height:15px}
+  #crm .ib-story .ib-n{top:8px!important;right:8px!important;width:20px!important;height:20px!important;font-size:8.5px!important;letter-spacing:0}
+  #crm .ib-story .ib-sc .kx-h{font-size:12.5px!important;line-height:1.25!important;margin:0!important;overflow-wrap:normal;hyphens:none}
+  #crm .ib-story .ib-sc .kx-p{font-size:10.5px!important;line-height:1.38!important}
+  #crm .ib-story .ib-chs{display:none!important}
+}
+
+/* inbox CRM sync tick list on phones: three points in one row, smaller text */
+@media(max-width:700px){
+  #crm .ai-ck{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important;margin-top:14px!important;padding:0!important}
+  #crm .ai-ck>li{display:flex!important;flex-direction:column;align-items:flex-start;gap:6px!important;padding:9px 9px 10px!important;border:1px solid rgba(30,20,10,.1);border-radius:12px;background:rgba(255,255,255,.7);font-size:11.5px!important;line-height:1.3!important;min-width:0}
+  #crm .ai-ck>li svg{width:15px!important;height:15px!important;flex:none;margin:0!important}
+  #crm .ai-ck>li span{font-size:11.5px!important;line-height:1.3!important;overflow-wrap:normal}
+}
+@media(max-width:700px){
+  #crm .ai-ck>li{border:0!important;border-radius:0!important;background:none!important;padding:0!important;gap:5px!important}
+  #crm .ai-ck{gap:14px!important}
+}
+
+/* inbox "AI on every message" on phones: three tabs in one row, the preview card right under them */
+@media(max-width:700px){
+  #ai .kx-lp{gap:12px!important}
+  #ai .kx-lp-list{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:5px;border-radius:18px;background:var(--bg2,#F4EFE9)}
+  #ai .kx-lp-li{display:flex!important;align-items:center;justify-content:center;text-align:center!important;padding:12px 6px!important;min-height:64px;border:0!important;border-radius:13px;background:transparent!important;color:var(--muted)!important;font-size:12px!important;font-weight:600;line-height:1.25!important;letter-spacing:0!important;gap:0;transition:background .25s,color .25s,box-shadow .25s}
+  #ai .kx-lp-li svg{display:none!important}
+  #ai .kx-lp-li:hover,#ai .kx-lp-li.on{padding:12px 6px!important}
+  #ai .kx-lp-li.on{background:#fff!important;color:var(--ink)!important;box-shadow:0 8px 18px -10px rgba(120,60,30,.45)}
+  #ai .kx-lp-pv>.kx-pv{padding:14px!important;border-radius:18px!important;font-size:13px}
+  #ai .kx-lp-pv .ai-head{gap:8px!important;flex-wrap:nowrap!important}
+  #ai .kx-lp-pv .ai-lbl{font-size:10px!important}
+  #ai .kx-lp-pv .ai-pill{font-size:10px!important;padding:3px 8px!important;white-space:nowrap}
+  #ai .kx-lp-pv .ai-call{padding:8px 0!important;gap:10px}
+  #ai .kx-lp-pv .ai-call .av{width:34px!important;height:34px!important;font-size:11px!important}
+  #ai .kx-lp-pv .ai-call b{font-size:13.5px!important}
+  #ai .kx-lp-pv .ai-call small{font-size:11.5px!important}
+  #ai .kx-lp-pv .ai-bub{padding:10px 12px!important;border-radius:14px!important;font-size:12.5px!important;line-height:1.45!important}
+  #ai .kx-lp-pv .ai-bub .who{font-size:9.5px!important;margin-bottom:4px!important}
+  #ai .kx-lp-pv .ib-sb{font-size:12.5px}
+}
+
+/* inbox "Every channel, same desktop" on phones: a 2 x 3 grid of equal cards */
+@media(max-width:700px){
+  #channels .ib-sw{grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:1fr;gap:10px!important}
+  #channels .ib-sw>.kx-row{display:flex!important;flex-direction:column;align-items:flex-start!important;gap:6px!important;padding:14px 12px 15px!important;border-radius:18px!important;height:100%;box-sizing:border-box;min-width:0}
+  #channels .ib-sw .kx-idx{width:32px;height:32px;border-radius:10px;font-size:12px;margin:0 0 4px!important}
+  #channels .ib-sw .kx-h{font-size:14px!important;line-height:1.25!important;text-wrap:balance}
+  #channels .ib-sw .kx-p{font-size:12px!important;line-height:1.45!important}
+}
+@media(max-width:700px){#channels .ib-sw .kx-h{align-self:flex-start!important;text-align:left}}
+
+/* inbox "Two problems vs One conversation" on phones: tidy panels, VS badge sits on the seam between them */
+@media(max-width:700px){
+  .ib-cmpw .kx-cmp{display:grid!important;grid-template-columns:minmax(0,1fr)!important;border-radius:22px!important}
+  .ib-cmpw .kx-cmp>.before{order:1}
+  .ib-cmpw .kx-cmp>.kx-vs{order:2;position:relative!important;top:auto!important;left:auto!important;bottom:auto!important;transform:none!important;justify-self:center;margin:-20px 0!important;width:40px!important;height:40px!important;z-index:3;font-size:11px!important;box-shadow:0 0 0 5px #fff,0 12px 24px -10px rgba(232,85,58,.6)!important}
+  .ib-cmpw .kx-cmp>.after{order:3}
+  .ib-cmpw .kx-cmp>div{padding:20px 18px 18px!important}
+  .ib-cmpw .kx-cmp>.after{padding-top:30px!important}
+  .ib-cmpw .kx-cmp>.before{padding-bottom:30px!important}
+  .ib-cmpw .kx-cmp .kx-k{font-size:10.5px!important}
+  .ib-cmpw .kx-cmp .kx-h{font-size:20px!important;margin:6px 0 4px!important}
+  .ib-cmpw .ib-ls{margin-top:8px}
+  .ib-cmpw .ib-ls li{display:grid!important;grid-template-columns:78px minmax(0,1fr)!important;gap:10px!important;padding:11px 0!important;font-size:13.5px!important;line-height:1.4!important}
+  .ib-cmpw .ib-ls li b{font-size:10.5px!important;letter-spacing:.08em;padding-top:2px}
+}
+
+/* inbox hero mockup on phones: compact window, channel filters in a tidy 4 + 3 grid, tighter thread rows (laptop untouched) */
+@media(max-width:700px){
+  #ibHero{padding:12px!important;gap:10px!important;border-radius:22px!important;-webkit-mask-image:none!important;mask-image:none!important;max-height:none!important;overflow:visible!important}
+  #ibHero .ai-top{font-size:12.5px!important;gap:8px!important;padding:0 2px!important;flex-wrap:wrap}
+  #ibHero .ai-top .ti{width:26px!important;height:26px!important;border-radius:8px!important}
+  #ibHero .ai-top .ti svg{width:14px!important;height:14px!important}
+  #ibHero .ai-top b{font-size:13px!important}
+  #ibHero .ai-top .rt{font-size:11px!important;gap:6px!important}
+  #ibHero .ai-live{font-size:9.5px!important;padding:3px 8px!important}
+  #ibHero #ibF{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px!important}
+  #ibHero #ibF .ai-chip{padding:7px 2px!important;font-size:10.5px!important;min-height:0!important;text-align:center;white-space:nowrap;border-radius:10px!important}
+  #ibHero .ib-th{gap:10px!important;padding:9px 2px!important}
+  #ibHero .ib-th .av{width:34px!important;height:34px!important;font-size:11px!important;flex:none}
+  #ibHero .ib-th b{font-size:13px!important}
+  #ibHero .ib-th small{font-size:11.5px!important;line-height:1.35!important}
+  #ibHero .ib-th .ai-pill{font-size:10px!important;padding:3px 8px!important;white-space:nowrap}
+  #ibHero .ai-rd{gap:16px!important;margin-top:4px!important;flex-wrap:nowrap!important}
+  #ibHero .ai-rd div b{font-size:17px!important}
+  #ibHero .ai-rd div small{font-size:10.5px!important}
+}
+@media(max-width:374px){#ibHero #ibF .ai-chip{font-size:9.5px!important;padding:7px 0!important;letter-spacing:-.02em}}
