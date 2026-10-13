@@ -3287,3 +3287,20 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   .auth-switch .auth-logo img{height:34px!important}
   .auth-switch .panel p{font-size:.72rem!important}
 }
+
+/* sign in / sign up: the logo no longer travels across. It fades out, waits while the colour panel sweeps over,
+   and fades in on the new side as the panel arrives (position is driven by data-side, set by the page script). */
+.auth-logo,.auth-switch:has(.container.sign-up-mode) .auth-logo{translate:none!important;transform:none!important;left:26px!important;right:auto!important;transition:opacity .22s ease!important}
+.auth-logo[data-dir]{animation:none!important}
+.auth-switch .auth-logo.auth-logo.auth-logo[data-side="right"]{left:auto!important;right:26px!important}
+.auth-logo:not(.away){transition:opacity .5s ease!important}
+.auth-logo.away{opacity:0;pointer-events:none}
+@media(max-width:700px){
+  .auth-switch .auth-logo.auth-logo.auth-logo{left:14px!important;right:auto!important}
+  .auth-switch .auth-logo.auth-logo.auth-logo[data-side="right"]{left:auto!important;right:14px!important}
+}
+@media(max-width:870px){
+  .auth-switch .auth-logo.auth-logo.auth-logo{left:14px!important;right:auto!important}
+  .auth-switch .auth-logo.auth-logo.auth-logo[data-side="right"]{left:auto!important;right:14px!important}
+}
+@media(prefers-reduced-motion:reduce){.auth-logo,.auth-logo:not(.away){transition:none!important}}
