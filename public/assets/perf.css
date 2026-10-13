@@ -3481,8 +3481,8 @@ h1.hl-rot[data-final="0"] .hl-c{display:none}
 
 /* blog post header: the image box reaches back to where the article text begins (260px contents column + 56px gap);
    the text column is an editorial stack - back link, category and title on top, author and share anchored to the bottom */
-@media(min-width:1000px){
-  .ps-split{grid-template-columns:calc(316px - 18px - 28px) minmax(0,1fr);min-height:456px}
+@media(min-width:1001px){
+  .ps-split{grid-template-columns:calc(316px + 28px - 18px - 28px) minmax(0,1fr);min-height:456px}
   .ps-split .ps-l{padding:22px 6px 22px 24px;gap:0;justify-content:flex-start}
   .ps-split .ps-back{font-size:13.5px;margin-bottom:22px}
   .ps-split .ps-l h1{font-size:clamp(25px,2vw,30px);line-height:1.16;letter-spacing:-.025em}
@@ -3495,6 +3495,11 @@ h1.hl-rot[data-final="0"] .hl-c{display:none}
   .ps-split .ps-sh a{width:38px;height:38px;border-radius:12px}
   .ps-split .ps-sh svg{width:16px;height:16px}
 }
-@media(min-width:821px) and (max-width:999px){
+@media(min-width:821px) and (max-width:1000px){
   .ps-split{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr)}
+}
+
+/* blog post: article text sits a little to the right of the image edge */
+@media(min-width:1001px){
+  #psArt{padding-left:28px}
 }
