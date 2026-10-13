@@ -3436,3 +3436,10 @@ html[data-css-wait] #ucaas-page{visibility:hidden}
   #products .pcard:hover .pv-ts{animation:pcIn .5s cubic-bezier(.22,.8,.2,1) both}
 }
 @media(prefers-reduced-motion:reduce){#products .pcard:hover *{animation:none!important}#products .pcard:hover .pc-vis{transform:none}}
+
+/* navbar: menus sit in the centre of the bar (logo left, Sign in / Sign up right) */
+@media(min-width:1001px){
+  .nav-in{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:20px}
+  .nav-in>.nav-links{margin:0 3px 0 -3px;justify-content:center}
+  .nav-in>.nav-end{margin-left:0;justify-self:end}
+}
