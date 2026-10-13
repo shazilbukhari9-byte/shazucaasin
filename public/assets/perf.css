@@ -2522,3 +2522,149 @@ footer.foot .news button{width:44px;height:44px;flex:none}
   #ai .om-bn>.kx-card:nth-child(3) .kx-h{font-size:18px!important;margin:0!important}
   #ai .om-bn>.kx-card:nth-child(3) .kx-p{font-size:13.5px!important;line-height:1.5!important;margin:0!important;max-width:34ch}
 }
+
+/* team messaging hero app on phones: workspace header on one line, tighter message area, no faded crop (laptop untouched) */
+@media(max-width:700px){
+  #tmApp{height:auto!important;max-height:none!important;min-height:0;border-radius:22px!important;-webkit-mask-image:none!important;mask-image:none!important;overflow:hidden}
+  .hero .tm-stage{max-height:none!important;overflow:visible!important;-webkit-mask-image:none!important;mask-image:none!important}
+  #tmApp .tm-main{min-height:0}
+  #tmApp .tm-head{display:grid!important;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px 10px!important;padding:12px 14px!important}
+  #tmApp .tm-head b{font-size:15px!important;white-space:nowrap}
+  #tmApp .tm-head small{font-size:11.5px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #tmApp .tm-join{margin:0!important;padding:7px 12px!important;font-size:12.5px!important;gap:6px!important;white-space:nowrap;min-height:0!important}
+  #tmApp .tm-join svg{width:14px!important;height:14px!important}
+  #tmApp .tm-huddle{margin:10px 14px 0!important}
+  #tmApp .tm-msgs{min-height:200px;padding:14px!important;gap:12px!important;justify-content:flex-start!important}
+  #tmApp .tm-m>.av{width:32px!important;height:32px!important;font-size:11px!important}
+  #tmApp .tm-m .meta b{font-size:13px!important}
+  #tmApp .tm-m .meta small{font-size:11px!important}
+  #tmApp .tm-m p{font-size:13px!important;line-height:1.45!important}
+  #tmApp .tm-m .rx span{font-size:11.5px!important;padding:2px 8px!important}
+  #tmApp .tm-comp{margin:0 14px 14px!important;padding:10px 12px!important;font-size:12.5px!important;border-radius:12px!important}
+}
+@media(max-width:700px){
+  #tmApp{display:flex!important;flex-direction:column!important;align-content:flex-start}
+  #tmApp .tm-main{flex:1 1 auto;display:flex;flex-direction:column}
+  #tmApp .tm-head{grid-template-columns:auto auto minmax(0,1fr)!important}
+  #tmApp .tm-head small{overflow:visible!important;text-overflow:clip!important}
+  #tmApp .tm-join{justify-self:end}
+  #tmApp .tm-msgs{min-height:0!important;flex:0 0 auto!important}
+}
+@media(max-width:374px){#tmApp .tm-join{padding:7px 10px!important;font-size:12px!important}#tmApp .tm-head b{font-size:14px!important}}
+@media(max-width:700px){#tmApp .tm-main{justify-content:flex-start!important}#tmApp{min-height:0!important;aspect-ratio:auto!important}}
+@media(max-width:700px){#tmApp .tm-main{padding-top:0!important;padding-bottom:0!important}}
+@media(max-width:700px){#tmApp .tm-msgs{height:250px!important;min-height:250px!important;flex:0 0 250px!important;justify-content:flex-end!important}}
+@media(max-width:700px){
+  #tmApp{height:440px!important;max-height:440px!important}
+  #tmApp .tm-main{flex:1 1 auto!important;min-height:0!important}
+  #tmApp .tm-msgs{height:auto!important;min-height:0!important;flex:1 1 0!important}
+}
+
+/* team messaging "Everything a team chat needs" tabs on phones: all four in one row */
+@media(max-width:700px){
+  .tm-ft-list{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;margin-bottom:10px}
+  .tm-ft-list>.tm-ft{display:flex!important;flex-direction:column;align-items:center!important;justify-content:flex-start;gap:7px!important;text-align:center!important;padding:11px 4px 12px!important;border-radius:14px!important;min-width:0;height:100%;box-sizing:border-box}
+  .tm-ft-list>.tm-ft .mi{width:30px!important;height:30px!important;border-radius:9px!important;margin:0!important;flex:none}
+  .tm-ft-list>.tm-ft .mi svg{width:15px;height:15px}
+  .tm-ft-list>.tm-ft>span:nth-child(2){min-width:0;display:block}
+  .tm-ft-list>.tm-ft b{display:block;font-size:11px!important;line-height:1.25!important;font-weight:600;overflow-wrap:normal;hyphens:none;text-wrap:balance}
+  .tm-ft-list>.tm-ft small,.tm-ft-list>.tm-ft em{display:none!important}
+}
+@media(max-width:374px){.tm-ft-list>.tm-ft b{font-size:10px!important}}
+
+/* team messaging feature panels on phones: smaller type and spacing, every panel fits fully */
+@media(max-width:700px){
+  .tm-fv{min-height:0!important;border-radius:20px!important}
+  .tm-fv>.tm-fp{padding:14px!important;gap:10px!important}
+  .tm-fp .tm-new h5{font-size:13.5px!important;margin:0 0 8px!important}
+  .tm-fp .tm-in{padding:9px 11px!important;font-size:13px!important;border-radius:10px!important}
+  .tm-fp .tm-new .tm-seg{margin-top:10px!important;padding:3px!important}
+  .tm-fp .tm-seg span,.tm-fp .tm-seg button{padding:6px 12px!important;font-size:12px!important}
+  .tm-fp .tm-mem{margin-top:12px!important}
+  .tm-fp .tm-mem .av{width:26px!important;height:26px!important;font-size:9px!important}
+  .tm-fp .tm-mem em{font-size:12px!important;margin-left:10px!important}
+  .tm-fp .tm-create{margin-top:12px!important;padding:8px 14px!important;font-size:12.5px!important}
+  .tm-fp .tm-note{font-size:12px!important;line-height:1.4!important;gap:6px!important;margin-top:10px!important}
+  .tm-fp .tm-note svg{width:14px!important;height:14px!important;flex:none}
+  .tm-fp .tm-thread,.tm-fp .tm-guest{gap:10px!important}
+  .tm-fp .tm-bubble{gap:8px!important}
+  .tm-fp .tm-bubble small{font-size:10.5px!important}
+  .tm-fp .tm-bubble p{font-size:12.5px!important;line-height:1.4!important}
+  .tm-fp .th b{font-size:13px!important}
+  .tm-fp .th .pill{font-size:10.5px!important;padding:3px 8px!important}
+  .tm-fp .tm-sm{width:26px!important;height:26px!important;font-size:9px!important}
+}
+/* huddle card: the title sits on the dark card, so it must be light */
+.tm-hcard .top b{color:#fff!important}
+.tm-hcard .top small{color:rgba(255,255,255,.72)}
+@media(max-width:700px){
+  .tm-hcard{padding:14px!important;border-radius:16px!important;gap:12px!important}
+  .tm-hcard .top{gap:10px!important}
+  .tm-hcard .top b{font-size:13.5px!important;line-height:1.3}
+  .tm-hcard .top small{font-size:11.5px!important}
+  .tm-hcard .ctl span{width:42px!important;height:42px!important}
+}
+
+/* team messaging feature cards on phones: a 2 x 2 grid of equal compact cards */
+@media(max-width:700px){
+  .tm-fgrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:1fr;gap:10px!important}
+  .tm-fgrid>.tm-fc{display:flex!important;flex-direction:column;align-items:flex-start;gap:7px!important;padding:14px 12px 15px!important;border-radius:18px!important;height:100%;box-sizing:border-box;min-width:0;margin:0!important;min-height:0!important}
+  .tm-fgrid>.tm-fc .mi{width:36px!important;height:36px!important;border-radius:11px!important;margin:0 0 3px!important}
+  .tm-fgrid>.tm-fc .mi svg{width:17px;height:17px}
+  .tm-fgrid>.tm-fc h3{display:flex;flex-direction:column;align-items:flex-start;gap:6px;font-size:14.5px!important;line-height:1.25!important;margin:0!important;text-wrap:balance}
+  .tm-fgrid>.tm-fc h3 .pill{font-size:10px!important;padding:2px 8px!important;font-weight:600}
+  .tm-fgrid>.tm-fc p{font-size:12px!important;line-height:1.45!important;margin:0!important}
+}
+
+/* team messaging "Built for": team tabs in one row, compact call + chat mockup, light name on the dark call card */
+.tm-call .cc .row b{color:#fff!important}
+@media(max-width:700px){
+  .tm-uc-list{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;margin-bottom:10px}
+  .tm-uc-list>.tm-uc{display:flex!important;flex-direction:column;align-items:center!important;justify-content:flex-start;gap:7px!important;text-align:center!important;padding:11px 4px 12px!important;border-radius:14px!important;min-width:0;height:100%;box-sizing:border-box}
+  .tm-uc-list>.tm-uc .mi{width:30px!important;height:30px!important;border-radius:9px!important;margin:0!important;flex:none}
+  .tm-uc-list>.tm-uc .mi svg{width:15px;height:15px}
+  .tm-uc-list>.tm-uc>span:nth-child(2){min-width:0;display:block}
+  .tm-uc-list>.tm-uc b{display:block;font-size:11px!important;line-height:1.25!important;font-weight:600;overflow-wrap:normal;hyphens:none;text-wrap:balance}
+  .tm-uc-list>.tm-uc small{display:none!important}
+  .tm-call{padding:12px!important;gap:10px!important;border-radius:20px!important;min-height:0!important}
+  .tm-call .cc{padding:14px!important;border-radius:16px!important;gap:8px!important}
+  .tm-call .cc>small{font-size:11px!important}
+  .tm-call .cc .row{gap:10px!important}
+  .tm-call .cc .row .av{width:38px!important;height:38px!important;font-size:12px!important}
+  .tm-call .cc .row b{font-size:14px!important}
+  .tm-call .cc .row small{font-size:11.5px!important}
+  .tm-call .cc .tm-time{font-size:17px!important}
+  .tm-call .tm-stay{font-size:11.5px!important;padding:7px 11px!important;gap:6px!important;white-space:normal}
+  .tm-call .chat{border-radius:16px!important}
+  .tm-call .chat .ch{padding:10px 12px!important}
+  .tm-call .chat .ch b{font-size:13.5px!important}
+  .tm-call .chat .ch .pill{font-size:10.5px!important;padding:3px 9px!important}
+  .tm-call .chat .ms{padding:12px!important;gap:10px!important}
+  .tm-call .chat .ms .av,.tm-call .chat .ms .tm-sm{width:30px!important;height:30px!important;font-size:10.5px!important}
+  .tm-call .chat .ms b{font-size:12.5px!important}
+  .tm-call .chat .ms small{font-size:10.5px!important}
+  .tm-call .chat .ms p{font-size:12.5px!important;line-height:1.4!important}
+}
+@media(max-width:374px){.tm-uc-list>.tm-uc b{font-size:10px!important}}
+@media(max-width:700px){#tmCall.tm-call{min-height:372px!important}}
+
+/* "Pairs well with" product cards on phones: a 2 x 2 grid of equal compact cards (team messaging, toll-free, video meetings) */
+@media(max-width:700px){
+  .tm-pair-grid,.tf-pair-grid,.vm-pg{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;grid-auto-rows:1fr;gap:10px!important}
+  .tm-pair-grid>a,.tf-pair-grid>a,.vm-pg>a{display:flex!important;flex-direction:column;gap:6px!important;padding:14px 12px 14px!important;border-radius:18px!important;min-width:0;margin:0!important;height:100%;box-sizing:border-box;min-height:0!important}
+  .tm-pair-grid>a .mi,.tf-pair-grid>a .mi,.vm-pg>a .mi{width:36px!important;height:36px!important;border-radius:11px!important;margin:0 0 4px!important}
+  .tm-pair-grid>a .mi svg,.tf-pair-grid>a .mi svg,.vm-pg>a .mi svg{width:17px;height:17px}
+  .tm-pair-grid>a h3,.tf-pair-grid>a h3,.vm-pg>a h3{font-size:14px!important;line-height:1.25!important;margin:0!important;text-wrap:balance}
+  .tm-pair-grid>a p,.tf-pair-grid>a p,.vm-pg>a p{font-size:12px!important;line-height:1.45!important;margin:0!important;flex:1}
+  .tm-pair-grid>a em,.tf-pair-grid>a em,.vm-pg>a em{font-size:12.5px!important;margin-top:4px!important;display:inline-flex;align-items:center;gap:4px}
+}
+
+/* team messaging hero stat cards on phones: four compact cards in one row */
+@media(max-width:700px){
+  .tm-stats{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:6px!important;margin-top:12px!important}
+  .tm-stats>div{padding:10px 6px 11px!important;border-radius:14px!important;min-width:0;height:100%;box-sizing:border-box;margin:0!important}
+  .tm-stats>div b{display:block;font-size:13.5px!important;line-height:1.2!important;letter-spacing:-.02em;white-space:nowrap}
+  .tm-stats>div small{display:block;font-size:9.5px!important;line-height:1.3!important;margin-top:3px;color:var(--muted)}
+}
+@media(max-width:374px){.tm-stats>div b{font-size:12.5px!important}.tm-stats>div small{font-size:9px!important}}
+@media(max-width:340px){.tm-stats>div{padding:9px 3px 10px!important}.tm-stats>div b{font-size:11px!important;letter-spacing:-.03em}.tm-stats>div small{font-size:8.5px!important}}
