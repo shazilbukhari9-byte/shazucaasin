@@ -13,8 +13,8 @@ const nextConfig: NextConfig = {
   reactStrictMode: false,
   async headers() {
     return [
-      // the site CSS / JS is linked with ?v= or edited between releases: serve from cache, refresh in the background
-      { source: "/assets/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=3600, stale-while-revalidate=604800" }] },
+      // the site CSS / JS keeps its file name between releases: always revalidate (a cheap 304), so a page and its styles never get out of step
+      { source: "/assets/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=0, must-revalidate" }] },
       // fonts and the big shared stylesheets never change under the same name: cache them for a year (later rules win)
       { source: "/assets/fonts/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
       { source: "/assets/css/:file*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },

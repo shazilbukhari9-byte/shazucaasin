@@ -3455,3 +3455,15 @@ section:has(>.wrap>.bl-nl)+section#cta,section:has(>.wrap>.bl-nl)~section#cta{pa
   section:has(>.wrap>.bl-nl){padding-bottom:24px!important}
   section:has(>.wrap>.bl-nl)~section#cta{padding-bottom:32px!important}
 }
+
+/* hero headline: rotating lines, with the orange word typed out (the hidden sizer holds the final width, so nothing shifts while typing) */
+h1.hl-rot .hl-l1,h1.hl-rot .hl-l2{display:inline-block}
+h1.hl-rot .hl-word{display:inline-grid;justify-items:start;white-space:nowrap}
+h1.hl-rot .hl-word>*{grid-area:1/1}
+h1.hl-rot .hl-sz{visibility:hidden}
+h1.hl-rot .hl-live::after{content:"";display:inline-block;width:.06em;height:.8em;margin-left:.05em;border-radius:2px;background:var(--coral,#FF7A5C);vertical-align:-.03em;-webkit-text-fill-color:initial;animation:hlCaret 1s steps(1) infinite}
+h1.hl-rot .hl-live{opacity:1}
+h1.hl-rot .hl-word:not(.hl-typing) .hl-live::after{opacity:0;animation:none}
+@keyframes hlCaret{50%{opacity:0}}
+@keyframes hlFade{0%{opacity:0}100%{opacity:1}}
+h1.hl-rot .hl-fade{animation:hlFade .5s cubic-bezier(.25,.6,.3,1) both}
