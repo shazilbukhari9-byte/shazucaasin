@@ -65,6 +65,34 @@ export default function LinkRouter() {
     };
   }, [pathname]);
 
+  // Timeline circles (.kx-tl) sit level with the first element of their step: the offset is measured here because steps differ
+  // (a label on one page, a card or a button on another).
+  useEffect(() => {
+    const lists = Array.from(document.querySelectorAll<HTMLElement>("#ucaas-page .kx-tl"));
+    if (!lists.length) return;
+    const place = () => {
+      lists.forEach((ol) => {
+        ol.querySelectorAll<HTMLElement>(":scope > li").forEach((li) => {
+          const first = li.firstElementChild as HTMLElement | null;
+          if (!first) return;
+          const y = first.offsetTop + Math.min(first.offsetHeight / 2, 22);
+          li.style.setProperty("--tl-y", y + "px");
+        });
+      });
+    };
+    place();
+    const t = window.setTimeout(place, 400);
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(place) : null;
+    lists.forEach((ol) => ro?.observe(ol));
+    window.addEventListener("resize", place);
+    document.fonts?.ready.then(place);
+    return () => {
+      window.clearTimeout(t);
+      ro?.disconnect();
+      window.removeEventListener("resize", place);
+    };
+  }, [pathname]);
+
   useEffect(() => {
     const prefetched = new Set<string>();
 

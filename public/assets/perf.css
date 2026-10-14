@@ -3526,3 +3526,130 @@ h1.hl-rot[data-final="0"] .hl-c{display:none}
 /* hover bridge: while a dropdown is open, an invisible strip under the bar joins the tab to the panel so the menu stays open on the way down
    (the blog pages carried an older stylesheet without it) */
 .nav.mx::after{content:"";position:absolute;left:0;right:0;top:100%;height:34px}
+
+/* laptop mockups: the same window card as the homepage dashboard (thin border, soft shadow, 48px title bar with dots and a title) */
+#ucaas-page .kx-dev.lap{background:#fff!important;padding:0!important;border:1px solid var(--line)!important;border-radius:18px!important;box-shadow:0 30px 60px -30px rgba(120,60,30,.35)!important;overflow:hidden}
+#ucaas-page .kx-dev.lap::before{content:"UCaaS";display:block;height:48px;padding-left:62px;line-height:48px;font-size:13px;font-weight:400;color:var(--muted);border-bottom:1px solid var(--line);background:radial-gradient(circle at 20.5px 50%,#FF5F57 4.5px,transparent 5px),radial-gradient(circle at 35.5px 50%,#FEBC2E 4.5px,transparent 5px),radial-gradient(circle at 50.5px 50%,#28C840 4.5px,transparent 5px),#FBF8F5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ucaas-page .kx-dev.lap.cp-dev::before{content:"UCaaS · Compare"}
+#ucaas-page .kx-dev.lap.ph-lap::before{content:"UCaaS · Phone system"}
+#ucaas-page .kx-dev.lap.sm-dev::before{content:"UCaaS · Business SMS"}
+#ucaas-page .kx-dev.lap.bc-lap::before{content:"UCaaS · By country"}
+#ucaas-page .kx-dev.lap.he-dev::before{content:"UCaaS · Healthcare"}
+#ucaas-page .kx-dev.lap.om-lap::before{content:"UCaaS · Omnichannel"}
+#ucaas-page .kx-dev.lap.fx-lap::before{content:"UCaaS · Online fax"}
+#ucaas-page .kx-dev.lap.sk-lap::before{content:"UCaaS · Sales teams"}
+#ucaas-page .kx-dev.lap.st-dev::before{content:"UCaaS · Support teams"}
+#ucaas-page .kx-dev.lap.pd-lap::before{content:"UCaaS · Preview dialing"}
+#ucaas-page .kx-dev.lap.sv-lap::before{content:"UCaaS · Supervisor tools"}
+#ucaas-page .kx-dev.lap.uc-lap::before{content:"UCaaS · Unified communications"}
+#ucaas-page .kx-dev.lap::after{content:none!important;display:none!important}
+#ucaas-page .kx-dev.lap>.kx-scr{border-radius:0!important;box-shadow:none!important;background:#fff}
+
+/* vertical timelines (.kx-tl): bigger circles, centred on the line, never crossed by it, and level with the first line of their step
+   (--tl-y is the centre of the step's first element, set by LinkRouter) */
+.kx-tl{padding-left:44px!important}
+.kx-tl::before,.kx-tl::after{left:15px!important;width:2px!important;z-index:0}
+.kx-tl>li::before{box-sizing:border-box!important;width:22px!important;height:22px!important;left:-39px!important;top:calc(var(--tl-y,14px) - 11px)!important;z-index:2}
+
+/* comparison tables: the same large soft card as the homepage showcase (no window bar, no mockup) with the table in a bordered inner card */
+#ucaas-page .kx-dev.lap.cp-dev,#ucaas-page .kx-dev.lap.ph-lap{
+  background:radial-gradient(760px 420px at 100% 0,rgba(255,122,92,.12),transparent 70%),radial-gradient(520px 320px at 0 100%,rgba(255,178,62,.10),transparent 70%),rgba(255,255,255,.7)!important;
+  border:1px solid rgba(40,30,20,.13)!important;border-radius:28px!important;padding:clamp(14px,2.4vw,28px)!important;
+  box-shadow:0 24px 60px -28px rgba(120,60,20,.22),0 2px 6px rgba(120,60,20,.05)!important;overflow:visible}
+#ucaas-page .kx-dev.lap.cp-dev::before,#ucaas-page .kx-dev.lap.ph-lap::before{content:none!important;display:none!important}
+#ucaas-page .kx-dev.lap.cp-dev>.kx-scr,#ucaas-page .kx-dev.lap.ph-lap>.kx-scr{border:1px solid var(--line);border-radius:18px!important;overflow:hidden;background:#fff;box-shadow:0 1px 2px rgba(40,20,10,.04)!important}
+
+/* comparison filter: one segmented pill bar like the homepage platform tabs (active tab is the dark pill) */
+#ucaas-page .cp-fl{display:flex;flex-wrap:nowrap;gap:4px;justify-content:flex-start;width:fit-content;max-width:100%;margin:28px auto 22px;padding:6px;border-radius:999px;border:1px solid rgba(40,30,20,.13);background:rgba(255,255,255,.7);box-shadow:0 24px 60px -28px rgba(120,60,20,.22),0 2px 6px rgba(120,60,20,.05);overflow-x:auto;scrollbar-width:none}
+#ucaas-page .cp-fl::-webkit-scrollbar{display:none}
+#ucaas-page .cp-fl button{flex:none;min-height:44px;padding:11px 20px;border:0;border-radius:999px;background:transparent;font-size:14.5px;font-weight:500;color:#5C5752;white-space:nowrap;transition:background .25s,color .25s,box-shadow .25s}
+#ucaas-page .cp-fl button:hover{color:var(--fg);background:rgba(30,20,10,.05)}
+#ucaas-page .cp-fl button.on{background:#0C0C0D;color:#fff;border:0;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+#ucaas-page .cp-fl button.on:hover{background:#0C0C0D;color:#fff}
+@media(max-width:560px){#ucaas-page .cp-fl button{padding:11px 16px;font-size:14px}}
+
+/* comparison tables: full-width rectangular card (the content column's whole width) */
+#ucaas-page .kx-dev.lap.cp-dev,#ucaas-page .kx-dev.lap.ph-lap{max-width:none!important;width:100%!important;margin-inline:0!important}
+
+/* comparison table: the card is exactly as tall as its rows (no minimum height, no empty area) */
+#ucaas-page .cp-dev>.kx-scr{min-height:0!important;display:block}
+#ucaas-page .cp-dev .cp-tw{display:block}
+#ucaas-page .cp-dev #cpTb{height:auto}
+
+/* "Works with / Pairs well with": the card itself carries the coral-to-gold gradient (the band around it stays plain) */
+section:has(>.wrap>.pw) .pw,section:has(>.wrap>.tm-pair) .tm-pair,section:has(>.wrap>.tf-pair) .tf-pair{
+  background:
+    radial-gradient(70% 110% at 0% 0%,rgba(255,122,92,.20),transparent 62%),
+    radial-gradient(60% 100% at 100% 100%,rgba(245,196,107,.32),transparent 62%),
+    radial-gradient(40% 70% at 60% 0%,rgba(255,178,62,.10),transparent 70%),
+    linear-gradient(180deg,#FFFDFB 0%,#FFF6EE 100%)!important;
+  border-color:rgba(232,85,58,.14)!important;
+  box-shadow:0 30px 70px -36px rgba(180,70,30,.35),0 2px 6px rgba(120,60,20,.05)!important}
+
+/* blog index hero: room to breathe (clears the navbar, space between label, headline and intro, and before the first section) */
+.hero.bl-hero{padding-top:156px!important;padding-bottom:60px!important}
+.bl-hero .hero-kicker{margin-bottom:24px!important}
+.bl-hero .bl-hd{gap:22px clamp(24px,3vw,48px)!important;flex-wrap:wrap!important;align-items:flex-end!important}
+.bl-hero .bl-hd>p{margin:0!important;flex:0 1 460px;max-width:460px}
+@media(max-width:700px){
+  .hero.bl-hero{padding-top:128px!important;padding-bottom:36px!important}
+  .bl-hero .hero-kicker{margin-bottom:18px!important}
+  .bl-hero .bl-hd{gap:18px!important;flex-wrap:wrap!important}
+  .bl-hero .bl-hd>p{flex:1 1 100%;max-width:none}
+  .bl-hero .bl-hd>p{margin-bottom:0!important}
+}
+
+/* blog index section headings (The Latest, Top Reads, Browse by categories): a little smaller */
+.bl-h{font-size:clamp(21px,2.1vw,27px)!important}
+
+/* blog index on laptops and scaled screens (a 1280 x 720 viewport is common): everything one step smaller and tighter,
+   so the featured story, top reads and cards fit the screen instead of filling it */
+@media(min-width:1001px){
+  .hero.bl-hero{padding-top:136px!important;padding-bottom:44px!important}
+  .bl-hero .bl-hd h1{font-size:clamp(36px,4.4vw,58px)!important}
+  .bl-hero .bl-hd>p{font-size:16px!important;max-width:440px}
+  .bl-lt{padding:12px!important}
+  .bl-lt .bl-cv{aspect-ratio:16/7.4!important}
+  .bl-lt h3,.bl-lt h2{font-size:26px!important;line-height:1.2!important}
+  .bl-lt p{font-size:14.5px!important;line-height:1.55!important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .bl-lt .bl-mt{font-size:13px!important}
+  .bl-trs{gap:12px!important}
+  .bl-tr{padding:10px!important;gap:14px!important;grid-template-columns:minmax(120px,32%) minmax(0,1fr)!important}
+  .bl-tr .bl-cv{min-height:96px!important}
+  .bl-tr h3{font-size:16px!important}
+  .bl-tr .bl-mt{font-size:12px!important}
+  #blGrid .bl-card{padding:10px!important}
+  #blGrid .bl-card .bl-cv{aspect-ratio:16/8.6!important}
+  #blGrid .bl-card h3{font-size:16.5px!important}
+  #blGrid .bl-card p{font-size:13.5px!important}
+}
+
+/* blog index section headings: compact on laptops and scaled screens */
+.bl-h{font-size:clamp(19px,1.7vw,22px)!important;margin-bottom:14px!important}
+
+/* blog categories: segmented pill bar like the site's other tab bars (dark sliding pill, count badges) */
+#blCats{padding:6px!important;gap:4px!important;border:1px solid rgba(40,30,20,.13)!important;background:rgba(255,255,255,.75)!important;border-radius:999px!important;box-shadow:0 24px 60px -28px rgba(120,60,20,.22),0 2px 6px rgba(120,60,20,.05)!important;justify-content:flex-start!important}
+#blCats .bl-hl{top:6px!important;bottom:6px!important;background:#0C0C0D!important;box-shadow:0 8px 20px -8px rgba(0,0,0,.4)!important;border-radius:999px!important;z-index:0}
+#blCats .bl-c{position:relative;z-index:1;flex:1 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px!important;border:0;background:transparent;border-radius:999px;font-size:14.5px!important;font-weight:500!important;color:#5C5752!important;white-space:nowrap;cursor:pointer;transition:color .25s}
+#blCats .bl-c:hover{color:var(--fg)!important}
+#blCats .bl-c[aria-selected=true]{color:#fff!important}
+#blCats .bl-c em{font-style:normal;font-size:12px;font-weight:600;line-height:1;padding:4px 8px;border-radius:99px;background:rgba(30,20,10,.07);color:#6a635c;transition:background .25s,color .25s}
+#blCats .bl-c[aria-selected=true] em{background:rgba(255,255,255,.18);color:#fff}
+#blCats .bl-c:focus-visible{outline:2px solid var(--coral);outline-offset:-2px}
+@media(max-width:700px){#blCats .bl-c{padding:0 14px!important;font-size:14px!important}}
+@media(min-width:701px){#blCats .bl-c{padding:0 13px!important;gap:6px!important;font-size:14px!important;flex:0 0 auto}#blCats{gap:2px!important;justify-content:space-between!important}#blCats .bl-c em{padding:3px 7px;font-size:11.5px}}
+@media(min-width:1201px){#blCats .bl-c{padding:0 10px!important;gap:5px!important;font-size:13.5px!important}#blCats{padding:5px!important}}
+
+/* blog categories, final sizing: on desktop the nine tabs always share the bar (they scale with the screen, no sideways sliding);
+   on tablets and phones the bar is an intentional swipe strip with soft faded edges */
+@media(min-width:1101px){
+  #blCats{overflow:hidden!important;justify-content:space-between!important;gap:2px!important;padding:5px!important}
+  #blCats .bl-c{flex:1 1 auto!important;min-width:0;padding:0 clamp(5px,.75vw,11px)!important;gap:clamp(4px,.4vw,6px)!important;font-size:clamp(12.5px,1.06vw,14px)!important}
+  #blCats .bl-c em{font-size:clamp(10.5px,.85vw,11.5px)!important;padding:3px clamp(5px,.5vw,7px)!important}
+}
+@media(max-width:1100px){
+  #blCats{overflow-x:auto!important;scroll-snap-type:x proximity;scroll-padding-inline:24px;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 22px),transparent 100%);
+    mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 22px),transparent 100%)}
+  #blCats .bl-c{scroll-snap-align:center;flex:0 0 auto!important}
+}
