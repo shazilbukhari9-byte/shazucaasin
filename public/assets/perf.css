@@ -3653,3 +3653,38 @@ section:has(>.wrap>.pw) .pw,section:has(>.wrap>.tm-pair) .tm-pair,section:has(>.
     mask-image:linear-gradient(90deg,transparent 0,#000 22px,#000 calc(100% - 22px),transparent 100%)}
   #blCats .bl-c{scroll-snap-align:center;flex:0 0 auto!important}
 }
+
+/* blog index on phones: "Top Reads" as a 2 x 2 grid of compact stacked cards (image on top, title and meta below) */
+@media(max-width:700px){
+  .bl-trs{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+  .bl-trs .bl-tr{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:10px!important;padding:8px!important;border-radius:20px!important;grid-template-columns:none!important;min-width:0}
+  .bl-trs .bl-tr .bl-cv{width:100%!important;height:auto!important;min-height:0!important;aspect-ratio:4/3!important;border-radius:14px!important}
+  .bl-trs .bl-tr>div:not(.bl-cv){padding:0 4px 4px;min-width:0}
+  .bl-trs .bl-tr h3{font-size:13.5px!important;line-height:1.3!important;margin:0 0 6px!important;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .bl-trs .bl-tr .bl-mt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;font-size:11px!important}
+  .bl-trs .bl-tr .bl-mt i{display:none}
+  .bl-trs .bl-tr .bl-n{font-size:11px!important;padding:2px 8px!important}
+}
+
+/* blog categories on tablets and phones: all nine categories are visible at once as wrapping chips (no sideways sliding);
+   the selected chip is the dark pill itself */
+@media(max-width:1100px){
+  #blCats{display:flex!important;flex-wrap:wrap!important;overflow:visible!important;gap:8px!important;padding:12px!important;border-radius:26px!important;justify-content:flex-start!important;-webkit-mask-image:none!important;mask-image:none!important}
+  #blCats .bl-hl{display:none!important}
+  #blCats .bl-c{flex:0 0 auto!important;min-height:40px;padding:0 14px!important;gap:6px!important;font-size:14px!important;border:1px solid rgba(40,30,20,.12)!important;background:#fff!important;border-radius:999px!important;scroll-snap-align:none;transition:background .25s,color .25s,border-color .25s}
+  #blCats .bl-c[aria-selected=true]{background:#0C0C0D!important;border-color:#0C0C0D!important;color:#fff!important;box-shadow:0 8px 18px -8px rgba(0,0,0,.4)}
+  #blCats .bl-c[aria-selected=true] em{background:rgba(255,255,255,.18)!important;color:#fff!important}
+}
+
+/* blog categories on phones: a stepper - previous arrow, the selected category in the middle, next arrow */
+.bl-step{display:none}
+@media(max-width:700px){
+  #blCats{flex-wrap:nowrap!important;align-items:center!important;gap:10px!important;padding:6px!important;border-radius:999px!important;justify-content:space-between!important}
+  #blCats .bl-c:not([aria-selected=true]){display:none!important}
+  #blCats .bl-c[aria-selected=true]{flex:1 1 auto!important;justify-content:center;min-height:46px;font-size:15px!important;box-shadow:none!important}
+  .bl-step{display:grid!important;place-items:center;flex:0 0 46px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(40,30,20,.13);background:#fff;color:var(--fg);cursor:pointer;box-shadow:0 8px 18px -12px rgba(120,60,30,.35);transition:transform .2s,box-shadow .2s}
+  .bl-step svg{width:18px;height:18px}
+  .bl-step.prev svg{transform:rotate(180deg)}
+  .bl-step:active{transform:scale(.94)}
+  .bl-step:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+}
