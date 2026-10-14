@@ -93,6 +93,28 @@ export default function LinkRouter() {
     };
   }, [pathname]);
 
+  // Once the page is idle, the pages in the main menu are prefetched in small batches, so a click opens at once.
+  // Skipped on data-saver and slow connections.
+  useEffect(() => {
+    const conn = (navigator as unknown as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    if (conn?.saveData || (conn?.effectiveType && !/4g/.test(conn.effectiveType))) return;
+    let cancelled = false;
+    const timers: number[] = [];
+    const start = window.setTimeout(() => {
+      const seen = new Set<string>();
+      const hrefs: string[] = [];
+      document.querySelectorAll<HTMLAnchorElement>("header.nav a[href^=\"/\"], #ucaas-page .mega a[href^=\"/\"]").forEach((a) => {
+        const u = new URL(a.href, location.href);
+        if (u.origin !== location.origin || u.pathname === location.pathname || /.[a-z0-9]+$/i.test(u.pathname) || u.pathname.startsWith("/assets/")) return;
+        if (!seen.has(u.pathname)) { seen.add(u.pathname); hrefs.push(u.pathname); }
+      });
+      hrefs.slice(0, 30).forEach((h, i) => {
+        timers.push(window.setTimeout(() => { if (!cancelled) router.prefetch(h); }, Math.floor(i / 3) * 500));
+      });
+    }, 2500);
+    return () => { cancelled = true; window.clearTimeout(start); timers.forEach((x) => window.clearTimeout(x)); };
+  }, [pathname, router]);
+
   useEffect(() => {
     const prefetched = new Set<string>();
 

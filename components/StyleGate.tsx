@@ -32,9 +32,16 @@ function heal() {
  * If a stylesheet fails to load (network drop, or a new release replaced the file while the tab was open) the page is
  * reloaded once so it comes back fully styled instead of broken.
  */
+/** For a moment after a page appears, CSS transitions on it are off, so it shows at once instead of easing from its initial state. */
+function arrive(root: HTMLElement) {
+  root.classList.add("ucaas-arrive");
+  window.setTimeout(() => root.classList.remove("ucaas-arrive"), 900);
+}
+
 export default function StyleGate({ slug }: { slug: string }) {
   useLayoutEffect(() => {
     const root = document.documentElement;
+    arrive(root);
     const links = [...document.querySelectorAll<HTMLLinkElement>("#ucaas-head link[rel='stylesheet']")];
     const pending = links.filter((l) => !l.sheet);
     if (!pending.length) {
@@ -47,6 +54,7 @@ export default function StyleGate({ slug }: { slug: string }) {
       if (done) return;
       done = true;
       root.removeAttribute("data-css-wait");
+      arrive(root);
     };
     window.__ucaasCss = new Promise<void>((resolve) => {
       let left = pending.length;
