@@ -26,6 +26,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     // the pages use smooth scrolling for in-page jumps; Next.js is told so it can pause it during route changes
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
+      {/* critical rule, inline so it is active before any stylesheet arrives: while an incoming page's CSS loads (see StyleGate) nothing of it is painted */}
+      <head>
+        <style id="ucaas-gate" dangerouslySetInnerHTML={{ __html: "html[data-css-wait] #ucaas-page,html[data-css-wait] #ucaas-page *{visibility:hidden!important}" }} />
+      </head>
       {/* the page scripts add classes to <html> and <body> after load, so their attributes are allowed to differ */}
       <body suppressHydrationWarning>
         {children}

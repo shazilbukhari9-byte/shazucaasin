@@ -3391,7 +3391,6 @@ footer.foot .news button{width:44px;height:44px;flex:none}
 }
 
 /* page swap: keep the incoming page hidden until its stylesheets have loaded (see components/StyleGate.tsx) */
-html[data-css-wait] #ucaas-page{visibility:hidden}
 
 /* homepage hero: the phone is as tall as the dashboard behind it (their bottoms line up) */
 @media(min-width:621px){
@@ -3688,3 +3687,16 @@ section:has(>.wrap>.pw) .pw,section:has(>.wrap>.tm-pair) .tm-pair,section:has(>.
   .bl-step:active{transform:scale(.94)}
   .bl-step:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
 }
+
+/* homepage "Capacity" row (live agent card): its own class, so the capability-card box styles no longer squeeze the label against the value */
+.cp-load{margin-top:auto;padding-top:14px;border-top:1px solid var(--line)}
+.cp-load .cap-t{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:9px;font-size:12.5px}
+.cp-load .cap-t b{font-size:14px;font-weight:600;color:var(--ink)}
+/* capability cards are real links now: lift and tint on hover, with a visible focus ring */
+a.cap:hover{transform:translateY(-2px);border-color:rgba(232,85,58,.35);box-shadow:0 14px 26px -18px rgba(120,60,30,.4)}
+a.cap:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+a.cap:hover .ci{background:rgba(232,85,58,.12);color:var(--coral)}
+
+/* footer UCAAS watermark: letters sit close together like a logotype, none overlapping and none clipped */
+footer.foot .wm{letter-spacing:0!important;gap:0!important;overflow:visible!important;padding-inline:.02em!important}
+footer.foot .wm span{padding:.02em .02em .05em!important;margin:0 .004em!important;overflow:visible!important;letter-spacing:0!important}
