@@ -105,13 +105,13 @@ export default function LinkRouter() {
       const hrefs: string[] = [];
       document.querySelectorAll<HTMLAnchorElement>("header.nav a[href^=\"/\"], #ucaas-page .mega a[href^=\"/\"]").forEach((a) => {
         const u = new URL(a.href, location.href);
-        if (u.origin !== location.origin || u.pathname === location.pathname || /.[a-z0-9]+$/i.test(u.pathname) || u.pathname.startsWith("/assets/")) return;
+        if (u.origin !== location.origin || u.pathname === location.pathname || /\.[a-z0-9]+$/i.test(u.pathname) || u.pathname.startsWith("/assets/")) return;
         if (!seen.has(u.pathname)) { seen.add(u.pathname); hrefs.push(u.pathname); }
       });
-      hrefs.slice(0, 30).forEach((h, i) => {
+      hrefs.slice(0, 8).forEach((h, i) => {
         timers.push(window.setTimeout(() => { if (!cancelled) router.prefetch(h); }, Math.floor(i / 3) * 500));
       });
-    }, 2500);
+    }, 3500);
     return () => { cancelled = true; window.clearTimeout(start); timers.forEach((x) => window.clearTimeout(x)); };
   }, [pathname, router]);
 

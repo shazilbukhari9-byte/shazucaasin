@@ -3701,9 +3701,39 @@ a.cap:hover .ci{background:rgba(232,85,58,.12);color:var(--coral)}
 footer.foot .wm{letter-spacing:0!important;gap:0!important;overflow:visible!important;padding-inline:.02em!important}
 footer.foot .wm span{padding:.02em .02em .05em!important;margin:0 .004em!important;overflow:visible!important;letter-spacing:0!important}
 
-/* web-application feel: a page appears at once - no fade/slide/scale entrance on arrival, no staggered build-in.
-   Hover states, the open/close of menus and the live product mockups keep their own motion. */
-.rv,.rv.in{opacity:1!important;transform:none!important;transition-property:box-shadow,border-color,background-color,color,filter!important}
-.kx-js [data-r],.kx-js [data-r]:not(.kx-seen),[data-r],[data-r].kx-seen,[data-stagger]>*{opacity:1!important;transform:none!important;animation:none!important}
-.hero [class*="hero-"],.hero h1,.hero .sub,.hero .hero-cta,.hero .hero-kicker,.bl-hero .bl-hd>*{animation:none!important}
-.hero-title-line,.hero-rotor{animation:none!important}
+/* web-application feel: a page appears at once - whatever is on screen when the page arrives is shown immediately (no ease-in, no stagger);
+   things further down keep their gentle reveal as they scroll into view, and hover effects are untouched. */
+html.ucaas-arrive #ucaas-page [data-r],
+html.ucaas-arrive #ucaas-page [data-r].kx-seen,
+html.ucaas-arrive #ucaas-page .hero-title-line,
+html.ucaas-arrive #ucaas-page .hero-rotor,
+html.ucaas-arrive #ucaas-page .rv{animation-duration:1ms!important;animation-delay:0s!important}
+
+/* scrolling chip rows: room between the chips and between the rows (the lower row used to touch the upper one) */
+.kx-mq-t{gap:18px!important}
+.kx-mq{padding-block:6px!important;margin-bottom:0!important}
+.kx-mq+.kx-mq{margin-top:14px!important}
+
+/* homepage platform tabs on phones: previous arrow, the selected tab in the middle, next arrow */
+.tab-step{display:none}
+@media(max-width:700px){
+  #platform .tabs{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;padding:6px!important;border-radius:999px!important;width:100%;overflow:visible}
+  #platform .tabs .tab:not([aria-selected=true]){display:none!important}
+  #platform .tabs .tab[aria-selected=true]{flex:1 1 auto;justify-content:center;min-height:46px;margin:0}
+  .tab-step{display:grid!important;place-items:center;flex:0 0 46px;width:46px;height:46px;border-radius:50%;border:1px solid rgba(40,30,20,.13);background:#fff;color:var(--fg);cursor:pointer;box-shadow:0 8px 18px -12px rgba(120,60,30,.35);transition:transform .2s}
+  .tab-step svg{width:18px;height:18px}
+  .tab-step.prev svg{transform:rotate(180deg)}
+  .tab-step:active{transform:scale(.94)}
+  .tab-step:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+}
+
+/* capability cards: the title stays on one line (the text column gets the room, the title scales down on narrow cards) */
+a.cap{padding-right:14px!important}
+a.cap>span:last-child{min-width:0;flex:1 1 auto}
+a.cap b{white-space:nowrap!important;overflow:hidden;text-overflow:clip;font-size:clamp(11px,min(3.1vw,15px),15px)!important;letter-spacing:-.01em}
+a.cap small{white-space:normal}
+@media(min-width:701px){a.cap b{font-size:14px!important}}
+
+/* product cards: the whole card lifts a little on hover (the mockup inside animates as well) */
+#products .pcards .pcard{transition:flex-grow .65s cubic-bezier(.22,.8,.24,1),transform .35s cubic-bezier(.22,.8,.2,1),box-shadow .35s,border-color .35s!important}
+#products .pcards .pcard:hover{transform:translateY(-6px)!important;box-shadow:0 34px 60px -34px rgba(120,60,30,.45),0 2px 6px rgba(120,60,20,.06)!important;border-color:rgba(232,85,58,.28)!important}

@@ -35,6 +35,12 @@ function heal() {
 /** For a moment after a page appears, CSS transitions on it are off, so it shows at once instead of easing from its initial state. */
 function arrive(root: HTMLElement) {
   root.classList.add("ucaas-arrive");
+  // what is already on screen is shown at once; the rest still reveals as it is scrolled into view
+  const h = window.innerHeight;
+  document.querySelectorAll<HTMLElement>("#ucaas-page .rv, #ucaas-page [data-r]").forEach((el) => {
+    const r = el.getBoundingClientRect();
+    if (r.top < h + 40 && r.bottom > -40) el.classList.add(el.hasAttribute("data-r") ? "kx-seen" : "in");
+  });
   window.setTimeout(() => root.classList.remove("ucaas-arrive"), 900);
 }
 
