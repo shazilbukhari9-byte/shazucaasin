@@ -7091,7 +7091,7 @@ html body #ai .lp-ft{display:flex}
 @media(prefers-reduced-motion:reduce){#ai .cl-av::before,#ai .cl-av::after,#ai .cl-wave i{animation:none}#ai .s2-scr.on .cl-who,#ai .s2-scr.on .cl-audio,#ai .s2-scr.on .cl-say,#ai .s2-scr.on .cl-steps li,#ai .s2-scr.on .cl-dot{animation:none;opacity:1;transform:none}}
 
 /* dropdown: no inner scrollbar, the whole menu is shown; on short screens it tightens up instead of scrolling */
-html body .mega{max-height:none!important;overflow:visible!important}
+@media(min-width:961px){html body .mega{max-height:none!important;overflow:visible!important}}
 html body .mega *{scrollbar-width:none}
 @media (max-height:900px) and (min-width:961px){
   html body .mega{padding:8px!important}
@@ -7104,6 +7104,7 @@ html body .mega *{scrollbar-width:none}
 }
 
 /* dropdown: compact size (narrower panel, tighter rows, smaller type) so it never feels oversized */
+@media(min-width:961px){
 html body .mega{left:0!important;right:0!important;margin:0 auto!important;width:min(1040px,calc(100% - 32px))!important;padding:8px!important;border-radius:22px!important}
 html body .mega .mg{gap:8px!important;grid-template-columns:272px minmax(0,1fr)!important}
 html body .mega .mg-l{padding:8px 6px!important;border-radius:16px!important}
@@ -7122,7 +7123,6 @@ html body .mega .mg-g .it *{line-height:1.25!important}
 html body .mega .mg-g .it b,html body .mega .mg-g .it strong{font-size:14px!important}
 html body .mega .mg-g .it small,html body .mega .mg-g .it p,html body .mega .mg-g .it span:not([class*="pop"]){font-size:12.5px!important}
 html body .mega .mg-f{padding:8px 12px 0!important;font-size:12.5px!important}
-
 /* equal vertical rhythm: every homepage section after the hero uses the same top / bottom gaps as "Our platform" */
 html body #products,html body #crmSec,html body #dashboard,html body #stories{padding-top:88px!important;padding-bottom:80px!important}
 html body #ai,html body #ai .night{padding-top:0!important;padding-bottom:0!important}
@@ -7130,4 +7130,10 @@ html body #ai .night .wrap,html body #ai .wrap{padding-top:88px!important;paddin
 @media(max-width:700px){
   html body #products,html body #crmSec,html body #dashboard,html body #stories{padding-top:64px!important;padding-bottom:64px!important}
   html body #ai .night .wrap,html body #ai .wrap{padding-top:64px!important;padding-bottom:64px!important}
+}
+}
+
+/* footer UCAAS wordmark: always full size (it no longer shrinks on shorter screens) */
+@media(min-width:1001px){
+  html body footer.foot .wm{font-size:clamp(140px,min(20vw,290px),290px)!important}
 }
