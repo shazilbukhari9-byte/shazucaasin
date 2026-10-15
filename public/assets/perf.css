@@ -7122,3 +7122,12 @@ html body .mega .mg-g .it *{line-height:1.25!important}
 html body .mega .mg-g .it b,html body .mega .mg-g .it strong{font-size:14px!important}
 html body .mega .mg-g .it small,html body .mega .mg-g .it p,html body .mega .mg-g .it span:not([class*="pop"]){font-size:12.5px!important}
 html body .mega .mg-f{padding:8px 12px 0!important;font-size:12.5px!important}
+
+/* equal vertical rhythm: every homepage section after the hero uses the same top / bottom gaps as "Our platform" */
+html body #products,html body #crmSec,html body #dashboard,html body #stories{padding-top:88px!important;padding-bottom:80px!important}
+html body #ai,html body #ai .night{padding-top:0!important;padding-bottom:0!important}
+html body #ai .night .wrap,html body #ai .wrap{padding-top:88px!important;padding-bottom:80px!important}
+@media(max-width:700px){
+  html body #products,html body #crmSec,html body #dashboard,html body #stories{padding-top:64px!important;padding-bottom:64px!important}
+  html body #ai .night .wrap,html body #ai .wrap{padding-top:64px!important;padding-bottom:64px!important}
+}
