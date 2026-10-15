@@ -28,6 +28,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
       {/* critical rule, inline so it is active before any stylesheet arrives: while an incoming page's CSS loads (see StyleGate) nothing of it is painted */}
       <head>
+        {/* first load / refresh: the page stays hidden until every stylesheet (the page links its CSS inside the body) has loaded, so it never shows
+            in a half-styled, oversized state; a safety timer reveals it anyway after 6s */}
+        <script
+          id="ucaas-first-paint"
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){var d=document.documentElement;d.setAttribute(\"data-css-wait\",\"\");function go(){d.removeAttribute(\"data-css-wait\")}if(document.readyState===\"complete\")go();else window.addEventListener(\"load\",go);setTimeout(go,6000)})()",
+          }}
+        />
+        <noscript>
+          <style>{"html[data-css-wait] #ucaas-page,html[data-css-wait] #ucaas-page *{visibility:visible!important}"}</style>
+        </noscript>
         <style id="ucaas-gate" dangerouslySetInnerHTML={{ __html: "html[data-css-wait] #ucaas-page,html[data-css-wait] #ucaas-page *{visibility:hidden!important}html.ucaas-arrive #ucaas-page *,html.ucaas-arrive #ucaas-page *::before,html.ucaas-arrive #ucaas-page *::after{transition:none!important}" }} />
       </head>
       {/* the page scripts add classes to <html> and <body> after load, so their attributes are allowed to differ */}

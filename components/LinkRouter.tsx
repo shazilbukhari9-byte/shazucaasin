@@ -93,6 +93,73 @@ export default function LinkRouter() {
     };
   }, [pathname]);
 
+  // Mobile / tablet menu: backdrop, scroll lock, X icon, Escape and outside-click to close, focus kept inside while open and
+  // returned to the toggle on close. The page script owns the open state (the `hidden` attribute); this only observes and helps.
+  useEffect(() => {
+    const btn = document.getElementById("mbtn") as HTMLButtonElement | null;
+    const menu = document.getElementById("mnav") as HTMLElement | null;
+    if (!btn || !menu) return;
+    const root = document.documentElement;
+    const backdrop = document.createElement("div");
+    backdrop.className = "mnav-backdrop";
+    backdrop.setAttribute("aria-hidden", "true");
+    document.body.appendChild(backdrop);
+    // the same "Sign in" is already in the top bar
+    menu.querySelectorAll<HTMLElement>("a[data-auth=signin]").forEach((a) => { a.hidden = true; a.style.display = "none"; });
+    // an X icon shown while the menu is open
+    if (!btn.querySelector(".x-ico")) {
+      const ns = "http://www.w3.org/2000/svg";
+      const svg = document.createElementNS(ns, "svg");
+      svg.setAttribute("viewBox", "0 0 24 24");
+      svg.setAttribute("class", "i x-ico");
+      svg.setAttribute("aria-hidden", "true");
+      const p = document.createElementNS(ns, "path");
+      p.setAttribute("d", "M6 6l12 12M18 6L6 18");
+      p.setAttribute("fill", "none"); p.setAttribute("stroke", "currentColor"); p.setAttribute("stroke-width", "2"); p.setAttribute("stroke-linecap", "round");
+      svg.appendChild(p);
+      btn.appendChild(svg);
+    }
+    const isOpen = () => !menu.hidden;
+    const sync = () => {
+      const open = isOpen();
+      root.classList.toggle("mnav-open", open);
+      btn.setAttribute("aria-label", open ? "Close menu" : "Menu");
+      if (open) {
+        const first = menu.querySelector<HTMLElement>("button:not([hidden]), a[href]:not([hidden])");
+        window.setTimeout(() => first?.focus({ preventScroll: true }), 30);
+      }
+    };
+    const close = (refocus: boolean) => { if (isOpen()) { btn.click(); if (refocus) btn.focus(); } };
+    const mo = new MutationObserver(sync);
+    mo.observe(menu, { attributes: true, attributeFilter: ["hidden"] });
+    const onKey = (e: KeyboardEvent) => {
+      if (!isOpen()) return;
+      if (e.key === "Escape") { e.preventDefault(); close(true); return; }
+      if (e.key !== "Tab") return;
+      const items = [btn, ...Array.from(menu.querySelectorAll<HTMLElement>("button:not([hidden]), a[href]:not([hidden])"))].filter((el) => el.offsetParent !== null);
+      if (!items.length) return;
+      const first = items[0], last = items[items.length - 1], cur = document.activeElement;
+      if (e.shiftKey && cur === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && cur === last) { e.preventDefault(); first.focus(); }
+      else if (!items.includes(cur as HTMLElement)) { e.preventDefault(); first.focus(); }
+    };
+    const onDown = (e: MouseEvent) => {
+      if (!isOpen()) return;
+      const t = e.target as Node;
+      if (!menu.contains(t) && !btn.contains(t)) close(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onDown);
+    sync();
+    return () => {
+      mo.disconnect();
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onDown);
+      backdrop.remove();
+      root.classList.remove("mnav-open");
+    };
+  }, [pathname]);
+
   // Once the page is idle, the pages in the main menu are prefetched in small batches, so a click opens at once.
   // Skipped on data-saver and slow connections.
   useEffect(() => {

@@ -24,6 +24,8 @@ const nextConfig: NextConfig = {
     return [
       // old links and bookmarks: "page.html" -> "/page", and the homepage lives at "/"
       { source: "/ucaas-homepage.html", destination: "/", permanent: true },
+      // pages that were removed: old links and bookmarks land on the homepage
+      { source: "/:slug(omnichannel|team-messaging-full|ai-call-scheduling|ai-follow-ups)", destination: "/", permanent: false },
       { source: "/ucaas-homepage", destination: "/", permanent: true },
       { source: "/:slug([a-z0-9-]+)\\.html", destination: "/:slug", permanent: true },
     ];

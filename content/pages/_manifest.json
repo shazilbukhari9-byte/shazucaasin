@@ -1,290 +1,274 @@
 [
-  {
-    "slug": "ucaas-homepage",
-    "title": "UCaaS Homepage"
-  },
-  {
-    "slug": "phone-texting-full",
-    "title": "UCaaS · Phone & Texting"
-  },
-  {
-    "slug": "video-meetings-full",
-    "title": "UCaaS · HD Video Meetings"
-  },
-  {
-    "slug": "toll-free-numbers-full",
-    "title": "UCaaS · Toll-free Numbers"
-  },
-  {
-    "slug": "team-messaging-full",
-    "title": "UCaaS · Team Messaging"
-  },
-  {
-    "slug": "blog-full",
-    "title": "UCaaS · Blog"
-  },
-  {
-    "slug": "ai-receptionist",
-    "title": "UCaaS · AI Receptionist"
-  },
-  {
-    "slug": "ai-agent-assist",
-    "title": "UCaaS · AI Agent Assist"
-  },
-  {
-    "slug": "conversation-intelligence",
-    "title": "UCaaS · Conversation Intelligence"
-  },
-  {
-    "slug": "unified-communications",
-    "title": "UCaaS · Unified Communications Platform"
-  },
-  {
-    "slug": "phone-system",
-    "title": "UCaaS · Hosted Phone System"
-  },
-  {
-    "slug": "business-sms",
-    "title": "UCaaS · Business SMS & MMS"
-  },
-  {
-    "slug": "online-fax",
-    "title": "UCaaS · Online Fax"
-  },
-  {
-    "slug": "auto-attendant",
-    "title": "UCaaS · Auto-attendant & IVR"
-  },
-  {
-    "slug": "call-recording",
-    "title": "UCaaS · Call Recording"
-  },
-  {
-    "slug": "supervisor-tools",
-    "title": "UCaaS · Supervisor Tools"
-  },
-  {
-    "slug": "remote-teams",
-    "title": "UCaaS · Remote & Hybrid Teams"
-  },
-  {
-    "slug": "smb-owners",
-    "title": "UCaaS · SMB Owner-Operators"
-  },
-  {
-    "slug": "enterprise-it",
-    "title": "UCaaS · Enterprise IT"
-  },
-  {
-    "slug": "sales-teams",
-    "title": "UCaaS · Sales Teams"
-  },
-  {
-    "slug": "financial-services",
-    "title": "UCaaS · Financial Services"
-  },
-  {
-    "slug": "retail-ecom",
-    "title": "UCaaS · Retail & eCom"
-  },
-  {
-    "slug": "saas-tech",
-    "title": "UCaaS · SaaS & Tech"
-  },
-  {
-    "slug": "logistics",
-    "title": "UCaaS · Logistics"
-  },
-  {
-    "slug": "support-teams",
-    "title": "UCaaS · Support Teams"
-  },
-  {
-    "slug": "live-chat",
-    "title": "UCaaS · Live Chat"
-  },
-  {
-    "slug": "ai-chatbot",
-    "title": "UCaaS · AI Chatbot"
-  },
-  {
-    "slug": "inbox",
-    "title": "UCaaS · Inbox"
-  },
-  {
-    "slug": "omnichannel",
-    "title": "UCaaS · Omnichannel"
-  },
-  {
-    "slug": "ai-follow-ups",
-    "title": "UCaaS · AI Follow-Ups"
-  },
-  {
-    "slug": "ai-call-scheduling",
-    "title": "UCaaS · AI Call Scheduling"
-  },
-  {
-    "slug": "preview-dialing",
-    "title": "UCaaS · Preview Dialing"
-  },
-  {
-    "slug": "progressive-dialing",
-    "title": "UCaaS · Progressive Dialing"
-  },
-  {
-    "slug": "predictive-dialing",
-    "title": "UCaaS · Predictive Dialing"
-  },
-  {
-    "slug": "auto-dialer",
-    "title": "UCaaS · Auto Dialer"
-  },
-  {
-    "slug": "crm-integrations",
-    "title": "UCaaS · CRM Integrations"
-  },
-  {
-    "slug": "helpdesk-ticketing",
-    "title": "UCaaS · Helpdesk & Ticketing"
-  },
-  {
-    "slug": "productivity-tools",
-    "title": "UCaaS · Productivity Tools"
-  },
-  {
-    "slug": "healthcare-ehr",
-    "title": "UCaaS · Healthcare EHR"
-  },
-  {
-    "slug": "rest-apis",
-    "title": "UCaaS · REST APIs"
-  },
-  {
-    "slug": "local-numbers",
-    "title": "UCaaS · Local Numbers"
-  },
-  {
-    "slug": "mobile-numbers",
-    "title": "UCaaS · Mobile Numbers"
-  },
-  {
-    "slug": "by-country",
-    "title": "UCaaS · By Country"
-  },
-  {
-    "slug": "callback-scheduling",
-    "title": "UCaaS · Callback Scheduling"
-  },
-  {
-    "slug": "live-wallboards",
-    "title": "UCaaS · Live Wallboards"
-  },
-  {
-    "slug": "compare",
-    "title": "UCaaS · Compare"
-  },
-  {
-    "slug": "integrations",
-    "title": "UCaaS · Integrations"
-  },
-  {
-    "slug": "free-tools",
-    "title": "UCaaS · Free Tools"
-  },
-  {
-    "slug": "auth",
-    "title": "UCaaS · Sign in"
-  },
-  {
-    "slug": "privacy-policy",
-    "title": "UCaaS · Privacy Policy"
-  },
-  {
-    "slug": "terms",
-    "title": "UCaaS · Terms & Conditions"
-  },
-  {
-    "slug": "pricing",
-    "title": "UCaaS · Pricing"
-  },
-  {
-    "slug": "blog-porting-your-business-number",
-    "title": "UCaaS · Porting your business number without a gap in service"
-  },
-  {
-    "slug": "blog-10dlc-explained",
-    "title": "UCaaS · 10DLC explained: getting your business texts delivered"
-  },
-  {
-    "slug": "blog-choosing-a-dialing-mode",
-    "title": "UCaaS · Preview, progressive or predictive: choosing a dialing mode"
-  },
-  {
-    "slug": "blog-desk-phone-softphone-or-mobile-app",
-    "title": "UCaaS · Desk phone, softphone or mobile app: what each is best for"
-  },
-  {
-    "slug": "blog-what-to-look-for-in-a-cloud-phone-system",
-    "title": "UCaaS · What to look for in a cloud phone system"
-  },
-  {
-    "slug": "blog-meetings-that-write-their-own-notes",
-    "title": "UCaaS · Meetings that write their own notes"
-  },
-  {
-    "slug": "blog-connecting-your-crm",
-    "title": "UCaaS · Connecting your CRM so calls log themselves"
-  },
-  {
-    "slug": "blog-building-a-visual-ivr",
-    "title": "UCaaS · Building a visual IVR callers actually like"
-  },
-  {
-    "slug": "blog-call-recording-and-consent",
-    "title": "UCaaS · Call recording and consent: a plain-English guide"
-  },
-  {
-    "slug": "blog-reading-sentiment-in-real-time",
-    "title": "UCaaS · Reading sentiment in real time"
-  },
-  {
-    "slug": "blog-text-enabling-your-landline-number",
-    "title": "UCaaS · Text-enabling your landline number"
-  },
-  {
-    "slug": "blog-do-not-call-and-time-zone-rules",
-    "title": "UCaaS · Do-not-call and time-zone rules for outbound teams"
-  },
-  {
-    "slug": "blog-queue-metrics-worth-watching",
-    "title": "UCaaS · Queue metrics worth watching on a live wallboard"
-  },
-  {
-    "slug": "blog-running-a-remote-team-on-one-number",
-    "title": "UCaaS · Running a remote team on one number"
-  },
-  {
-    "slug": "blog-booking-appointments-by-phone-with-ai",
-    "title": "UCaaS · Booking appointments by phone with AI"
-  },
-  {
-    "slug": "blog-two-way-texting-best-practices",
-    "title": "UCaaS · Two-way texting best practices for support teams"
-  },
-  {
-    "slug": "blog-hosting-client-calls-from-a-browser",
-    "title": "UCaaS · Hosting client calls guests join from a browser"
-  },
-  {
-    "slug": "blog-from-helpdesk-ticket-to-callback",
-    "title": "UCaaS · From helpdesk ticket to callback in one click"
-  },
-  {
-    "slug": "blog-first-week-checklist-for-new-admins",
-    "title": "UCaaS · A first-week checklist for new UCaaS admins"
-  },
-  {
-    "slug": "blog-ai-receptionist-answers-every-call",
-    "title": "UCaaS · How an AI receptionist answers every call, and what it hands to your team"
-  }
+ {
+  "slug": "ucaas-homepage",
+  "title": "UCaaS Homepage"
+ },
+ {
+  "slug": "phone-texting-full",
+  "title": "UCaaS · Phone & Messaging"
+ },
+ {
+  "slug": "video-meetings-full",
+  "title": "UCaaS · HD Video Meetings"
+ },
+ {
+  "slug": "toll-free-numbers-full",
+  "title": "UCaaS · Toll-free Numbers"
+ },
+ {
+  "slug": "blog-full",
+  "title": "UCaaS · Blog"
+ },
+ {
+  "slug": "ai-receptionist",
+  "title": "UCaaS · AI Receptionist"
+ },
+ {
+  "slug": "ai-agent-assist",
+  "title": "UCaaS · AI Agent Assist"
+ },
+ {
+  "slug": "conversation-intelligence",
+  "title": "UCaaS · Conversation Intelligence"
+ },
+ {
+  "slug": "unified-communications",
+  "title": "UCaaS · Unified Communications Platform"
+ },
+ {
+  "slug": "phone-system",
+  "title": "UCaaS · Hosted Phone System"
+ },
+ {
+  "slug": "business-sms",
+  "title": "UCaaS · Business SMS & MMS"
+ },
+ {
+  "slug": "online-fax",
+  "title": "UCaaS · Online Fax"
+ },
+ {
+  "slug": "auto-attendant",
+  "title": "UCaaS · Auto-attendant & IVR"
+ },
+ {
+  "slug": "call-recording",
+  "title": "UCaaS · Call Recording"
+ },
+ {
+  "slug": "supervisor-tools",
+  "title": "UCaaS · Supervisor Tools"
+ },
+ {
+  "slug": "remote-teams",
+  "title": "UCaaS · Remote & Hybrid Teams"
+ },
+ {
+  "slug": "smb-owners",
+  "title": "UCaaS · SMB Owner-Operators"
+ },
+ {
+  "slug": "enterprise-it",
+  "title": "UCaaS · Enterprise IT"
+ },
+ {
+  "slug": "sales-teams",
+  "title": "UCaaS · Sales Teams"
+ },
+ {
+  "slug": "financial-services",
+  "title": "UCaaS · Financial Services"
+ },
+ {
+  "slug": "retail-ecom",
+  "title": "UCaaS · Retail & eCom"
+ },
+ {
+  "slug": "saas-tech",
+  "title": "UCaaS · SaaS & Tech"
+ },
+ {
+  "slug": "logistics",
+  "title": "UCaaS · Logistics"
+ },
+ {
+  "slug": "support-teams",
+  "title": "UCaaS · Support Teams"
+ },
+ {
+  "slug": "live-chat",
+  "title": "UCaaS · Live Chat"
+ },
+ {
+  "slug": "ai-chatbot",
+  "title": "UCaaS · AI Chatbot"
+ },
+ {
+  "slug": "inbox",
+  "title": "UCaaS · Inbox"
+ },
+ {
+  "slug": "preview-dialing",
+  "title": "UCaaS · Preview Dialing"
+ },
+ {
+  "slug": "progressive-dialing",
+  "title": "UCaaS · Progressive Dialing"
+ },
+ {
+  "slug": "predictive-dialing",
+  "title": "UCaaS · Predictive Dialing"
+ },
+ {
+  "slug": "auto-dialer",
+  "title": "UCaaS · Auto Dialer"
+ },
+ {
+  "slug": "crm-integrations",
+  "title": "UCaaS · CRM Integrations"
+ },
+ {
+  "slug": "helpdesk-ticketing",
+  "title": "UCaaS · Helpdesk & Ticketing"
+ },
+ {
+  "slug": "productivity-tools",
+  "title": "UCaaS · Productivity Tools"
+ },
+ {
+  "slug": "healthcare-ehr",
+  "title": "UCaaS · Healthcare EHR"
+ },
+ {
+  "slug": "rest-apis",
+  "title": "UCaaS · REST APIs"
+ },
+ {
+  "slug": "local-numbers",
+  "title": "UCaaS · Local Numbers"
+ },
+ {
+  "slug": "mobile-numbers",
+  "title": "UCaaS · Mobile Numbers"
+ },
+ {
+  "slug": "by-country",
+  "title": "UCaaS · By Country"
+ },
+ {
+  "slug": "callback-scheduling",
+  "title": "UCaaS · Callback Scheduling"
+ },
+ {
+  "slug": "live-wallboards",
+  "title": "UCaaS · Live Wallboards"
+ },
+ {
+  "slug": "compare",
+  "title": "UCaaS · Compare"
+ },
+ {
+  "slug": "integrations",
+  "title": "UCaaS · Integrations"
+ },
+ {
+  "slug": "free-tools",
+  "title": "UCaaS · Free Tools"
+ },
+ {
+  "slug": "auth",
+  "title": "UCaaS · Sign in"
+ },
+ {
+  "slug": "privacy-policy",
+  "title": "UCaaS · Privacy Policy"
+ },
+ {
+  "slug": "terms",
+  "title": "UCaaS · Terms & Conditions"
+ },
+ {
+  "slug": "pricing",
+  "title": "UCaaS · Pricing"
+ },
+ {
+  "slug": "blog-porting-your-business-number",
+  "title": "UCaaS · Porting your business number without a gap in service"
+ },
+ {
+  "slug": "blog-10dlc-explained",
+  "title": "UCaaS · 10DLC explained: getting your business texts delivered"
+ },
+ {
+  "slug": "blog-choosing-a-dialing-mode",
+  "title": "UCaaS · Preview, progressive or predictive: choosing a dialing mode"
+ },
+ {
+  "slug": "blog-desk-phone-softphone-or-mobile-app",
+  "title": "UCaaS · Desk phone, softphone or mobile app: what each is best for"
+ },
+ {
+  "slug": "blog-what-to-look-for-in-a-cloud-phone-system",
+  "title": "UCaaS · What to look for in a cloud phone system"
+ },
+ {
+  "slug": "blog-meetings-that-write-their-own-notes",
+  "title": "UCaaS · Meetings that write their own notes"
+ },
+ {
+  "slug": "blog-connecting-your-crm",
+  "title": "UCaaS · Connecting your CRM so calls log themselves"
+ },
+ {
+  "slug": "blog-building-a-visual-ivr",
+  "title": "UCaaS · Building a visual IVR callers actually like"
+ },
+ {
+  "slug": "blog-call-recording-and-consent",
+  "title": "UCaaS · Call recording and consent: a plain-English guide"
+ },
+ {
+  "slug": "blog-reading-sentiment-in-real-time",
+  "title": "UCaaS · Reading sentiment in real time"
+ },
+ {
+  "slug": "blog-text-enabling-your-landline-number",
+  "title": "UCaaS · Text-enabling your landline number"
+ },
+ {
+  "slug": "blog-do-not-call-and-time-zone-rules",
+  "title": "UCaaS · Do-not-call and time-zone rules for outbound teams"
+ },
+ {
+  "slug": "blog-queue-metrics-worth-watching",
+  "title": "UCaaS · Queue metrics worth watching on a live wallboard"
+ },
+ {
+  "slug": "blog-running-a-remote-team-on-one-number",
+  "title": "UCaaS · Running a remote team on one number"
+ },
+ {
+  "slug": "blog-booking-appointments-by-phone-with-ai",
+  "title": "UCaaS · Booking appointments by phone with AI"
+ },
+ {
+  "slug": "blog-two-way-texting-best-practices",
+  "title": "UCaaS · Two-way texting best practices for support teams"
+ },
+ {
+  "slug": "blog-hosting-client-calls-from-a-browser",
+  "title": "UCaaS · Hosting client calls guests join from a browser"
+ },
+ {
+  "slug": "blog-from-helpdesk-ticket-to-callback",
+  "title": "UCaaS · From helpdesk ticket to callback in one click"
+ },
+ {
+  "slug": "blog-first-week-checklist-for-new-admins",
+  "title": "UCaaS · A first-week checklist for new UCaaS admins"
+ },
+ {
+  "slug": "blog-ai-receptionist-answers-every-call",
+  "title": "UCaaS · How an AI receptionist answers every call, and what it hands to your team"
+ }
 ]
