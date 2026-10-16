@@ -9504,3 +9504,19 @@ html body .pv-ctl .end{white-space:nowrap;flex:none}
 html body .ch-stairs,html body .ch-ru,html body .vm-ab{align-items:stretch}
 html body .ch-stairs li{display:flex;flex-direction:column}
 html body .ch-ru>*,html body .vm-ab>*{height:100%}
+
+/* new pages: every content block sits on one of four widths so left and right edges line up from section to section */
+@media(min-width:1001px){
+html body main .ch-cmpz,html body main .ch-rw,html body main .ch-sw2,html body main .ch-cvf,html body main .ch-ho,html body main .ch-bd,html body main .ch-pt2,html body main .ch-isl,html body main .ch-ct,html body main .ch-ru,html body main .ch-cx,html body main .ch-dm,html body main .ch-rl,html body main .ch-nf,html body main .ch-mg,html body main .ch-mg-s,html body main .ch-nums,html body main .ch-glance,html body main .ch-utbl,html body main .ch-tabs,html body main .ch-ftop,html body main .ch-facts,html body main .ch-pp,html body main .ch-rp,html body main .ch-dr,html body main .ch-cmp,html body main .ch-fan,html body main .ch-nb,html body main .ch-vc,html body main .ch-w24,html body main .ch-wb,html body main .ch-kp,html body main .ch-app,html body main .ch-mb,html body main .ch-wz,html body main .ch-dd,html body main .ch-stairs,html body main .ch-um{max-width:1160px}
+html body main .ch-calc,html body main .ch-bs,html body main .ch-al,html body main .ch-ah,html body main .ch-an2,html body main .ch-zz2,html body main .ch-au,html body main .ch-fx,html body main .ch-cs,html body main .ch-rs,html body main .ch-fw,html body main .ch-tg,html body main .ch-en,html body main .ch-ftiles,html body main .ch-mx,html body main .ch-rows,html body main .ch-ptbl,html body main .ch-eq,html body main .ch-xt,html body main .ch-tp,html body main .ch-roi,html body main .ch-rg,html body main .ch-rl2{max-width:1000px}
+html body main .ch-rv,html body main .ch-tk,html body main .ch-orb,html body main .ch-th2,html body main .ch-cv2,html body main .ch-gt,html body main .ch-tk2,html body main .ch-jr,html body main .ch-pf{max-width:880px}
+html body main .ch-sk,html body main .ch-fl{max-width:640px}
+}
+
+/* titles and descriptions start on the same line across a row of cards */
+html body .ch-uc .ch-msg{flex:1}
+html body .ch-car-c p{min-height:4.8em}
+@media(min-width:1001px){html body .ch-stairs h3{min-height:2.6em}}
+html body .ch-stairs{padding-bottom:0}
+html body .ch-ub{align-items:flex-start}
+html body .ch-ub-m{align-self:stretch;display:flex;flex-direction:column;justify-content:flex-start}
