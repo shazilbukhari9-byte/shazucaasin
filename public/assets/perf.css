@@ -9393,3 +9393,49 @@ html body .tbx-body{height:auto!important;min-height:440px}
   .tbx-list{overflow-x:auto;overflow-y:hidden}
   .tbx-in{left:14px;right:14px}
 }
+
+/* platform tabs 4-6 (Broadcasts, Social inbox, Inbox & Analytics): the same window size and scale as the Auto Dialer mockup;
+   the floating toast sits inside the window instead of hanging below it */
+@media(min-width:901px){
+  html body #p3 .sm-stage,html body #p4 .sm-stage,html body #p5 .sm-stage{--cp-s:.727!important;--cp-w:calc(100% / .727)!important;--cp-x:0px!important;--cp-h:660px!important;display:block!important;height:calc(660px * .727)!important;min-height:0!important;padding:0!important}
+  html body #p3 .sm-stage>.cp-scale,html body #p4 .sm-stage>.cp-scale,html body #p5 .sm-stage>.cp-scale{position:absolute!important;left:0!important;top:0!important;width:calc(100% / .727)!important;height:660px!important;transform:scale(.727)!important;transform-origin:0 0!important;display:block!important}
+  html body #p3 .sm-win,html body #p4 .sm-win,html body #p5 .sm-win{width:100%!important;max-width:none!important;height:604px!important;min-height:0!important;margin:0!important}
+  html body #p3 .sm-body,html body #p4 .sm-body,html body #p5 .sm-body{padding-bottom:86px!important}
+  html body #p3 .sm-toast,html body #p4 .sm-toast,html body #p5 .sm-toast{position:absolute!important;right:18px!important;bottom:16px!important;z-index:3}
+}
+@media(min-width:901px){html body #p3 .sm-toast,html body #p4 .sm-toast,html body #p5 .sm-toast{bottom:72px!important;right:18px!important}}
+
+/* team inbox mockup: booking picker, confirmation and softer motion */
+.tbx-b.tbx-card{max-width:88%;padding:12px 14px;background:#fff;border:1px solid rgba(40,30,20,.12);color:#1C1713;box-shadow:0 14px 26px -20px rgba(90,45,20,.45)}
+.tbx-b.out.tbx-card{border-bottom-right-radius:5px}.tbx-b.in.tbx-card{border-bottom-left-radius:5px}
+.tbx-pick .d,.tbx-pick .t{display:flex;gap:6px;flex-wrap:wrap}
+.tbx-pick .d{margin-bottom:8px}
+.tbx-pick .d span{display:flex;flex-direction:column;align-items:center;min-width:44px;padding:7px 10px;border-radius:11px;background:#F4F2EF;font-size:11px;font-weight:600;color:#6B6460;transition:background .35s,color .35s,transform .35s}
+.tbx-pick .d span b{font-size:15px;color:#1C1713;transition:color .35s}
+.tbx-pick .d span.on{background:#0C0C0D;color:#fff;transform:translateY(-2px)}.tbx-pick .d span.on b{color:#fff}
+.tbx-pick .t span{padding:6px 12px;border-radius:99px;border:1px solid rgba(40,30,20,.16);font-size:12px;font-weight:600;color:#3A322C;transition:border-color .35s,background .35s,color .35s}
+.tbx-pick .t span.on{border-color:#E8553A;background:#FFF1E8;color:#C23A1B}
+.tbx-okc{display:flex;align-items:center;gap:12px;min-width:210px}
+.tbx-okc .ck{flex:none;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#0E9F63;animation:tbxPop .5s cubic-bezier(.34,1.56,.64,1)}
+.tbx-okc .ck svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;animation:tbxDraw .5s ease .25s forwards}
+.tbx-okc b{display:block;font-size:13.5px}.tbx-okc small{font-size:12px;color:#6B6460}
+.tbx-b.tbx-card:has(.tbx-okc){background:#E6F6EE;border-color:rgba(14,159,99,.3)}
+@keyframes tbxPop{from{transform:scale(.3);opacity:0}}
+@keyframes tbxDraw{to{stroke-dashoffset:0}}
+.tbx-pa li{animation:tbxIn .4s cubic-bezier(.22,1,.36,1) both}
+.tbx-pa li:nth-child(2){animation-delay:.08s}.tbx-pa li:nth-child(3){animation-delay:.16s}
+.tbx-item.on .av{animation:tbxRing 1.8s ease-out 1}
+@keyframes tbxRing{0%{box-shadow:0 0 0 0 rgba(255,122,92,.5)}100%{box-shadow:0 0 0 12px rgba(255,122,92,0)}}
+@media(prefers-reduced-motion:reduce){.tbx-okc .ck,.tbx-okc .ck svg,.tbx-pa li,.tbx-item.on .av{animation:none}.tbx-okc .ck svg{stroke-dashoffset:0}}
+/* team inbox list: unread badge, flash on a new message, smooth reorder */
+.tbx-item{position:relative;will-change:transform}
+.tbx-item em{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.tbx-item .bd{display:grid;place-items:center;min-width:19px;height:19px;padding:0 5px;border-radius:99px;background:#E8553A;color:#fff;font-style:normal;font-size:10.5px;font-weight:700;animation:tbxPop .45s cubic-bezier(.34,1.56,.64,1)}
+.tbx-item.flash{animation:tbxFlash 1.6s ease-out}
+.tbx-item.flash small{color:#1C1713;font-weight:600}
+@keyframes tbxFlash{0%{background:#FFE3D4}100%{background:transparent}}
+.tbx-item.on.flash{animation:none}
+@media(prefers-reduced-motion:reduce){.tbx-item .bd,.tbx-item.flash{animation:none}.tbx-item{will-change:auto}}
+/* team inbox chat: no inner scrollbar or wheel capture, so the page scrolls normally over the mockup; the newest messages stay in view at the bottom */
+html body .tbx-msgs{overflow:hidden!important;justify-content:flex-end!important;overscroll-behavior:auto}
+html body .tbx-msgs .tbx-b{flex:none}
