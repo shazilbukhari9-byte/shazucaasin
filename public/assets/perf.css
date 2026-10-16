@@ -9504,3 +9504,7 @@ html body .pv-ctl .end{white-space:nowrap;flex:none}
 html body .ch-stairs,html body .ch-ru,html body .vm-ab{align-items:stretch}
 html body .ch-stairs li{display:flex;flex-direction:column}
 html body .ch-ru>*,html body .vm-ab>*{height:100%}
+
+/* card carousels slide with the page scroll: no arrows, dots or progress bars */
+html body :is(.kx-nav,.kx-prog,.ch-car-n,.ch-car-dots){display:none!important}
+html body .sc-pinned{overflow-x:hidden!important;scroll-snap-type:none!important;scroll-behavior:auto!important}

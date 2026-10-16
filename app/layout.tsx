@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { preload } from "react-dom";
 import LinkRouter from "@/components/LinkRouter";
+import ScrollCarousels from "@/components/ScrollCarousels";
 
 export const metadata: Metadata = {
   title: "UCaaS",
@@ -46,6 +47,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body suppressHydrationWarning>
         {children}
         <LinkRouter />
+        <ScrollCarousels />
       </body>
     </html>
   );
