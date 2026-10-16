@@ -325,5 +325,50 @@
     "slug": "analytics-insights",
     "title": "UCaaS · Analytics & Insights",
     "description": "One analytics layer for every channel: delivery, engagement, conversion funnels, agent and bot performance and revenue attribution, live and exportable."
+  },
+  {
+    "slug": "social-inbox",
+    "title": "UCaaS · Social Inbox",
+    "description": "Every DM and comment from Instagram, Messenger, Telegram, LINE, Viber and more in one shared inbox, with one customer record, routing, collision detection and AI-drafted replies."
+  },
+  {
+    "slug": "messenger",
+    "title": "UCaaS · Messenger",
+    "description": "Automate Facebook Messenger for support, sales and marketing on the official Meta API, with instant replies, Meta's 24-hour window handled for you, and a shared inbox with human handoff."
+  },
+  {
+    "slug": "viber",
+    "title": "UCaaS · Viber",
+    "description": "Verified Viber business broadcasts that customers can answer, with replies landing in one shared inbox beside WhatsApp, SMS and web chat, and AI answering the routine questions."
+  },
+  {
+    "slug": "line",
+    "title": "UCaaS · LINE",
+    "description": "Run your LINE Official Account like a real channel: two-way chat, flex messages and rich menus, managed in one shared inbox beside WhatsApp, SMS and the rest."
+  },
+  {
+    "slug": "kakaotalk",
+    "title": "UCaaS · KakaoTalk",
+    "description": "Send verified AlimTalk notices and FriendTalk broadcasts on KakaoTalk, then answer replies in one shared inbox beside WhatsApp, SMS and web chat, with the same AI on every channel."
+  },
+  {
+    "slug": "instagram",
+    "title": "UCaaS · Instagram",
+    "description": "Instagram Messaging API for support, sales and social commerce: automate DMs, turn comments into private conversations, and answer story replies from one shared inbox."
+  },
+  {
+    "slug": "web-chat",
+    "title": "UCaaS · Web Chat",
+    "description": "A live chat widget that actually answers, on brand: AI replies, proactive triggers, file sharing, a mobile SDK and a shared inbox beside WhatsApp, SMS and email."
+  },
+  {
+    "slug": "telegram",
+    "title": "UCaaS · Telegram",
+    "description": "Telegram bots and broadcasts built for business: two-way automation with buttons and AI, channel broadcasts with read tracking, and everything managed in one shared inbox."
+  },
+  {
+    "slug": "apple-messages",
+    "title": "UCaaS · Apple Messages",
+    "description": "Native iMessage business chat, sent through an approved provider: rich links, list and time pickers, Apple Pay and reactions, with Apple's approval handled and one shared inbox."
   }
 ]
