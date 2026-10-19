@@ -9523,3 +9523,9 @@ html body .ch-ub-m{align-self:stretch;display:flex;flex-direction:column;justify
 
 /* two-panel blocks (controls + preview) split evenly */
 @media(min-width:1001px){html body .ch-al,html body .ch-tg,html body .ch-w24,html body .ch-roi{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* testimonial row: room below the cards so their shadow is not cut off in a straight line */
+#stories .stories.mq{margin-block:-30px -86px;padding-block:30px 100px}
+html body .kx-hs{padding-bottom:100px!important;margin-bottom:-78px!important}
+html body .ch-hs{padding-bottom:72px;margin-bottom:-50px}
+html body .ch-car-t{padding-bottom:70px;margin-bottom:-60px}
